@@ -24,7 +24,7 @@
   margin-bottom: 1rem;
 }
 
-.explore-page__home-select select {
+.explore-page__home-select input {
   padding: 0.65rem 0.8rem;
   border: 1px solid var(--rule-strong);
   border-radius: 8px;
@@ -37,6 +37,10 @@
 .explore-page__hint {
   color: var(--ink-soft);
   font-size: 0.9rem;
+}
+
+.explore-page__hint--error {
+  color: var(--warn);
 }
 
 .explore-page__disclaimer {

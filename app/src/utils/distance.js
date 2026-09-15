@@ -15,6 +15,19 @@ export function haversineMiles(lat1, lng1, lat2, lng2) {
 }
 
 /**
+ * Finds a city by exact "City, ST" match (case-insensitive, whitespace-
+ * trimmed), or null if the text is empty or doesn't match anything in the
+ * list. Deliberately exact rather than fuzzy -- several city names repeat
+ * across states (Springfield, Portland, Charleston), so guessing wrong would
+ * silently anchor the distance calculation to the wrong place.
+ */
+export function findCity(query, cities) {
+  if (!query || !query.trim()) return null
+  const normalized = query.trim().toLowerCase()
+  return cities.find((c) => `${c.name}, ${c.state}`.toLowerCase() === normalized) ?? null
+}
+
+/**
  * Splits destinations into "local" (within LOCAL_RADIUS_MILES straight-line
  * distance of home) and "flight" (beyond it), each sorted nearest-first.
  * This is a straight-line approximation, not real driving directions.
