@@ -9,6 +9,22 @@
   margin-bottom: 1.25rem;
 }
 
+.destination-page__explore-link {
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0.6rem 0 0;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.destination-page__explore-link:hover {
+  text-decoration: underline;
+}
+
 .destination-page__actions {
   margin-top: 2rem;
   display: flex;

@@ -1,0 +1,41 @@
+.explore-destination-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.explore-destination-card__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.explore-destination-card__name {
+  font-weight: 600;
+}
+
+.explore-destination-card__distance {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.explore-destination-card__chains {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+.explore-destination-card__choose {
+  align-self: flex-start;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}

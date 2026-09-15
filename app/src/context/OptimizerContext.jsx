@@ -9,6 +9,7 @@ const initialState = {
   checkOut: '',
   guests: 1,
   rooms: 1,
+  homeState: '',
   trackSubmitted: false,
 }
 
@@ -37,6 +38,8 @@ function reducer(state, action) {
       return { ...state, destination: action.destination }
     case 'SET_TRIP_DETAILS':
       return { ...state, ...action.patch }
+    case 'SET_HOME_STATE':
+      return { ...state, homeState: action.homeState }
     case 'MARK_TRACKED':
       return { ...state, trackSubmitted: true }
     case 'RESET':

@@ -34,6 +34,14 @@ Each chain entry also has a `bookingUrl` — its official top-level hotel-search
 
 **These are deliberately the stable, top-level search pages, not deep links pre-filled with the destination.** I tried to verify real query-parameter formats (e.g. `?destinationAddress.destination=`) via both WebFetch and the Browser pane, and every major chain site (Hilton, Marriott, Hyatt) returned a bot-protection challenge page to both — and the one guess I could test end-to-end (Wyndham's `?query=`) silently returned "0 results" rather than erroring, which would have been a worse experience than no pre-fill at all. A real user's own browser won't hit that wall (it's targeting automation, not people), but there was no reliable way to confirm exact parameter names from here. If you happen to know the correct deep-link format for a chain (e.g. from a bookmarked search URL), it's safe to add it back in and should genuinely improve the hand-off.
 
+## Explore destinations (`/explore`)
+
+A helper reachable from a link on the Destination step ("Not sure where to go? Explore destinations →") for users who don't already know where they're headed. The user picks their home US state; the page splits a curated shortlist of ~28 destinations (`app/src/data/destinations.json`) into "🚗 Local — worth a drive" (within `LOCAL_RADIUS_MILES` = 250 miles) and "✈️ Worth flying to" (beyond it), sorted nearest-first, with a "Choose this destination" button on each that sets it as the destination and returns to `/destination`.
+
+**Distance is a straight-line (haversine) approximation, not real driving directions** — `app/src/utils/distance.js` computes it from a representative point per state (`app/src/data/usStateCoords.js`, largest city per state) to each destination's coordinates. This keeps the feature fully static (no maps/routing API, consistent with the rest of the app's data approach) at the cost of precision — disclosed directly on the page. If a user's home state and a destination are separated by an ocean or a bend in geography, straight-line distance will understate real travel distance/time; 250 miles was chosen to loosely track "about a 4-hour drive," not measured against real road networks.
+
+If the user already has loyalty memberships added, each destination card also shows a region-relevance hint per membership (e.g. "Hilton Honors (Strong)"), reusing the same `regionPresence` data as the results page.
+
 ## Anonymous analytics
 
 `POST /api/track` takes `{chains: [ids]}` (ids only) and increments a Redis counter per chain; `GET /api/stats` returns the current counts for all 6 chains, zero-filled, and powers the public `/stats` page (`StatsPage.jsx` + `StatsChart.jsx`).

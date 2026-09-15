@@ -40,6 +40,9 @@ export default function DestinationPage() {
         value={state.destination}
         onChange={(destination) => dispatch({ type: 'SET_DESTINATION', destination })}
       />
+      <button type="button" className="destination-page__explore-link" onClick={() => navigate('/explore')}>
+        Not sure where to go? Explore destinations →
+      </button>
       <TripDetailsInput
         checkIn={state.checkIn}
         checkOut={state.checkOut}
