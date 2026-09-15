@@ -1,23 +1,47 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useOptimizer } from '../context/OptimizerContext.jsx'
-import { US_CITIES } from '../data/usCities.js'
 import destinationsData from '../data/destinations.json'
 import chainsData from '../data/chains.json'
-import { classifyDestinations, findCity, LOCAL_RADIUS_MILES } from '../utils/distance.js'
+import {
+  classifyDestinations,
+  findCity,
+  preparePlaces,
+  searchPlaces,
+  LOCAL_RADIUS_MILES,
+} from '../utils/distance.js'
 import ExploreDestinationCard from '../components/ExploreDestinationCard.jsx'
 import './ExplorePage.css'
 
 export default function ExplorePage() {
   const { state, dispatch } = useOptimizer()
   const navigate = useNavigate()
+  const [places, setPlaces] = useState(null)
 
-  const home = useMemo(() => findCity(state.homeCity, US_CITIES), [state.homeCity])
+  useEffect(() => {
+    let cancelled = false
+    import('../data/usPlaces.json').then((mod) => {
+      if (cancelled) return
+      setPlaces(preparePlaces(mod.default))
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const suggestions = useMemo(
+    () => (places ? searchPlaces(state.homeCity, places) : []),
+    [state.homeCity, places],
+  )
+  const home = useMemo(() => (places ? findCity(state.homeCity, places) : null), [
+    state.homeCity,
+    places,
+  ])
   const { local, flight } = useMemo(
     () => classifyDestinations(home, destinationsData.destinations),
     [home],
   )
-  const notRecognized = state.homeCity.trim() && !home
+  const notRecognized = places && state.homeCity.trim() && !home
 
   const chainHintsFor = (region) =>
     state.memberships
@@ -43,27 +67,29 @@ export default function ExplorePage() {
         <input
           type="text"
           list="us-city-options"
-          placeholder="e.g. Newark, NJ"
+          placeholder="e.g. Apex, NC"
           value={state.homeCity}
+          disabled={!places}
           onChange={(e) => dispatch({ type: 'SET_HOME_CITY', homeCity: e.target.value })}
         />
         <datalist id="us-city-options">
-          {US_CITIES.map((c) => (
-            <option key={`${c.name}, ${c.state}`} value={`${c.name}, ${c.state}`} />
+          {suggestions.map((p) => (
+            <option key={`${p.name}, ${p.state}`} value={`${p.name}, ${p.state}`} />
           ))}
         </datalist>
       </label>
 
-      {!state.homeCity.trim() && (
+      {!places && <p className="explore-page__hint">Loading the US places list…</p>}
+      {places && !state.homeCity.trim() && (
         <p className="explore-page__hint">
-          Start typing your hometown (format "City, ST") to see destination ideas — pick a
+          Start typing your hometown, city, or nearby small town (format "City, ST") — includes
+          every US city, town, and unincorporated community, not just major metros. Pick a
           suggestion from the list so it matches exactly.
         </p>
       )}
       {notRecognized && (
         <p className="explore-page__hint explore-page__hint--error">
-          We don't recognize "{state.homeCity}" — pick a suggestion from the dropdown as you type,
-          or try the nearest big city instead.
+          We don't recognize "{state.homeCity}" — pick a suggestion from the dropdown as you type.
         </p>
       )}
 
