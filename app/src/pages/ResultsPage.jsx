@@ -9,7 +9,8 @@ import './ResultsPage.css'
 export default function ResultsPage() {
   const { state, dispatch } = useOptimizer()
   const navigate = useNavigate()
-  const { memberships, destination } = state
+  const { memberships, destination, checkIn, checkOut, guests, rooms } = state
+  const trip = { checkIn, checkOut, guests, rooms }
 
   useEffect(() => {
     if (memberships.length === 0) navigate('/memberships', { replace: true })
@@ -38,6 +39,7 @@ export default function ResultsPage() {
               membership={m}
               region={region}
               destination={destination}
+              trip={trip}
             />
           )
         })}

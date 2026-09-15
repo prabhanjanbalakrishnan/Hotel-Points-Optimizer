@@ -5,6 +5,10 @@ const OptimizerContext = createContext(null)
 const initialState = {
   memberships: [], // [{ id, chainId, balance, tier }]
   destination: '',
+  checkIn: '',
+  checkOut: '',
+  guests: 1,
+  rooms: 1,
   trackSubmitted: false,
 }
 
@@ -31,6 +35,8 @@ function reducer(state, action) {
       }
     case 'SET_DESTINATION':
       return { ...state, destination: action.destination }
+    case 'SET_TRIP_DETAILS':
+      return { ...state, ...action.patch }
     case 'MARK_TRACKED':
       return { ...state, trackSubmitted: true }
     case 'RESET':

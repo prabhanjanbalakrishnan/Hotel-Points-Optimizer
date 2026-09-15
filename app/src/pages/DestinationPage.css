@@ -31,3 +31,8 @@
   padding: 0.8rem 2rem;
   font-weight: 600;
 }
+
+.destination-page__next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

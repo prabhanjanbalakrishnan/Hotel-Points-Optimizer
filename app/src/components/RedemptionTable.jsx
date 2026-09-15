@@ -1,18 +1,25 @@
-import { PROPERTY_TIERS, estimateCashValue, estimateNightsCovered } from '../utils/pointsLogic.js'
+import {
+  PROPERTY_TIERS,
+  estimateCashValue,
+  estimateNightsCovered,
+  estimateTripCost,
+} from '../utils/pointsLogic.js'
 import './RedemptionTable.css'
 
-export default function RedemptionTable({ chain, balance }) {
+export default function RedemptionTable({ chain, balance, nights, rooms = 1 }) {
   const { pointsPerNightByTier, note } = chain.redemptionGuidance
   const { centsPerPoint } = chain.pointValuation
 
   return (
     <div className="redemption-table">
+      <div className="redemption-table__scroll">
       <table>
         <thead>
           <tr>
             <th>Property tier</th>
             <th>Points / night</th>
-            <th>Est. cash value</th>
+            <th>Est. cash value / night</th>
+            {nights ? <th>Est. total for {nights}-night trip{rooms > 1 ? `, ${rooms} rooms` : ''}</th> : null}
             {balance ? <th>Nights your balance covers</th> : null}
           </tr>
         </thead>
@@ -20,7 +27,12 @@ export default function RedemptionTable({ chain, balance }) {
           {PROPERTY_TIERS.map((tier) => {
             const range = pointsPerNightByTier[tier]
             const cash = estimateCashValue(range.min, range.max, centsPerPoint)
-            const nights = balance ? estimateNightsCovered(balance, range.min, range.max) : null
+            const nightsCovered = balance
+              ? estimateNightsCovered(balance, range.min, range.max, rooms)
+              : null
+            const trip = nights
+              ? estimateTripCost(range.min, range.max, centsPerPoint, nights, rooms)
+              : null
             return (
               <tr key={tier}>
                 <td>{tier}</td>
@@ -30,9 +42,19 @@ export default function RedemptionTable({ chain, balance }) {
                 <td className="num">
                   ${cash.min}–${cash.max}
                 </td>
+                {nights ? (
+                  <td className="num">
+                    {trip.points.min.toLocaleString()}–{trip.points.max.toLocaleString()} pts
+                    <br />
+                    (${trip.cash.min}–${trip.cash.max})
+                  </td>
+                ) : null}
                 {balance ? (
                   <td className="num">
-                    {nights.max > 0 ? `~${nights.min}–${nights.max} nights` : '<1 night'}
+                    {nightsCovered.max > 0
+                      ? `~${nightsCovered.min}–${nightsCovered.max} nights`
+                      : '<1 night'}
+                    {rooms > 1 ? ` (${rooms} rooms/night)` : ''}
                   </td>
                 ) : null}
               </tr>
@@ -40,6 +62,7 @@ export default function RedemptionTable({ chain, balance }) {
           })}
         </tbody>
       </table>
+      </div>
       <p className="redemption-table__note">{note}</p>
     </div>
   )

@@ -10,11 +10,33 @@ export function estimateCashValue(pointsMin, pointsMax, centsPerPoint) {
 }
 
 /** Roughly how many nights a points balance covers at a given points-per-night range. */
-export function estimateNightsCovered(balance, pointsMin, pointsMax) {
+export function estimateNightsCovered(balance, pointsMin, pointsMax, rooms = 1) {
   if (!balance || balance <= 0) return null
+  const perNightMin = pointsMin * rooms
+  const perNightMax = pointsMax * rooms
   return {
-    min: Math.floor(balance / pointsMax) || 0,
-    max: Math.floor(balance / pointsMin),
+    min: Math.floor(balance / perNightMax) || 0,
+    max: Math.floor(balance / perNightMin),
+  }
+}
+
+/** Whole nights between two yyyy-mm-dd date strings, or null if either is missing/invalid/non-positive. */
+export function computeNights(checkIn, checkOut) {
+  if (!checkIn || !checkOut) return null
+  const inDate = new Date(`${checkIn}T00:00:00`)
+  const outDate = new Date(`${checkOut}T00:00:00`)
+  if (Number.isNaN(inDate.getTime()) || Number.isNaN(outDate.getTime())) return null
+  const nights = Math.round((outDate - inDate) / (1000 * 60 * 60 * 24))
+  return nights > 0 ? nights : null
+}
+
+/** Total trip cost (points and cash) for a points-per-night range across nights and rooms. */
+export function estimateTripCost(pointsMin, pointsMax, centsPerPoint, nights, rooms) {
+  const totalMin = pointsMin * nights * rooms
+  const totalMax = pointsMax * nights * rooms
+  return {
+    points: { min: totalMin, max: totalMax },
+    cash: estimateCashValue(totalMin, totalMax, centsPerPoint),
   }
 }
 
