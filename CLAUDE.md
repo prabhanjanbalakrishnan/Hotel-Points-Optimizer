@@ -28,6 +28,12 @@ Plain `npm run dev` does **not** execute `app/api/*.js` (Vite doesn't run server
 
 `_meta.disclaimer` is shown on the results page — keep it in sync with reality: this data is hand-compiled and goes stale as programs change terms.
 
+## Outbound booking links
+
+Each chain entry also has a `bookingUrl` — its official top-level hotel-search page (e.g. `https://www.hilton.com/en/search/`). `ChainResultCard.jsx` renders this as a "Search real rooms on {chain}" link (`target="_blank"`, `rel="noopener noreferrer"`), with a hint line naming the user's typed destination so they can search for it themselves once they land on the chain's real site. The user then books directly with their own loyalty account — this app never displays live inventory or availability itself.
+
+**These are deliberately the stable, top-level search pages, not deep links pre-filled with the destination.** I tried to verify real query-parameter formats (e.g. `?destinationAddress.destination=`) via both WebFetch and the Browser pane, and every major chain site (Hilton, Marriott, Hyatt) returned a bot-protection challenge page to both — and the one guess I could test end-to-end (Wyndham's `?query=`) silently returned "0 results" rather than erroring, which would have been a worse experience than no pre-fill at all. A real user's own browser won't hit that wall (it's targeting automation, not people), but there was no reliable way to confirm exact parameter names from here. If you happen to know the correct deep-link format for a chain (e.g. from a bookmarked search URL), it's safe to add it back in and should genuinely improve the hand-off.
+
 ## Anonymous analytics
 
 `POST /api/track` takes `{chains: [ids]}` (ids only) and increments a Redis counter per chain; `GET /api/stats` returns the current counts for all 6 chains, zero-filled, and powers the public `/stats` page (`StatsPage.jsx` + `StatsChart.jsx`).

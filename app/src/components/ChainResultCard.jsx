@@ -3,7 +3,7 @@ import { getTier } from '../utils/pointsLogic.js'
 import RedemptionTable from './RedemptionTable.jsx'
 import './ChainResultCard.css'
 
-export default function ChainResultCard({ chain, membership, region }) {
+export default function ChainResultCard({ chain, membership, region, destination }) {
   const tier = getTier(chain, membership.tier)
   const baseTier = chain.eliteTiers[0]
   const perks = tier?.perks ?? baseTier.perks
@@ -51,6 +51,22 @@ export default function ChainResultCard({ chain, membership, region }) {
         ¢ each. If a cash rate divided by the points price beats that, paying cash is the better
         deal — otherwise points win.
       </p>
+
+      <div className="chain-result-card__booking">
+        <a
+          className="chain-result-card__booking-link"
+          href={chain.bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Search real rooms on {chain.name} ↗
+        </a>
+        <p className="chain-result-card__booking-hint">
+          {destination
+            ? `Opens ${chain.name}'s official site — search "${destination}" there to see live rooms and book with your own account.`
+            : `Opens ${chain.name}'s official site to search and book with your own account.`}
+        </p>
+      </div>
     </article>
   )
 }

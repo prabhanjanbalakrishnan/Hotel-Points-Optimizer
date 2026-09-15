@@ -10,6 +10,7 @@
       "id": "hilton",
       "name": "Hilton Honors",
       "accentColor": "#104C97",
+      "bookingUrl": "https://www.hilton.com/en/search/",
       "brandFamily": ["Waldorf Astoria", "Conrad", "Canopy by Hilton", "Hilton Hotels & Resorts", "DoubleTree", "Hampton by Hilton"],
       "eliteTiers": [
         { "name": "Member", "qualification": "Enrollment only", "perks": ["5% bonus points earning", "Digital check-in & room selection", "Standard room upgrade, space-available"] },
@@ -35,6 +36,7 @@
       "id": "marriott",
       "name": "Marriott Bonvoy",
       "accentColor": "#8C1D40",
+      "bookingUrl": "https://www.marriott.com/search/findHotels.mi",
       "brandFamily": ["Ritz-Carlton", "St. Regis", "W Hotels", "Westin", "Sheraton", "Courtyard", "Fairfield by Marriott"],
       "eliteTiers": [
         { "name": "Member", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Mobile check-in & checkout", "Member-only rates"] },
@@ -60,6 +62,7 @@
       "id": "hyatt",
       "name": "World of Hyatt",
       "accentColor": "#C8102E",
+      "bookingUrl": "https://www.hyatt.com/search",
       "brandFamily": ["Park Hyatt", "Andaz", "Grand Hyatt", "Hyatt Regency", "Hyatt Place", "Hyatt House"],
       "eliteTiers": [
         { "name": "Member", "qualification": "Enrollment only", "perks": ["5 points per $1 spent", "Member-only rates", "Late checkout upon request"] },
@@ -85,6 +88,7 @@
       "id": "ihg",
       "name": "IHG One Rewards",
       "accentColor": "#5C2D91",
+      "bookingUrl": "https://www.ihg.com/hotels/us/en/reservation",
       "brandFamily": ["InterContinental", "Kimpton", "Hotel Indigo", "voco", "Holiday Inn", "Holiday Inn Express"],
       "eliteTiers": [
         { "name": "Club", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Member-only rates", "Free wifi"] },
@@ -110,6 +114,7 @@
       "id": "wyndham",
       "name": "Wyndham Rewards",
       "accentColor": "#E2711D",
+      "bookingUrl": "https://www.wyndhamhotels.com/hotels",
       "brandFamily": ["Wyndham Grand", "Wyndham Garden", "Ramada", "Days Inn", "Super 8", "La Quinta"],
       "eliteTiers": [
         { "name": "Blue", "qualification": "Enrollment only", "perks": ["10 points per $1 spent (varies by brand)", "Member-only rates"] },
@@ -135,6 +140,7 @@
       "id": "choice",
       "name": "Choice Privileges",
       "accentColor": "#1B7A43",
+      "bookingUrl": "https://www.choicehotels.com/hotels",
       "brandFamily": ["Cambria Hotels", "Ascend Hotel Collection", "Comfort Inn", "Quality Inn", "Econo Lodge"],
       "eliteTiers": [
         { "name": "Member", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Member-only rates"] },

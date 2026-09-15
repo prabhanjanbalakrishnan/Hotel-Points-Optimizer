@@ -31,7 +31,15 @@ export default function ResultsPage() {
       <div className="results-page__cards">
         {ranked.map((m) => {
           const chain = chainsData.chains.find((c) => c.id === m.chainId)
-          return <ChainResultCard key={m.id} chain={chain} membership={m} region={region} />
+          return (
+            <ChainResultCard
+              key={m.id}
+              chain={chain}
+              membership={m}
+              region={region}
+              destination={destination}
+            />
+          )
         })}
       </div>
 
