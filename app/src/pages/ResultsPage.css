@@ -1,0 +1,31 @@
+.results-page {
+  max-width: 820px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.results-page h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.results-page__disclaimer {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  margin-bottom: 2rem;
+}
+
+.results-page__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.results-page__restart {
+  margin-top: 2.5rem;
+  background: transparent;
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  padding: 0.7rem 1.4rem;
+  color: var(--ink-soft);
+}

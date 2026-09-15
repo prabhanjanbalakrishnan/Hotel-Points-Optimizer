@@ -1,0 +1,33 @@
+.destination-page {
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.destination-page h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.destination-page__actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.destination-page__back {
+  background: transparent;
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  padding: 0.8rem 1.6rem;
+  color: var(--ink-soft);
+}
+
+.destination-page__next {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+}

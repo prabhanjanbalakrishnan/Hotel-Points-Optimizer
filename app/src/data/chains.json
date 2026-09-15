@@ -1,0 +1,160 @@
+{
+  "_meta": {
+    "lastUpdated": "2026-09-14",
+    "disclaimer": "Elite tier requirements, perks, and redemption ranges are hand-compiled general guidance, not live program terms. Loyalty programs change benefits and pricing frequently and do not offer public APIs for this data — always confirm current details on the program's official site before booking.",
+    "valuationMethod": "Point valuations are rough rule-of-thumb estimates (cents per point), used only for an approximate pay-with-points-vs-cash comparison — not a guarantee of achievable value.",
+    "regionOrder": ["North America", "Europe", "Asia", "Middle East", "Africa", "South America", "Oceania"]
+  },
+  "chains": [
+    {
+      "id": "hilton",
+      "name": "Hilton Honors",
+      "accentColor": "#104C97",
+      "brandFamily": ["Waldorf Astoria", "Conrad", "Canopy by Hilton", "Hilton Hotels & Resorts", "DoubleTree", "Hampton by Hilton"],
+      "eliteTiers": [
+        { "name": "Member", "qualification": "Enrollment only", "perks": ["5% bonus points earning", "Digital check-in & room selection", "Standard room upgrade, space-available"] },
+        { "name": "Silver", "qualification": "10 nights/yr", "perks": ["20% bonus points earning", "5th night free on award stays", "Space-available room upgrade"] },
+        { "name": "Gold", "qualification": "40 nights/yr", "perks": ["80% bonus points earning", "Complimentary breakfast for 2 (or F&B credit)", "Space-available upgrade incl. some suites", "5th night free on award stays"] },
+        { "name": "Diamond", "qualification": "60 nights/yr", "perks": ["100% bonus points earning", "Complimentary breakfast for 2", "Executive lounge access", "Guaranteed upgrade to best available room incl. some suites", "5th night free on award stays"] }
+      ],
+      "redemptionGuidance": {
+        "pricingModel": "dynamic",
+        "note": "Hilton uses fully dynamic, revenue-based award pricing with no published category chart. Ranges below are rough real-world estimates observed across typical properties, not official figures.",
+        "pointsPerNightByTier": {
+          "Budget/Midscale": { "min": 10000, "max": 30000 },
+          "Upscale": { "min": 30000, "max": 60000 },
+          "Upper Upscale": { "min": 60000, "max": 100000 },
+          "Luxury": { "min": 100000, "max": 200000 }
+        }
+      },
+      "pointValuation": { "centsPerPoint": 0.5, "note": "Hilton points are among the lowest-valued major currencies but earned in much larger quantities per dollar; ~0.5¢/point is a common rule-of-thumb valuation." },
+      "paymentFlexibility": { "cashPlusPoints": true, "minPointsForCashPlusPoints": 5000, "blackoutDatesTypical": false, "notes": "Points & Money available on nearly all standard rooms; no blackout dates since pricing is dynamic — availability is simply priced higher on peak dates." },
+      "regionPresence": { "North America": "Strong", "Europe": "Strong", "Asia": "Growing", "Middle East": "Growing", "Africa": "Limited", "South America": "Limited", "Oceania": "Limited" }
+    },
+    {
+      "id": "marriott",
+      "name": "Marriott Bonvoy",
+      "accentColor": "#8C1D40",
+      "brandFamily": ["Ritz-Carlton", "St. Regis", "W Hotels", "Westin", "Sheraton", "Courtyard", "Fairfield by Marriott"],
+      "eliteTiers": [
+        { "name": "Member", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Mobile check-in & checkout", "Member-only rates"] },
+        { "name": "Silver Elite", "qualification": "10 nights/yr", "perks": ["10% bonus points earning", "Late checkout, based on availability"] },
+        { "name": "Gold Elite", "qualification": "25 nights/yr", "perks": ["25% bonus points earning", "Room upgrades, space-available", "Enhanced late checkout"] },
+        { "name": "Platinum Elite", "qualification": "50 nights/yr", "perks": ["50% bonus points earning", "Lounge access or breakfast (varies by brand)", "Guaranteed 4pm late checkout", "Suite upgrades, space-available"] }
+      ],
+      "redemptionGuidance": {
+        "pricingModel": "dynamic",
+        "note": "Marriott moved to fully dynamic award pricing in 2022, retiring its old category chart. Ranges below are rough real-world estimates, not official figures.",
+        "pointsPerNightByTier": {
+          "Budget/Midscale": { "min": 15000, "max": 35000 },
+          "Upscale": { "min": 35000, "max": 60000 },
+          "Upper Upscale": { "min": 60000, "max": 85000 },
+          "Luxury": { "min": 85000, "max": 150000 }
+        }
+      },
+      "pointValuation": { "centsPerPoint": 0.7, "note": "Marriott's huge hotel count and brand range keeps its points moderately valuable and flexible; ~0.7¢/point is a common rule-of-thumb valuation." },
+      "paymentFlexibility": { "cashPlusPoints": true, "minPointsForCashPlusPoints": 5000, "blackoutDatesTypical": false, "notes": "Cash + Points combos widely available; no blackout dates under dynamic pricing, though prices rise on peak dates." },
+      "regionPresence": { "North America": "Strong", "Europe": "Strong", "Asia": "Strong", "Middle East": "Growing", "Africa": "Limited", "South America": "Growing", "Oceania": "Growing" }
+    },
+    {
+      "id": "hyatt",
+      "name": "World of Hyatt",
+      "accentColor": "#C8102E",
+      "brandFamily": ["Park Hyatt", "Andaz", "Grand Hyatt", "Hyatt Regency", "Hyatt Place", "Hyatt House"],
+      "eliteTiers": [
+        { "name": "Member", "qualification": "Enrollment only", "perks": ["5 points per $1 spent", "Member-only rates", "Late checkout upon request"] },
+        { "name": "Discoverist", "qualification": "10 nights/yr", "perks": ["10% bonus points earning", "Room upgrade, standard, space-available", "Late checkout, 1pm"] },
+        { "name": "Explorist", "qualification": "30 nights/yr", "perks": ["20% bonus points earning", "Complimentary continental breakfast or F&B credit", "Premium room upgrade, space-available", "Late checkout, 2pm"] },
+        { "name": "Globalist", "qualification": "60 nights/yr", "perks": ["30% bonus points earning", "Complimentary breakfast + club lounge access", "Confirmed suite upgrade at booking, select properties", "Guaranteed 4pm late checkout", "Free parking at many properties"] }
+      ],
+      "redemptionGuidance": {
+        "pricingModel": "category",
+        "note": "Hyatt still publishes a true category chart (roughly Category 1-8), so nominal points-per-night are much lower than other chains — each point is simply worth more. Standard/off-peak/peak pricing within a category shifts the exact cost by season.",
+        "pointsPerNightByTier": {
+          "Budget/Midscale": { "min": 5000, "max": 8000 },
+          "Upscale": { "min": 8000, "max": 15000 },
+          "Upper Upscale": { "min": 15000, "max": 25000 },
+          "Luxury": { "min": 25000, "max": 40000 }
+        }
+      },
+      "pointValuation": { "centsPerPoint": 1.8, "note": "Hyatt points are widely considered the most valuable major hotel currency — a smaller, higher-value program with fixed category pricing; ~1.8¢/point is a common rule-of-thumb valuation." },
+      "paymentFlexibility": { "cashPlusPoints": true, "minPointsForCashPlusPoints": 3000, "blackoutDatesTypical": false, "notes": "Points + Cash covers roughly half the points cost on eligible rooms; standard/off-peak/peak categories shift pricing by season rather than true blackout dates." },
+      "regionPresence": { "North America": "Strong", "Europe": "Growing", "Asia": "Strong", "Middle East": "Strong", "Africa": "Limited", "South America": "Limited", "Oceania": "Limited" }
+    },
+    {
+      "id": "ihg",
+      "name": "IHG One Rewards",
+      "accentColor": "#5C2D91",
+      "brandFamily": ["InterContinental", "Kimpton", "Hotel Indigo", "voco", "Holiday Inn", "Holiday Inn Express"],
+      "eliteTiers": [
+        { "name": "Club", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Member-only rates", "Free wifi"] },
+        { "name": "Gold Elite", "qualification": "20 nights/yr", "perks": ["20% bonus points earning", "Room upgrade, space-available", "Late checkout, space-available"] },
+        { "name": "Platinum Elite", "qualification": "40 nights/yr", "perks": ["40% bonus points earning", "Guaranteed room availability, 24-72hr", "Room upgrade, space-available", "Milestone reward points"] },
+        { "name": "Diamond Elite", "qualification": "75 nights/yr", "perks": ["60% bonus points earning", "Guaranteed 4pm late checkout", "Executive lounge access or breakfast", "Dedicated service line", "Milestone reward points"] }
+      ],
+      "redemptionGuidance": {
+        "pricingModel": "hybrid",
+        "note": "IHG uses a base category chart with a dynamic peak-date overlay — most nights price at the category rate, but high-demand dates can price above it. Ranges below reflect that blend.",
+        "pointsPerNightByTier": {
+          "Budget/Midscale": { "min": 10000, "max": 25000 },
+          "Upscale": { "min": 25000, "max": 45000 },
+          "Upper Upscale": { "min": 45000, "max": 70000 },
+          "Luxury": { "min": 70000, "max": 120000 }
+        }
+      },
+      "pointValuation": { "centsPerPoint": 0.6, "note": "IHG's massive Holiday Inn-driven footprint keeps points earnable in volume at a modest but steady value; ~0.6¢/point is a common rule-of-thumb valuation." },
+      "paymentFlexibility": { "cashPlusPoints": true, "minPointsForCashPlusPoints": 3000, "blackoutDatesTypical": false, "notes": "Points & Cash bookings widely available; occasional 'PointBreaks'-style promotions offer deep discounts on select properties." },
+      "regionPresence": { "North America": "Strong", "Europe": "Strong", "Asia": "Strong", "Middle East": "Strong", "Africa": "Growing", "South America": "Limited", "Oceania": "Growing" }
+    },
+    {
+      "id": "wyndham",
+      "name": "Wyndham Rewards",
+      "accentColor": "#E2711D",
+      "brandFamily": ["Wyndham Grand", "Wyndham Garden", "Ramada", "Days Inn", "Super 8", "La Quinta"],
+      "eliteTiers": [
+        { "name": "Blue", "qualification": "Enrollment only", "perks": ["10 points per $1 spent (varies by brand)", "Member-only rates"] },
+        { "name": "Gold", "qualification": "5 nights/yr", "perks": ["20% bonus points earning", "Late checkout upon request"] },
+        { "name": "Platinum", "qualification": "15 nights/yr", "perks": ["35% bonus points earning", "Guaranteed room availability", "Room upgrade, space-available"] },
+        { "name": "Diamond", "qualification": "30 nights/yr", "perks": ["50% bonus points earning", "Guaranteed upgrade to best available room", "Guaranteed late checkout", "Dedicated support line"] }
+      ],
+      "redemptionGuidance": {
+        "pricingModel": "category",
+        "note": "Wyndham keeps a simple, mostly flat category chart across its economy/midscale-heavy portfolio — one of the few chains where redemption ranges stay narrow rather than wide.",
+        "pointsPerNightByTier": {
+          "Budget/Midscale": { "min": 7500, "max": 15000 },
+          "Upscale": { "min": 15000, "max": 30000 },
+          "Upper Upscale": { "min": 30000, "max": 45000 },
+          "Luxury": { "min": 45000, "max": 60000 }
+        }
+      },
+      "pointValuation": { "centsPerPoint": 0.9, "note": "Wyndham's flat, low nightly point costs make its points punch above their nominal count; ~0.9¢/point is a common rule-of-thumb valuation." },
+      "paymentFlexibility": { "cashPlusPoints": true, "minPointsForCashPlusPoints": 1500, "blackoutDatesTypical": false, "notes": "Flat category pricing keeps redemptions simple and predictable; Go Free/Go Fast (cash+points) options available on most bookings." },
+      "regionPresence": { "North America": "Strong", "Europe": "Growing", "Asia": "Growing", "Middle East": "Limited", "Africa": "Limited", "South America": "Growing", "Oceania": "Limited" }
+    },
+    {
+      "id": "choice",
+      "name": "Choice Privileges",
+      "accentColor": "#1B7A43",
+      "brandFamily": ["Cambria Hotels", "Ascend Hotel Collection", "Comfort Inn", "Quality Inn", "Econo Lodge"],
+      "eliteTiers": [
+        { "name": "Member", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Member-only rates"] },
+        { "name": "Gold", "qualification": "5 nights/yr", "perks": ["20% bonus points earning", "Late checkout upon request"] },
+        { "name": "Platinum", "qualification": "10 nights/yr", "perks": ["25% bonus points earning", "Room upgrade, space-available", "Welcome amenity"] },
+        { "name": "Diamond", "qualification": "30 nights/yr", "perks": ["35% bonus points earning", "Guaranteed room availability", "Dedicated Diamond support line", "Milestone bonus points"] }
+      ],
+      "redemptionGuidance": {
+        "pricingModel": "dynamic",
+        "note": "Choice skews budget/midscale overall (Cambria and Ascend are its highest brands, not true luxury), so its top bucket has the lowest ceiling of the 6 chains here.",
+        "pointsPerNightByTier": {
+          "Budget/Midscale": { "min": 8000, "max": 16000 },
+          "Upscale": { "min": 16000, "max": 25000 },
+          "Upper Upscale": { "min": 25000, "max": 35000 },
+          "Luxury": { "min": 35000, "max": 45000 }
+        }
+      },
+      "pointValuation": { "centsPerPoint": 0.6, "note": "Choice's budget-focused portfolio keeps per-night point costs low; ~0.6¢/point is a common rule-of-thumb valuation." },
+      "paymentFlexibility": { "cashPlusPoints": true, "minPointsForCashPlusPoints": 2000, "blackoutDatesTypical": false, "notes": "Dynamic pricing with frequent low-point redemption promos at budget/midscale properties." },
+      "regionPresence": { "North America": "Strong", "Europe": "Limited", "Asia": "Limited", "Middle East": "Limited", "Africa": "Limited", "South America": "Growing", "Oceania": "Limited" }
+    }
+  ]
+}

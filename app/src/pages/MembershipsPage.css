@@ -1,0 +1,45 @@
+.memberships-page {
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.memberships-page h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.memberships-page__subtitle {
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}
+
+.memberships-page__first-add {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.memberships-page__actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.memberships-page__next {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+}
+
+.memberships-page__next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

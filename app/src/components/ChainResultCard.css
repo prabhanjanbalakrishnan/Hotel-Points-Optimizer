@@ -1,0 +1,73 @@
+.chain-result-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.chain-result-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-left: 4px solid;
+  padding-left: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.chain-result-card__header h3 {
+  font-size: 1.2rem;
+}
+
+.chain-result-card__tier {
+  background: var(--gold-soft);
+  color: var(--gold);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.chain-result-card__region-hint {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin: 0 0 1rem;
+}
+
+.chain-result-card__brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.1rem;
+}
+
+.chain-result-card__brand-chip {
+  background: var(--chip);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+}
+
+.chain-result-card__perks h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.chain-result-card__perks ul {
+  margin: 0 0 1.1rem;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.chain-result-card__perks li {
+  margin-bottom: 0.2rem;
+}
+
+.chain-result-card__valuation {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--rule);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}

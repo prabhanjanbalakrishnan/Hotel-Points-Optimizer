@@ -1,0 +1,24 @@
+.redemption-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.redemption-table th {
+  text-align: left;
+  color: var(--ink-soft);
+  font-weight: 600;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.redemption-table td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.redemption-table__note {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  margin: 0.75rem 0 0;
+}

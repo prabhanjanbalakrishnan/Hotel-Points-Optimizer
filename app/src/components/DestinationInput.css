@@ -1,0 +1,25 @@
+.destination-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 480px;
+}
+
+.destination-input label {
+  font-weight: 600;
+}
+
+.destination-input input {
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.destination-input__hint {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin: 0;
+}
