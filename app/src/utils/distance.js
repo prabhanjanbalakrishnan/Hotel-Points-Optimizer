@@ -1,6 +1,14 @@
 const EARTH_RADIUS_MILES = 3958.8
+const MILES_TO_KM = 1.60934
 
 export const LOCAL_RADIUS_MILES = 250
+// India's threshold is deliberately in km (not a mile conversion of the US
+// number) and slightly lower in equivalent distance -- India's road/traffic
+// conditions mean a given straight-line distance often takes longer to
+// drive than the US benchmark this app's US mode is loosely calibrated to,
+// so "roughly a same-day drive" lands at a shorter radius, not exactly 250mi
+// converted. Still just a rule-of-thumb, disclosed as such on the page.
+export const LOCAL_RADIUS_KM = 200
 
 /** Great-circle distance in miles between two lat/lng points. */
 export function haversineMiles(lat1, lng1, lat2, lng2) {
@@ -12,6 +20,11 @@ export function haversineMiles(lat1, lng1, lat2, lng2) {
     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
   return EARTH_RADIUS_MILES * c
+}
+
+/** Great-circle distance in km between two lat/lng points. */
+export function haversineKm(lat1, lng1, lat2, lng2) {
+  return haversineMiles(lat1, lng1, lat2, lng2) * MILES_TO_KM
 }
 
 /**
@@ -85,21 +98,33 @@ export function searchPlaces(query, sortedPlaces, limit = 8) {
 }
 
 /**
- * Splits destinations into "local" (within LOCAL_RADIUS_MILES straight-line
- * distance of home) and "flight" (beyond it), each sorted nearest-first.
- * This is a straight-line approximation, not real driving directions.
+ * Splits destinations into "local" (within `radius` straight-line distance
+ * of home, per `distanceFn`) and "flight" (beyond it), each sorted
+ * nearest-first. This is a straight-line approximation, not real driving
+ * directions. Defaults match the original US mode (miles); India mode
+ * passes { radius: LOCAL_RADIUS_KM, distanceFn: haversineKm }.
  */
-export function classifyDestinations(home, destinations) {
+export function classifyDestinations(
+  home,
+  destinations,
+  { radius = LOCAL_RADIUS_MILES, distanceFn = haversineMiles } = {},
+) {
   if (!home) return { local: [], flight: [] }
 
-  const withDistance = destinations.map((d) => ({
-    ...d,
-    distanceMiles: Math.round(haversineMiles(home.lat, home.lng, d.lat, d.lng)),
-  }))
+  const withDistance = destinations
+    .map((d) => ({
+      ...d,
+      distanceValue: Math.round(distanceFn(home.lat, home.lng, d.lat, d.lng)),
+    }))
+    // A destination essentially at home's own coordinates (e.g. searching
+    // "Jaipur, Rajasthan" when Jaipur is itself in the destinations list)
+    // isn't a useful "local getaway" suggestion -- drop it rather than
+    // recommend the user's own city to them.
+    .filter((d) => d.distanceValue > 2)
 
-  const byDistance = (a, b) => a.distanceMiles - b.distanceMiles
+  const byDistance = (a, b) => a.distanceValue - b.distanceValue
   return {
-    local: withDistance.filter((d) => d.distanceMiles <= LOCAL_RADIUS_MILES).sort(byDistance),
-    flight: withDistance.filter((d) => d.distanceMiles > LOCAL_RADIUS_MILES).sort(byDistance),
+    local: withDistance.filter((d) => d.distanceValue <= radius).sort(byDistance),
+    flight: withDistance.filter((d) => d.distanceValue > radius).sort(byDistance),
   }
 }

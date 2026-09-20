@@ -83,6 +83,21 @@
   color: var(--ink-soft);
 }
 
+.chain-result-card__cashback-peg {
+  font-size: 0.88rem;
+  margin: 0 0 0.5rem;
+}
+
+.chain-result-card__cashback-balance {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--good);
+  background: var(--good-soft);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  margin: 0 0 0.75rem;
+}
+
 .chain-result-card__booking {
   margin-top: 1.25rem;
   padding-top: 1.1rem;

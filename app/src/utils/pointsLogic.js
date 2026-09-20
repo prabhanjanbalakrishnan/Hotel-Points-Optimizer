@@ -1,12 +1,23 @@
 import { DESTINATION_KEYWORDS } from '../data/regionMapping.js'
-import { PROPERTY_TIERS, NO_STATUS_TIER } from '../constants.js'
+import { PROPERTY_TIERS, NO_STATUS_TIER, CURRENCY_LOCALES, CURRENCY_SYMBOLS } from '../constants.js'
 
-/** Dollar range a points range is worth, given a cents-per-point valuation. */
-export function estimateCashValue(pointsMin, pointsMax, centsPerPoint) {
+/**
+ * Major-currency-unit range a points range is worth, given a valuePerPoint
+ * expressed in minor units (cents for USD, paise for INR -- both are
+ * 1/100th of the major unit, so the same /100 math works for either).
+ */
+export function estimateCashValue(pointsMin, pointsMax, valuePerPoint) {
   return {
-    min: Math.round((pointsMin * centsPerPoint) / 100),
-    max: Math.round((pointsMax * centsPerPoint) / 100),
+    min: Math.round((pointsMin * valuePerPoint) / 100),
+    max: Math.round((pointsMax * valuePerPoint) / 100),
   }
+}
+
+/** Formats a major-currency-unit amount with the right symbol and digit grouping (e.g. ₹12,34,567 vs $1,234,567). */
+export function formatCurrency(amount, currencyCode) {
+  const symbol = CURRENCY_SYMBOLS[currencyCode] ?? '$'
+  const locale = CURRENCY_LOCALES[currencyCode] ?? 'en-US'
+  return `${symbol}${amount.toLocaleString(locale)}`
 }
 
 /** Roughly how many nights a points balance covers at a given points-per-night range. */
@@ -31,20 +42,25 @@ export function computeNights(checkIn, checkOut) {
 }
 
 /** Total trip cost (points and cash) for a points-per-night range across nights and rooms. */
-export function estimateTripCost(pointsMin, pointsMax, centsPerPoint, nights, rooms) {
+export function estimateTripCost(pointsMin, pointsMax, valuePerPoint, nights, rooms) {
   const totalMin = pointsMin * nights * rooms
   const totalMax = pointsMax * nights * rooms
   return {
     points: { min: totalMin, max: totalMax },
-    cash: estimateCashValue(totalMin, totalMax, centsPerPoint),
+    cash: estimateCashValue(totalMin, totalMax, valuePerPoint),
   }
 }
 
-/** Returns the matching region for a free-text destination, or null if nothing matches. */
-export function matchRegion(destinationText) {
+/**
+ * Returns the matching region for a free-text destination, or null if
+ * nothing matches. `keywordMap` defaults to the US world-region map, but
+ * India mode passes its own India-region map (see regionMappingIndia.js) --
+ * same shape, different taxonomy.
+ */
+export function matchRegion(destinationText, keywordMap = DESTINATION_KEYWORDS) {
   if (!destinationText || !destinationText.trim()) return null
   const text = destinationText.toLowerCase()
-  for (const [region, keywords] of Object.entries(DESTINATION_KEYWORDS)) {
+  for (const [region, keywords] of Object.entries(keywordMap)) {
     if (keywords.some((kw) => text.includes(kw))) return region
   }
   return null

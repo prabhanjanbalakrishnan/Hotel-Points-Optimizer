@@ -14,6 +14,28 @@
   margin-bottom: 1.5rem;
 }
 
+.explore-page__market-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.explore-page__market-btn {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.explore-page__market-btn--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
 .explore-page__home-select {
   display: flex;
   flex-direction: column;

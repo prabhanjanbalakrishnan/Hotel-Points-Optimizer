@@ -1,12 +1,12 @@
 import './ExploreDestinationCard.css'
 
-export default function ExploreDestinationCard({ destination, chainHints, onChoose }) {
+export default function ExploreDestinationCard({ destination, chainHints, onChoose, unit = 'mi' }) {
   return (
     <div className="explore-destination-card">
       <div className="explore-destination-card__main">
         <span className="explore-destination-card__name">{destination.name}</span>
         <span className="explore-destination-card__distance">
-          ~{destination.distanceMiles.toLocaleString()} mi
+          ~{destination.distanceValue.toLocaleString()} {unit}
         </span>
       </div>
       {chainHints.length > 0 && (

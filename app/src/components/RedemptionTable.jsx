@@ -3,12 +3,14 @@ import {
   estimateCashValue,
   estimateNightsCovered,
   estimateTripCost,
+  formatCurrency,
 } from '../utils/pointsLogic.js'
 import './RedemptionTable.css'
 
 export default function RedemptionTable({ chain, balance, nights, rooms = 1 }) {
   const { pointsPerNightByTier, note } = chain.redemptionGuidance
-  const { centsPerPoint } = chain.pointValuation
+  const { valuePerPoint } = chain.pointValuation
+  const currency = chain.currency
 
   return (
     <div className="redemption-table">
@@ -26,12 +28,12 @@ export default function RedemptionTable({ chain, balance, nights, rooms = 1 }) {
         <tbody>
           {PROPERTY_TIERS.map((tier) => {
             const range = pointsPerNightByTier[tier]
-            const cash = estimateCashValue(range.min, range.max, centsPerPoint)
+            const cash = estimateCashValue(range.min, range.max, valuePerPoint)
             const nightsCovered = balance
               ? estimateNightsCovered(balance, range.min, range.max, rooms)
               : null
             const trip = nights
-              ? estimateTripCost(range.min, range.max, centsPerPoint, nights, rooms)
+              ? estimateTripCost(range.min, range.max, valuePerPoint, nights, rooms)
               : null
             return (
               <tr key={tier}>
@@ -40,13 +42,13 @@ export default function RedemptionTable({ chain, balance, nights, rooms = 1 }) {
                   {range.min.toLocaleString()}–{range.max.toLocaleString()}
                 </td>
                 <td className="num">
-                  ${cash.min}–${cash.max}
+                  {formatCurrency(cash.min, currency)}–{formatCurrency(cash.max, currency)}
                 </td>
                 {nights ? (
                   <td className="num">
                     {trip.points.min.toLocaleString()}–{trip.points.max.toLocaleString()} pts
                     <br />
-                    (${trip.cash.min}–${trip.cash.max})
+                    ({formatCurrency(trip.cash.min, currency)}–{formatCurrency(trip.cash.max, currency)})
                   </td>
                 ) : null}
                 {balance ? (

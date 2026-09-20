@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "disclaimer": "A curated shortlist of popular Indian destinations plus a few international spots popular with Indian travelers, not an exhaustive list."
+  },
+  "destinations": [
+    { "name": "Delhi", "region": "North India", "lat": 28.7041, "lng": 77.1025 },
+    { "name": "Agra, Uttar Pradesh", "region": "North India", "lat": 27.1767, "lng": 78.0081 },
+    { "name": "Varanasi, Uttar Pradesh", "region": "North India", "lat": 25.3176, "lng": 82.9739 },
+    { "name": "Amritsar, Punjab", "region": "North India", "lat": 31.634, "lng": 74.8723 },
+    { "name": "Rishikesh, Uttarakhand", "region": "North India", "lat": 30.0869, "lng": 78.2676 },
+    { "name": "Shimla, Himachal Pradesh", "region": "North India", "lat": 31.1048, "lng": 77.1734 },
+    { "name": "Manali, Himachal Pradesh", "region": "North India", "lat": 32.2432, "lng": 77.1892 },
+    { "name": "Leh, Ladakh", "region": "North India", "lat": 34.1526, "lng": 77.5771 },
+    { "name": "Mumbai, Maharashtra", "region": "West India", "lat": 19.076, "lng": 72.8777 },
+    { "name": "Goa", "region": "West India", "lat": 15.4909, "lng": 73.8278 },
+    { "name": "Jaipur, Rajasthan", "region": "West India", "lat": 26.9124, "lng": 75.7873 },
+    { "name": "Udaipur, Rajasthan", "region": "West India", "lat": 24.5854, "lng": 73.7125 },
+    { "name": "Jodhpur, Rajasthan", "region": "West India", "lat": 26.2389, "lng": 73.0243 },
+    { "name": "Bangalore, Karnataka", "region": "South India", "lat": 12.9716, "lng": 77.5946 },
+    { "name": "Chennai, Tamil Nadu", "region": "South India", "lat": 13.0827, "lng": 80.2707 },
+    { "name": "Hyderabad, Telangana", "region": "South India", "lat": 17.385, "lng": 78.4867 },
+    { "name": "Kochi, Kerala", "region": "South India", "lat": 9.9312, "lng": 76.2673 },
+    { "name": "Munnar, Kerala", "region": "South India", "lat": 10.0889, "lng": 77.0595 },
+    { "name": "Ooty, Tamil Nadu", "region": "South India", "lat": 11.4064, "lng": 76.6932 },
+    { "name": "Kolkata, West Bengal", "region": "East India", "lat": 22.5726, "lng": 88.3639 },
+    { "name": "Darjeeling, West Bengal", "region": "East India", "lat": 27.041, "lng": 88.2663 },
+    { "name": "Puri, Odisha", "region": "East India", "lat": 19.8135, "lng": 85.8312 },
+    { "name": "Gangtok, Sikkim", "region": "Northeast India", "lat": 27.3389, "lng": 88.6065 },
+    { "name": "Guwahati, Assam", "region": "Northeast India", "lat": 26.1445, "lng": 91.7362 },
+    { "name": "Shillong, Meghalaya", "region": "Northeast India", "lat": 25.5788, "lng": 91.8933 },
+    { "name": "Bhopal, Madhya Pradesh", "region": "Central India", "lat": 23.2599, "lng": 77.4126 },
+    { "name": "Dubai, UAE", "region": "International", "lat": 25.2048, "lng": 55.2708 },
+    { "name": "Singapore", "region": "International", "lat": 1.3521, "lng": 103.8198 },
+    { "name": "Bangkok, Thailand", "region": "International", "lat": 13.7563, "lng": 100.5018 },
+    { "name": "Bali, Indonesia", "region": "International", "lat": -8.3405, "lng": 115.092 },
+    { "name": "Male, Maldives", "region": "International", "lat": 4.1755, "lng": 73.5093 }
+  ]
+}

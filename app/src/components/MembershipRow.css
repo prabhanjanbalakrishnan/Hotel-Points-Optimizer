@@ -19,6 +19,12 @@
   font-size: 0.92rem;
 }
 
+.membership-row__no-balance {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
 .membership-row__remove {
   background: transparent;
   border: 1px solid var(--rule-strong);

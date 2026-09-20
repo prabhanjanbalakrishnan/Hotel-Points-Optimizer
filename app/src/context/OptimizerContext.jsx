@@ -9,6 +9,7 @@ const initialState = {
   checkOut: '',
   guests: 1,
   rooms: 1,
+  homeMarket: 'US',
   homeCity: '',
   trackSubmitted: false,
 }
@@ -40,6 +41,10 @@ function reducer(state, action) {
       return { ...state, ...action.patch }
     case 'SET_HOME_CITY':
       return { ...state, homeCity: action.homeCity }
+    case 'SET_HOME_MARKET':
+      // Reset homeCity when switching markets -- a US city isn't a valid
+      // lookup against the India dataset and vice versa.
+      return { ...state, homeMarket: action.homeMarket, homeCity: '' }
     case 'MARK_TRACKED':
       return { ...state, trackSubmitted: true }
     case 'RESET':

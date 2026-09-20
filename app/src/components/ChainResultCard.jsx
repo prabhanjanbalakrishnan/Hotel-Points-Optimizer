@@ -1,5 +1,5 @@
 import { NO_STATUS_TIER } from '../constants.js'
-import { getTier, computeNights } from '../utils/pointsLogic.js'
+import { getTier, computeNights, formatCurrency } from '../utils/pointsLogic.js'
 import RedemptionTable from './RedemptionTable.jsx'
 import './ChainResultCard.css'
 
@@ -9,6 +9,10 @@ function formatDate(dateStr) {
     month: 'short',
     day: 'numeric',
   })
+}
+
+function formatPointValue(valuePerPoint, currency) {
+  return currency === 'INR' ? `${valuePerPoint} paise` : `${valuePerPoint}¢`
 }
 
 export default function ChainResultCard({ chain, membership, region, destination, trip }) {
@@ -41,7 +45,7 @@ export default function ChainResultCard({ chain, membership, region, destination
       {showTripSummary && <p className="chain-result-card__trip-summary">{tripParts.join(' · ')}</p>}
 
       <p className="chain-result-card__region-hint">
-        {region
+        {region && presence
           ? `Why ${chain.name}: presence in ${region} is ${presence}.`
           : `We couldn't match your destination to a region — showing ${chain.name} without ranking.`}
       </p>
@@ -63,18 +67,47 @@ export default function ChainResultCard({ chain, membership, region, destination
         </ul>
       </div>
 
-      <RedemptionTable
-        chain={chain}
-        balance={membership.balance}
-        nights={nights}
-        rooms={trip.rooms}
-      />
+      {chain.programType === 'redemption-chart' && (
+        <>
+          <RedemptionTable
+            chain={chain}
+            balance={membership.balance}
+            nights={nights}
+            rooms={trip.rooms}
+          />
+          <p className="chain-result-card__valuation">
+            Rule of thumb: your {chain.name} points are worth about{' '}
+            {formatPointValue(chain.pointValuation.valuePerPoint, chain.currency)} each. If a cash
+            rate divided by the points price beats that, paying cash is the better deal —
+            otherwise points win.
+          </p>
+        </>
+      )}
 
-      <p className="chain-result-card__valuation">
-        Rule of thumb: your {chain.name} points are worth about {chain.pointValuation.centsPerPoint}
-        ¢ each. If a cash rate divided by the points price beats that, paying cash is the better
-        deal — otherwise points win.
-      </p>
+      {chain.programType === 'cashback-currency' && (
+        <div className="chain-result-card__cashback">
+          <p className="chain-result-card__cashback-peg">{chain.cashbackDetails.pegDescription}</p>
+          {membership.balance ? (
+            <p className="chain-result-card__cashback-balance">
+              Your balance of {membership.balance.toLocaleString()} {chain.cashbackDetails.currencyName}{' '}
+              is worth exactly {formatCurrency(membership.balance, chain.currency)} toward any stay.
+            </p>
+          ) : null}
+          <p className="chain-result-card__valuation">
+            You'll earn {chain.cashbackDetails.earnRateRange} back in{' '}
+            {chain.cashbackDetails.currencyName} on eligible spend, depending on your tier — since
+            it's pegged 1:1 to {chain.currency}, there's no "cash vs. points" trade-off to weigh
+            like the
+            redemption-chart chains above: it's simply a rebate on whatever you pay.
+          </p>
+        </div>
+      )}
+
+      {chain.programType === 'discount-tier' && (
+        <div className="chain-result-card__discount">
+          <p className="chain-result-card__valuation">{chain.discountDetails.note}</p>
+        </div>
+      )}
 
       <div className="chain-result-card__booking">
         <a

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useOptimizer } from '../context/OptimizerContext.jsx'
 import chainsData from '../data/chains.json'
 import { matchRegion, rankChainsByRegion } from '../utils/pointsLogic.js'
+import { INDIA_DESTINATION_KEYWORDS } from '../data/regionMappingIndia.js'
 import ChainResultCard from '../components/ChainResultCard.jsx'
 import './ResultsPage.css'
 
@@ -16,7 +17,10 @@ export default function ResultsPage() {
     if (memberships.length === 0) navigate('/memberships', { replace: true })
   }, [memberships.length, navigate])
 
-  const region = useMemo(() => matchRegion(destination), [destination])
+  const region = useMemo(
+    () => matchRegion(destination, state.homeMarket === 'India' ? INDIA_DESTINATION_KEYWORDS : undefined),
+    [destination, state.homeMarket],
+  )
   const ranked = useMemo(
     () => rankChainsByRegion(memberships, region, chainsData.chains),
     [memberships, region],
