@@ -1,6 +1,6 @@
 .membership-row {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr auto;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) auto;
   gap: 0.75rem;
   align-items: center;
   padding: 0.9rem 1rem;
@@ -10,7 +10,27 @@
 }
 
 .membership-row select,
+.membership-row input,
+.membership-row__remove {
+  box-sizing: border-box;
+  height: 2.6rem;
+}
+
+.membership-row select,
 .membership-row input {
+  /* A <select> sizes itself to fit its widest *option*, not just the one
+     currently selected -- with 12 chains (some names much longer than
+     others, e.g. "Lemon Tree Infinity Rewards" vs "Club ITC"), that can
+     make the closed select wider than its grid column, blowing out the
+     row's width past the page's 720px max-width. min-width: 0 (plus the
+     grid's own minmax(0, ...) tracks above) lets it shrink to fit instead;
+     text-overflow handles a selected value that's still too long to show
+     in full. */
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   padding: 0.55rem 0.7rem;
   border: 1px solid var(--rule-strong);
   border-radius: 6px;
@@ -20,6 +40,9 @@
 }
 
 .membership-row__no-balance {
+  display: flex;
+  align-items: center;
+  height: 2.6rem;
   font-size: 0.78rem;
   color: var(--ink-soft);
   font-style: italic;
@@ -29,7 +52,7 @@
   background: transparent;
   border: 1px solid var(--rule-strong);
   border-radius: 6px;
-  padding: 0.5rem 0.8rem;
+  padding: 0 0.8rem;
   color: var(--warn);
   font-size: 0.85rem;
 }
