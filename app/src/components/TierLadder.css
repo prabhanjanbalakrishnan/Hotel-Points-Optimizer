@@ -52,7 +52,7 @@
 .tier-ladder__badge {
   background: var(--good-soft);
   color: var(--good);
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0.1rem 0.6rem;
   font-size: 0.72rem;
   font-weight: 700;
@@ -78,7 +78,7 @@
 
 .tier-ladder__step--current .tier-ladder__content {
   background: var(--accent-soft);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 0.6rem 0.8rem 1.25rem;
   margin: -0.6rem 0 0.65rem -0.8rem;
 }

@@ -94,6 +94,16 @@ If the user already has loyalty memberships added, each destination card also sh
 
 **Requires Upstash Redis env vars, not yet set up**: `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`. Until a free Upstash database is created and these are set (in `app/.env.local` for local `vercel dev`, and in Vercel Project Settings for Production/Preview), both API routes will 500 and `/stats` shows a friendly "backend may not be configured yet" message rather than crashing — this is expected, not a bug.
 
+## Visual design ("scrappy" reskin)
+
+The original theme (warm cream `#faf6ee` background, teal accent, Poppins/Inter pairing, `999px` pill chips, soft drop shadows) was a deliberate v1 default that the user later called out as reading "too AI-generated" -- it matches the exact templated look (soft neutral paper tone, rounded-everything, safe font pairing) that's common across AI-generated pages. Replaced with an "indie-hacker/terminal" look, chosen from three pitched directions (the others were a stark black-and-white brutalist look and a playful zine/scrapbook look):
+
+- **Type**: IBM Plex Mono for all headings/nav/brand (`index.css`), IBM Plex Sans for body copy -- same type foundry so the pairing feels intentional/technical rather than mismatched, replacing the Poppins+Inter combo.
+- **Color** (`index.css` `:root` tokens): flat white paper (`--paper: #fff`, no separate "raised" tone), near-black ink (`#111`), and a single loud accent orange (`--accent: #ff5c00`) standing in for the old teal. `--rule`/`--rule-strong` both collapsed to the same near-black value -- there's no longer a "subtle vs. strong" border distinction, borders are just black.
+- **Shape**: every `border-radius` in the app was flattened to `0` (except the literal circle on `TierLadder`'s tier dot, `50%`) and every card-defining `border: 1px solid var(--rule...)` was thickened to `2px` -- done as a scripted `sed` pass across all component/page CSS in one go (see git history for this commit if a similar site-wide pass is ever needed again), not by hand-editing each file. `box-shadow` was removed everywhere (`--shadow` token now unused/`none`) -- definition now comes from the bold border instead, not elevation.
+- Solid-fill CTA buttons (`.home__cta`, `.chain-result-card__booking-link`, `.hotel-info-card__link`, the multi-step "Next" buttons) each got an explicit `border: 2px solid var(--ink)` added by hand afterward, since the sed pass only touched borders that already existed -- a filled button with `border: none` needed one added, not thickened.
+- **Deliberately untouched**: each hotel chain's own `accentColor` in `chains.json` (Hilton blue, Marriott maroon, etc.) -- those are real per-brand colors doing a real job (visually distinguishing chains), not part of the generic "AI-generated" site chrome the user was reacting to.
+
 ## Deployment (not yet done)
 
 Not yet pushed to GitHub or deployed. Follow the sibling project's pattern:

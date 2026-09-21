@@ -1,9 +1,8 @@
 .chain-result-card {
   background: var(--paper-raised);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
+  border: 2px solid var(--rule);
+  border-radius: 0;
   padding: 1.5rem;
-  box-shadow: var(--shadow);
 }
 
 .chain-result-card__header {
@@ -22,7 +21,7 @@
 .chain-result-card__tier {
   background: var(--gold-soft);
   color: var(--gold);
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0.2rem 0.7rem;
   font-size: 0.8rem;
   font-weight: 600;
@@ -34,7 +33,7 @@
   color: var(--accent);
   font-size: 0.78rem;
   font-weight: 600;
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0.25rem 0.75rem;
   margin: 0 0 0.75rem;
 }
@@ -55,7 +54,7 @@
 .chain-result-card__brand-chip {
   background: var(--chip);
   color: var(--ink-soft);
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0.2rem 0.65rem;
   font-size: 0.75rem;
 }
@@ -93,7 +92,7 @@
   font-weight: 600;
   color: var(--good);
   background: var(--good-soft);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 0.6rem 0.9rem;
   margin: 0 0 0.75rem;
 }
@@ -112,7 +111,8 @@
   font-weight: 600;
   font-size: 0.9rem;
   padding: 0.65rem 1.2rem;
-  border-radius: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 0;
 }
 
 .chain-result-card__booking-link:hover {

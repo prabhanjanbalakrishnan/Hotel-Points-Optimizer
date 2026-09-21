@@ -19,7 +19,7 @@
 
 .stats-chart__track {
   background: var(--chip);
-  border-radius: 6px;
+  border-radius: 0;
   height: 14px;
   overflow: hidden;
 }
@@ -27,7 +27,7 @@
 .stats-chart__bar {
   background: var(--accent);
   height: 100%;
-  border-radius: 6px;
+  border-radius: 0;
   transition: width 0.3s ease;
 }
 

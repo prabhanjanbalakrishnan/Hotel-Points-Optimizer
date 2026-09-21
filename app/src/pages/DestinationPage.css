@@ -33,8 +33,8 @@
 
 .destination-page__back {
   background: transparent;
-  border: 1px solid var(--rule-strong);
-  border-radius: 8px;
+  border: 2px solid var(--rule-strong);
+  border-radius: 0;
   padding: 0.8rem 1.6rem;
   color: var(--ink-soft);
 }
@@ -42,8 +42,8 @@
 .destination-page__next {
   background: var(--accent);
   color: #fff;
-  border: none;
-  border-radius: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 0;
   padding: 0.8rem 2rem;
   font-weight: 600;
 }

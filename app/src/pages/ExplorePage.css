@@ -22,8 +22,8 @@
 
 .explore-page__market-btn {
   background: var(--paper-raised);
-  border: 1px solid var(--rule-strong);
-  border-radius: 999px;
+  border: 2px solid var(--rule-strong);
+  border-radius: 0;
   padding: 0.5rem 1.1rem;
   font-size: 0.88rem;
   font-weight: 600;
@@ -48,8 +48,8 @@
 
 .explore-page__home-select input {
   padding: 0.65rem 0.8rem;
-  border: 1px solid var(--rule-strong);
-  border-radius: 8px;
+  border: 2px solid var(--rule-strong);
+  border-radius: 0;
   font-size: 0.95rem;
   background: var(--paper-raised);
   color: var(--ink);
@@ -94,8 +94,8 @@
 
 .explore-page__back {
   background: transparent;
-  border: 1px solid var(--rule-strong);
-  border-radius: 8px;
+  border: 2px solid var(--rule-strong);
+  border-radius: 0;
   padding: 0.7rem 1.4rem;
   color: var(--ink-soft);
   margin-top: 1rem;

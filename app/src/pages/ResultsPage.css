@@ -24,8 +24,8 @@
 .results-page__restart {
   margin-top: 2.5rem;
   background: transparent;
-  border: 1px solid var(--rule-strong);
-  border-radius: 8px;
+  border: 2px solid var(--rule-strong);
+  border-radius: 0;
   padding: 0.7rem 1.4rem;
   color: var(--ink-soft);
 }

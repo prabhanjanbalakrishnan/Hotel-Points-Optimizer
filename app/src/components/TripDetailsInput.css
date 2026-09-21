@@ -22,8 +22,8 @@
 
 .trip-details-input__row input {
   padding: 0.65rem 0.8rem;
-  border: 1px solid var(--rule-strong);
-  border-radius: 8px;
+  border: 2px solid var(--rule-strong);
+  border-radius: 0;
   font-size: 0.95rem;
   background: var(--paper-raised);
   color: var(--ink);

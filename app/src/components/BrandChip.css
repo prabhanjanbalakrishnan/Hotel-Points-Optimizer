@@ -9,7 +9,7 @@
   background: var(--chip);
   color: var(--ink-soft);
   border: none;
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0.2rem 0.65rem;
   font-size: 0.75rem;
   font-family: inherit;
@@ -26,8 +26,8 @@
   width: 15rem;
   max-width: 100%;
   background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 8px;
+  border: 2px solid var(--rule);
+  border-radius: 0;
   padding: 0.65rem 0.75rem;
   box-sizing: border-box;
 }

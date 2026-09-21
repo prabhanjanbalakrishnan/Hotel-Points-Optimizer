@@ -1,22 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 
 :root {
-  --paper: #faf6ee;
+  --paper: #ffffff;
   --paper-raised: #ffffff;
-  --ink: #1c2a2e;
-  --ink-soft: #5c6f74;
-  --rule: #e4dcc9;
-  --rule-strong: #cabf9f;
-  --accent: #0f4c5c;
-  --accent-soft: #e3edee;
-  --gold: #b8862f;
-  --gold-soft: #f7ecd6;
-  --good: #1f8a5f;
-  --good-soft: #e4f5ec;
-  --warn: #b3541e;
-  --warn-soft: #fbe9dc;
-  --chip: #f0ebdd;
-  --shadow: 0 1px 2px rgba(28, 42, 46, 0.06), 0 8px 24px rgba(28, 42, 46, 0.08);
+  --ink: #111111;
+  --ink-soft: #5a5a5a;
+  --rule: #111111;
+  --rule-strong: #111111;
+  --accent: #ff5c00;
+  --accent-soft: #ffe9db;
+  --gold: #946200;
+  --gold-soft: #fbeecc;
+  --good: #0a7a3d;
+  --good-soft: #dff2e6;
+  --warn: #b3261e;
+  --warn-soft: #fbe0dd;
+  --chip: #f0f0f0;
+  --shadow: none;
   color-scheme: light;
 }
 
@@ -28,7 +28,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
   line-height: 1.5;
 }
 
@@ -36,12 +36,13 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 
 .num {
-  font-family: 'Roboto Mono', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-variant-numeric: tabular-nums;
 }
 

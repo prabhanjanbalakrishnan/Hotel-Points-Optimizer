@@ -19,12 +19,11 @@
 .home__cta {
   background: var(--accent);
   color: #fff;
-  border: none;
-  border-radius: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 0;
   padding: 1rem 2.2rem;
   font-size: 1.1rem;
   font-weight: 600;
-  box-shadow: var(--shadow);
 }
 
 .home__cta:hover {

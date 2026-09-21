@@ -1,8 +1,8 @@
 .hotel-info-card {
   background: var(--paper-raised);
-  border: 1px solid var(--rule);
+  border: 2px solid var(--rule);
   border-left: 4px solid;
-  border-radius: 10px;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -27,7 +27,7 @@
 .hotel-info-card__member-badge {
   background: var(--good-soft);
   color: var(--good);
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0.15rem 0.65rem;
   font-size: 0.72rem;
   font-weight: 700;
@@ -73,7 +73,8 @@
   font-weight: 600;
   font-size: 0.88rem;
   padding: 0.6rem 1.1rem;
-  border-radius: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 0;
 }
 
 .hotel-info-card__link:hover {

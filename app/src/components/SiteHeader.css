@@ -5,15 +5,15 @@
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
   padding: 1.25rem 2rem;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 2px solid var(--rule);
   background: var(--paper-raised);
 }
 
 .site-header__brand {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 700;
   font-size: 1.15rem;
-  color: var(--accent);
+  color: var(--ink);
   text-decoration: none;
 }
 
@@ -28,8 +28,10 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
 }
 
 .site-header__nav a.active {
-  color: var(--accent);
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
 }
