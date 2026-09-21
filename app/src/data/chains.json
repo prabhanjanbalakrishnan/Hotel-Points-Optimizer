@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-09-14",
+    "lastUpdated": "2026-09-21",
     "disclaimer": "Elite tier requirements, perks, and redemption ranges are hand-compiled general guidance, not live program terms. Loyalty programs change benefits and pricing frequently and do not offer public APIs for this data — always confirm current details on the program's official site before booking.",
     "valuationMethod": "Point valuations are rough rule-of-thumb estimates (cents per point), used only for an approximate pay-with-points-vs-cash comparison — not a guarantee of achievable value.",
     "regionOrder": ["North America", "Europe", "Asia", "Middle East", "Africa", "South America", "Oceania"],
@@ -185,8 +185,8 @@
     {
       "id": "radisson",
       "name": "Radisson Rewards",
-      "market": "India",
-      "currency": "INR",
+      "market": "US",
+      "currency": "USD",
       "programType": "redemption-chart",
       "accentColor": "#0F6E84",
       "bookingUrl": "https://www.radissonhotels.com/en-us",
@@ -198,7 +198,7 @@
       ],
       "redemptionGuidance": {
         "pricingModel": "category",
-        "note": "Radisson's 3-tier structure (Club/Premium/VIP) was confirmed via Radisson's own press materials, but exact India award pricing isn't published in one place -- ranges below are rough estimates.",
+        "note": "Radisson's 3-tier structure (Club/Premium/VIP) was confirmed via Radisson's own press materials, but exact award pricing isn't published in one place -- ranges below are rough global estimates.",
         "pointsPerNightByTier": {
           "Budget/Midscale": { "min": 9000, "max": 20000 },
           "Upscale": { "min": 20000, "max": 35000 },
@@ -206,9 +206,9 @@
           "Luxury": { "min": 50000, "max": 70000 }
         }
       },
-      "pointValuation": { "valuePerPoint": 35, "note": "Converted from Radisson's typically-cited ~0.4-0.5 US cent/point value; ~35 paise/point is a rough rule-of-thumb, not an official figure." },
-      "paymentFlexibility": { "cashPlusPoints": true, "minPointsForCashPlusPoints": 2000, "blackoutDatesTypical": false, "notes": "Points & cash bookings widely available across Radisson's India portfolio." },
-      "regionPresence": { "North India": "Strong", "West India": "Strong", "South India": "Strong", "East India": "Strong", "Northeast India": "Growing", "Central India": "Strong", "International": "Strong" }
+      "pointValuation": { "valuePerPoint": 0.45, "note": "Radisson points are typically valued around 0.4-0.5 US cents per point across its global portfolio; ~0.45¢/point is a rough rule-of-thumb valuation, in the same range as IHG and Choice." },
+      "paymentFlexibility": { "cashPlusPoints": true, "minPointsForCashPlusPoints": 2000, "blackoutDatesTypical": false, "notes": "Points & cash bookings widely available across Radisson's global portfolio." },
+      "regionPresence": { "North America": "Strong", "Europe": "Strong", "Asia": "Growing", "Middle East": "Growing", "Africa": "Growing", "South America": "Limited", "Oceania": "Limited", "North India": "Strong", "West India": "Strong", "South India": "Strong", "East India": "Strong", "Northeast India": "Growing", "Central India": "Strong", "International": "Strong" }
     },
     {
       "id": "lemontree",

@@ -2,7 +2,7 @@
 
 ## Project overview
 
-A hotel loyalty points optimizer web app. Users add the hotel loyalty programs they belong to (6 US chains -- Hilton, Marriott, Hyatt, IHG, Wyndham, Choice -- plus 6 India chains -- Radisson, Lemon Tree, Sarovar, Taj, Club ITC, Oberoi), type a destination, and get general redemption guidance per chain: roughly how many points a night costs at different property tiers, whether cash or points is the better deal, and what elite perks their tier unlocks. See "India extension" below for how the India chains actually differ from the US model, not just in name.
+A hotel loyalty points optimizer web app. Users add the hotel loyalty programs they belong to (7 US chains -- Hilton, Marriott, Hyatt, IHG, Wyndham, Choice, Radisson -- plus 5 India chains -- Lemon Tree, Sarovar, Taj, Club ITC, Oberoi), type a destination, and get general redemption guidance per chain: roughly how many points a night costs at different property tiers, whether cash or points is the better deal, and what elite perks their tier unlocks. See "India extension" below for how the India chains actually differ from the US model, not just in name.
 
 Mirrors the sibling `Credit Card App Project` (static JSON dataset, no build-time data fetching, Vite + React + `HashRouter`, oxlint, no automated tests) with one departure: this app has a tiny backend (`app/api/track.js` + `app/api/stats.js`, backed by Upstash Redis) for anonymous aggregate analytics — counts of which chains get selected, no personal data attached.
 
@@ -44,7 +44,7 @@ Each chain entry also has a `bookingUrl` — its official top-level hotel-search
 
 ## India extension
 
-Added after the user asked for India chain coverage alongside the original US-only 6. Researched real loyalty program names/tiers via web search rather than guessing (sources in the git history's commit for this change) -- Taj Hotels (IHCL) runs **Taj InnerCircle-NeuPass**, Oberoi runs **Oberoi One**, ITC Hotels runs **Club ITC**, plus **Lemon Tree Infinity Rewards**, **Sarovar Rewardz**, and the already-global **Radisson Rewards** (large India footprint, wasn't in the original 6).
+Added after the user asked for India chain coverage alongside the original US-only 6. Researched real loyalty program names/tiers via web search rather than guessing (sources in the git history's commit for this change) -- Taj Hotels (IHCL) runs **Taj InnerCircle-NeuPass**, Oberoi runs **Oberoi One**, ITC Hotels runs **Club ITC**, plus **Lemon Tree Infinity Rewards** and **Sarovar Rewardz**. **Radisson Rewards** was added at the same time for its large India footprint, but `market` was later corrected to `"US"` -- Radisson Hotel Corporation was founded in Minneapolis, MN in 1962, so despite being added during the India pass it's a US-origin chain, not an India-origin one (see "chain-grouping labels" below). Its `regionPresence` carries both the world-region and India-region taxonomies side by side in one object (flat key lookup, so there's no collision) specifically so it ranks correctly regardless of whether a traveler's `homeMarket` toggle is set to US or India -- the real cost of a chain having genuine multi-region relevance, flagged as a hypothetical during the "should chains have a Global category" discussion and then actually needed here.
 
 **Three `programType`s exist because these programs genuinely don't all work the same way** -- forcing them into the original US "points per night" schema would have meant telling users something false about how their own program works:
 
