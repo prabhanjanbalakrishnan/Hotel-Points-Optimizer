@@ -22,7 +22,7 @@ export default function HotelInfoCard({ chain, currentMembership }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <article className="hotel-info-card" style={{ borderLeftColor: chain.accentColor }}>
+    <article className="hotel-info-card">
       <button
         type="button"
         className="hotel-info-card__header"

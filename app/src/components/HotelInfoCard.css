@@ -1,7 +1,7 @@
 .hotel-info-card {
   background: var(--paper-raised);
   border: 2px solid var(--rule);
-  border-left: 4px solid;
+  border-left: 4px solid var(--ink);
   border-radius: 0;
   overflow: hidden;
 }
