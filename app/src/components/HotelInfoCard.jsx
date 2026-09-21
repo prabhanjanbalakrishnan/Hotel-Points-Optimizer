@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import TierLadder from './TierLadder.jsx'
+import BrandChip from './BrandChip.jsx'
 import './HotelInfoCard.css'
 
 function ProgramTypeExplainer({ chain }) {
@@ -39,9 +40,7 @@ export default function HotelInfoCard({ chain, currentMembership }) {
         <div className="hotel-info-card__body">
           <div className="hotel-info-card__brands">
             {chain.brandFamily.map((brand) => (
-              <span key={brand} className="hotel-info-card__brand-chip">
-                {brand}
-              </span>
+              <BrandChip key={brand.name} brand={brand} />
             ))}
           </div>
 

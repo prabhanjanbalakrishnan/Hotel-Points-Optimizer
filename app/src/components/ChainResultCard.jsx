@@ -52,8 +52,8 @@ export default function ChainResultCard({ chain, membership, region, destination
 
       <div className="chain-result-card__brands">
         {chain.brandFamily.map((brand) => (
-          <span key={brand} className="chain-result-card__brand-chip">
-            {brand}
+          <span key={brand.name} className="chain-result-card__brand-chip">
+            {brand.name}
           </span>
         ))}
       </div>
