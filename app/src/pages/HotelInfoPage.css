@@ -1,0 +1,36 @@
+.hotel-info-page {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.hotel-info-page h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.hotel-info-page__subtitle {
+  color: var(--ink-soft);
+  margin-bottom: 0.75rem;
+}
+
+.hotel-info-page__disclaimer {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.hotel-info-page__section {
+  margin-bottom: 2.5rem;
+}
+
+.hotel-info-page__section h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.hotel-info-page__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}

@@ -11,6 +11,12 @@ Mirrors the sibling `Credit Card App Project` (static JSON dataset, no build-tim
 - Results are **chain-level general guidance**, never named specific bookable properties — that would require exactly the live-data problem being avoided.
 - Membership info entered by a user is **session-only** (in-memory React state via `OptimizerContext`) — no localStorage, no accounts. An account-based "remember me" feature is a possible future addition if there's demand, not built.
 
+## More Hotel Info (`/hotels`)
+
+A reference/browse page, separate from the personalized results flow -- lists all 12 chains grouped by market (`HotelInfoPage.jsx`), each as a collapsed-by-default accordion (`HotelInfoCard.jsx`) showing brand family, a program-type explainer (reuses the same three-way `redemption-chart`/`cashback-currency`/`discount-tier` branch as `ChainResultCard.jsx`, just without any balance-specific numbers since there's no membership context to compute against), and the **full elite tier ladder** (`TierLadder.jsx`) -- every tier's qualification and perks, not just one.
+
+Built for a specific purpose the user stated directly: letting someone see whether a chain's *next* tier is worth chasing before they decide to keep concentrating stays there. If the user already added that chain as a membership (anywhere in the app -- this page reads the same `OptimizerContext` state), `TierLadder` highlights their current tier with a "Your tier" badge, so the "what would I get by moving up" comparison has a concrete starting point. This is a pure read of existing `chains.json` data -- no new data was needed for this page.
+
 ## Commands
 
 All commands run from `app/`:

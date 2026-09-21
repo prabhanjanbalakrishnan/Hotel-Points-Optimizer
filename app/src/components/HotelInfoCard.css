@@ -1,0 +1,88 @@
+.hotel-info-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-left: 4px solid;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.hotel-info-card__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  padding: 1rem 1.2rem;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.hotel-info-card__name {
+  flex: 1;
+  min-width: 0;
+}
+
+.hotel-info-card__member-badge {
+  background: var(--good-soft);
+  color: var(--good);
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hotel-info-card__chevron {
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+}
+
+.hotel-info-card__body {
+  padding: 0 1.2rem 1.4rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.1rem;
+}
+
+.hotel-info-card__brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.hotel-info-card__brand-chip {
+  background: var(--chip);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+}
+
+.hotel-info-card__explainer {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.3rem;
+}
+
+.hotel-info-card__ladder-heading {
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+}
+
+.hotel-info-card__link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+}
+
+.hotel-info-card__link:hover {
+  opacity: 0.92;
+}
