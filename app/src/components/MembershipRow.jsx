@@ -19,14 +19,14 @@ export default function MembershipRow({ membership, chainsData, takenChainIds, o
         onChange={(e) => onChange(membership.id, { chainId: e.target.value, tier: null })}
         aria-label="Loyalty program"
       >
-        <optgroup label="United States">
+        <optgroup label="US-origin chains">
           {chainsByMarket('US').map((c) => (
             <option key={c.slug} value={c.slug}>
               {c.name}
             </option>
           ))}
         </optgroup>
-        <optgroup label="India">
+        <optgroup label="India-origin chains">
           {chainsByMarket('India').map((c) => (
             <option key={c.slug} value={c.slug}>
               {c.name}

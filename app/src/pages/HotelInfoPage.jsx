@@ -21,7 +21,10 @@ export default function HotelInfoPage() {
       <p className="hotel-info-page__disclaimer">{chainsData._meta.disclaimer}</p>
 
       <div className="hotel-info-page__section">
-        <h3>🇺🇸 United States</h3>
+        <h3>US-origin chains</h3>
+        <p className="hotel-info-page__section-note">
+          Headquartered in the US, with hotels worldwide.
+        </p>
         <div className="hotel-info-page__grid">
           {usChains.map((chain) => (
             <HotelInfoCard key={chain.id} chain={chain} currentMembership={membershipFor(chain.id)} />
@@ -30,7 +33,10 @@ export default function HotelInfoPage() {
       </div>
 
       <div className="hotel-info-page__section">
-        <h3>🇮🇳 India</h3>
+        <h3>India-origin chains</h3>
+        <p className="hotel-info-page__section-note">
+          Headquartered in India — several also operate hotels abroad.
+        </p>
         <div className="hotel-info-page__grid">
           {indiaChains.map((chain) => (
             <HotelInfoCard key={chain.id} chain={chain} currentMembership={membershipFor(chain.id)} />

@@ -26,6 +26,12 @@
 
 .hotel-info-page__section h3 {
   font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+}
+
+.hotel-info-page__section-note {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
   margin-bottom: 1rem;
 }
 
