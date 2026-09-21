@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 
 :root {
-  --paper: #ffffff;
-  --paper-raised: #ffffff;
-  --ink: #111111;
-  --ink-soft: #5a5a5a;
-  --rule: #111111;
-  --rule-strong: #111111;
+  --paper: #0d0d0d;
+  --paper-raised: #171717;
+  --ink: #f5f5f5;
+  --ink-soft: #999999;
+  --rule: #f5f5f5;
+  --rule-strong: #f5f5f5;
   --accent: #ff5c00;
-  --accent-soft: #ffe9db;
-  --gold: #946200;
-  --gold-soft: #fbeecc;
-  --good: #0a7a3d;
-  --good-soft: #dff2e6;
-  --warn: #b3261e;
-  --warn-soft: #fbe0dd;
-  --chip: #f0f0f0;
+  --accent-soft: #3a1f0d;
+  --gold: #e8a83c;
+  --gold-soft: #3a2c0f;
+  --good: #3ddc84;
+  --good-soft: #123320;
+  --warn: #ff6b5b;
+  --warn-soft: #3a1512;
+  --chip: #1e1e1e;
   --shadow: none;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 * {

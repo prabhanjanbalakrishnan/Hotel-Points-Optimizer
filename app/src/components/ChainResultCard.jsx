@@ -38,7 +38,7 @@ export default function ChainResultCard({ chain, membership, region, destination
         className="chain-result-card__header"
         style={{ borderLeftColor: chain.accentColor }}
       >
-        <h3 style={{ color: chain.accentColor }}>{chain.name}</h3>
+        <h3>{chain.name}</h3>
         <span className="chain-result-card__tier">{tierLabel}</span>
       </header>
 

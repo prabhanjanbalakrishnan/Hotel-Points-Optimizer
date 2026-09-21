@@ -29,7 +29,7 @@ export default function HotelInfoCard({ chain, currentMembership }) {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
       >
-        <span className="hotel-info-card__name" style={{ color: chain.accentColor }}>
+        <span className="hotel-info-card__name">
           {chain.name}
         </span>
         {currentMembership && <span className="hotel-info-card__member-badge">You're a member</span>}
