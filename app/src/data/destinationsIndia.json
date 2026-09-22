@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "disclaimer": "A curated shortlist of popular Indian destinations plus a few international spots popular with Indian travelers, not an exhaustive list."
+    "disclaimer": "A curated shortlist of popular Indian destinations, not an exhaustive list."
   },
   "destinations": [
     { "name": "Delhi", "region": "North India", "lat": 28.7041, "lng": 77.1025 },
@@ -28,11 +28,6 @@
     { "name": "Gangtok, Sikkim", "region": "Northeast India", "lat": 27.3389, "lng": 88.6065 },
     { "name": "Guwahati, Assam", "region": "Northeast India", "lat": 26.1445, "lng": 91.7362 },
     { "name": "Shillong, Meghalaya", "region": "Northeast India", "lat": 25.5788, "lng": 91.8933 },
-    { "name": "Bhopal, Madhya Pradesh", "region": "Central India", "lat": 23.2599, "lng": 77.4126 },
-    { "name": "Dubai, UAE", "region": "International", "lat": 25.2048, "lng": 55.2708 },
-    { "name": "Singapore", "region": "International", "lat": 1.3521, "lng": 103.8198 },
-    { "name": "Bangkok, Thailand", "region": "International", "lat": 13.7563, "lng": 100.5018 },
-    { "name": "Bali, Indonesia", "region": "International", "lat": -8.3405, "lng": 115.092 },
-    { "name": "Male, Maldives", "region": "International", "lat": 4.1755, "lng": 73.5093 }
+    { "name": "Bhopal, Madhya Pradesh", "region": "Central India", "lat": 23.2599, "lng": 77.4126 }
   ]
 }

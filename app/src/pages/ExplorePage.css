@@ -29,15 +29,6 @@
   margin-bottom: 1.25rem;
 }
 
-.explore-page__inline-link {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--accent);
-  font-weight: 600;
-  text-decoration: underline;
-}
-
 .explore-page__disclaimer {
   color: var(--ink-soft);
   font-size: 0.8rem;
@@ -46,12 +37,28 @@
 }
 
 .explore-page__section {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .explore-page__section h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.9rem;
+  font-size: 1.2rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--rule-strong);
+}
+
+.explore-page__subsection {
+  margin-bottom: 1.4rem;
+}
+
+.explore-page__subsection:last-child {
+  margin-bottom: 0;
+}
+
+.explore-page__subsection h4 {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.8rem;
 }
 
 .explore-page__empty {

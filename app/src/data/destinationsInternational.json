@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "disclaimer": "A curated shortlist of popular destinations outside the US and India, not an exhaustive list -- merged from what used to be embedded in destinations.json and destinationsIndia.json (deduped) when Explore Destinations was split into Domestic/US/Indian/International sections. Tagged with each destination's real world region (Europe, Asia, etc.), not a generic \"International\" placeholder -- see CLAUDE.md for why that matters for chain hint accuracy."
+  },
+  "destinations": [
+    { "name": "Toronto, Canada", "region": "North America", "lat": 43.6532, "lng": -79.3832 },
+    { "name": "Cancun, Mexico", "region": "North America", "lat": 21.1619, "lng": -86.8515 },
+    { "name": "Punta Cana, Dominican Republic", "region": "North America", "lat": 18.5601, "lng": -68.3725 },
+    { "name": "London, UK", "region": "Europe", "lat": 51.5072, "lng": -0.1276 },
+    { "name": "Paris, France", "region": "Europe", "lat": 48.8566, "lng": 2.3522 },
+    { "name": "Rome, Italy", "region": "Europe", "lat": 41.9028, "lng": 12.4964 },
+    { "name": "Tokyo, Japan", "region": "Asia", "lat": 35.6762, "lng": 139.6503 },
+    { "name": "Bangkok, Thailand", "region": "Asia", "lat": 13.7563, "lng": 100.5018 },
+    { "name": "Bali, Indonesia", "region": "Asia", "lat": -8.3405, "lng": 115.092 },
+    { "name": "Singapore", "region": "Asia", "lat": 1.3521, "lng": 103.8198 },
+    { "name": "Male, Maldives", "region": "Asia", "lat": 4.1755, "lng": 73.5093 },
+    { "name": "Dubai, UAE", "region": "Middle East", "lat": 25.2048, "lng": 55.2708 },
+    { "name": "Sydney, Australia", "region": "Oceania", "lat": -33.8688, "lng": 151.2093 },
+    { "name": "Cape Town, South Africa", "region": "Africa", "lat": -33.9249, "lng": 18.4241 },
+    { "name": "Rio de Janeiro, Brazil", "region": "South America", "lat": -22.9068, "lng": -43.1729 }
+  ]
+}
