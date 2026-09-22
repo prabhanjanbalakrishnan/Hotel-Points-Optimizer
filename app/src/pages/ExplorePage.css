@@ -14,55 +14,28 @@
   margin-bottom: 1.5rem;
 }
 
-.explore-page__market-toggle {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
-}
-
-.explore-page__market-btn {
-  background: var(--paper-raised);
-  border: 2px solid var(--rule-strong);
-  border-radius: 0;
-  padding: 0.5rem 1.1rem;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--ink-soft);
-}
-
-.explore-page__market-btn--active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
 .explore-page__home-select {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   font-weight: 600;
   font-size: 0.9rem;
-  max-width: 280px;
   margin-bottom: 1rem;
-}
-
-.explore-page__home-select input {
-  padding: 0.65rem 0.8rem;
-  border: 2px solid var(--rule-strong);
-  border-radius: 0;
-  font-size: 0.95rem;
-  background: var(--paper-raised);
-  color: var(--ink);
-  font-weight: 400;
 }
 
 .explore-page__hint {
   color: var(--ink-soft);
   font-size: 0.9rem;
+  margin-bottom: 1.25rem;
 }
 
-.explore-page__hint--error {
-  color: var(--warn);
+.explore-page__inline-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .explore-page__disclaimer {

@@ -38,12 +38,13 @@ function reducer(state, action) {
       return { ...state, destination: action.destination }
     case 'SET_TRIP_DETAILS':
       return { ...state, ...action.patch }
-    case 'SET_HOME_CITY':
-      return { ...state, homeCity: action.homeCity }
-    case 'SET_HOME_MARKET':
-      // Reset homeCity when switching markets -- a US city isn't a valid
-      // lookup against the India dataset and vice versa.
-      return { ...state, homeMarket: action.homeMarket, homeCity: '' }
+    case 'CHOOSE_HOME_CITY':
+      // Sets homeMarket and homeCity together, atomically -- the city picker
+      // derives the market from whichever list (US/India/International) the
+      // chosen city came from, so there's no separate "pick your market
+      // first" step, and no risk of a stale homeCity from a different list
+      // lingering after the market changes.
+      return { ...state, homeMarket: action.homeMarket, homeCity: action.homeCity }
     case 'RESET':
       return initialState
     default:

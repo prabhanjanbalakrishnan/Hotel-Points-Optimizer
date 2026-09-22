@@ -28,13 +28,14 @@ export function haversineKm(lat1, lng1, lat2, lng2) {
 }
 
 /**
- * Converts the raw [name, state, lat, lng] tuples (the compact shape
- * usPlaces.json ships in, to keep that ~32k-row file smaller) into objects
- * with a precomputed lowercase `label` ("name, state"), sorted by that label.
- * Sorting by name-first (rather than the file's original state-then-name
- * order) is what makes searchPlaces/findCity fast: it turns "everything
- * starting with a given prefix" into a contiguous slice you can binary-search
- * into, instead of a scan spread evenly across all 50 states.
+ * Converts raw [name, state, lat, lng] tuples (the shape every curated city
+ * list in app/src/data/ ships in -- usCitiesMajor.js, indiaCities.js,
+ * internationalCities.js) into objects with a precomputed lowercase `label`
+ * ("name, state"), sorted by that label so findCity/searchPlaces can binary-
+ * search instead of scanning. Overkill for lists this size (a few hundred
+ * rows at most) -- kept from when this ran against the ~32k-row US Census
+ * dataset this project used before switching to a curated list, since it's
+ * still correct and cheap either way.
  */
 export function preparePlaces(rawRows) {
   const places = rawRows.map(([name, state, lat, lng]) => ({
@@ -79,11 +80,8 @@ export function findCity(query, sortedPlaces) {
 /**
  * Returns up to `limit` places whose label starts with the query, via binary
  * search into a label-sorted array (see preparePlaces) rather than scanning
- * it -- with ~32k US places, a linear scan of every keystroke is either too
- * slow (full scan) or silently misses whole states (scan capped at some N
- * rows, since the file's original state-then-name order spreads matches for
- * a common prefix like "s" evenly across all 50 states rather than
- * clustering them). Sorting by name first turns this into O(log n).
+ * it. See preparePlaces' comment for why this is still binary-search-based
+ * even though the curated lists it runs against today are small.
  */
 export function searchPlaces(query, sortedPlaces, limit = 8) {
   if (!query || !query.trim()) return []

@@ -1,15 +1,13 @@
 // Hand-curated list of major Indian cities/towns with approximate
-// coordinates, used the same way as the (now-superseded) US usCities.js was
-// before that got upgraded to the full Census dataset -- see CLAUDE.md for
-// why India stayed at this smaller, hand-curated tier rather than sourcing
-// an equivalent full places dataset. Covers every state/UT with at least
-// one entry, plus extra coverage for populous states and popular
-// tourist/business towns. If a user's town isn't listed, they can type the
-// nearest bigger city instead.
+// coordinates -- see CLAUDE.md for why India stayed at this curated tier
+// rather than sourcing an exhaustive places dataset the way the US briefly
+// did. Covers every state/UT with at least one entry, plus extra coverage
+// for populous states and popular tourist/business towns. If a user's town
+// isn't listed, they can pick the nearest bigger city instead.
 //
-// Stored as [name, state, lat, lng] tuples (same shape as usPlaces.json) so
-// distance.js's preparePlaces()/findCity()/searchPlaces() work unchanged
-// regardless of which dataset is loaded.
+// Stored as [name, state, lat, lng] tuples, same shape as usCitiesMajor.js
+// and internationalCities.js, so distance.js's
+// preparePlaces()/findCity()/searchPlaces() work unchanged across all three.
 export const INDIA_CITIES = [
   ['Visakhapatnam', 'Andhra Pradesh', 17.6868, 83.2185],
   ['Vijayawada', 'Andhra Pradesh', 16.5062, 80.648],
