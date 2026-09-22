@@ -9,13 +9,8 @@
   font-weight: 600;
 }
 
-.destination-input input {
-  padding: 0.75rem 0.9rem;
-  border: 2px solid var(--rule-strong);
-  border-radius: 0;
-  font-size: 1rem;
-  background: var(--paper-raised);
-  color: var(--ink);
+.destination-input .city-picker {
+  max-width: 480px;
 }
 
 .destination-input__hint {
