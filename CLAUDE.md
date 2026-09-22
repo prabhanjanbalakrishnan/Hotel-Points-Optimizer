@@ -4,7 +4,7 @@
 
 A hotel loyalty points optimizer web app. Users add the hotel loyalty programs they belong to (7 US chains -- Hilton, Marriott, Hyatt, IHG, Wyndham, Choice, Radisson -- plus 5 India chains -- Lemon Tree, Sarovar, Taj, Club ITC, Oberoi), type a destination, and get general redemption guidance per chain: roughly how many points a night costs at different property tiers, whether cash or points is the better deal, and what elite perks their tier unlocks. See "India extension" below for how the India chains actually differ from the US model, not just in name.
 
-Mirrors the sibling `Credit Card App Project` (static JSON dataset, no build-time data fetching, Vite + React + `HashRouter`, oxlint, no automated tests) with one departure: this app has a tiny backend (`app/api/track.js` + `app/api/stats.js`, backed by Upstash Redis) for anonymous aggregate analytics — counts of which chains get selected, no personal data attached.
+Mirrors the sibling `Credit Card App Project` (static JSON dataset, no build-time data fetching, Vite + React + `HashRouter`, oxlint, no automated tests) — fully static, no backend. (An earlier version had a small serverless analytics backend counting which chains got selected; it was removed before the analytics were ever wired up to a working Redis instance, since it wasn't needed and added deployment friction — see git history if this is ever revisited.)
 
 **Deliberate scope boundaries** (see the full plan at `~/.claude/plans/i-want-to-build-declarative-twilight.md` for the reasoning):
 - No live hotel data, no scraping — hotel loyalty programs prohibit automated access in their ToS and don't offer public APIs for this. All chain data in `app/src/data/chains.json` is hand-compiled and should be spot-checked/refreshed periodically, not treated as live.
@@ -27,8 +27,6 @@ All commands run from `app/`:
 - `npm run build` — production build
 - `npm run lint` — oxlint
 - `npm run preview` — preview the production build
-
-Plain `npm run dev` does **not** execute `app/api/*.js` (Vite doesn't run serverless functions) — `/api/track` and `/api/stats` will 404 locally unless you install the Vercel CLI and run `vercel dev` instead, or just test them against a deployed Preview URL.
 
 ## Data (`app/src/data/chains.json`)
 
@@ -88,12 +86,6 @@ Before switching to the Census dataset, this used a US-state dropdown (`usStateC
 
 If the user already has loyalty memberships added, each destination card also shows a region-relevance hint per membership (e.g. "Hilton Honors (Strong)"), reusing the same `regionPresence` data as the results page.
 
-## Anonymous analytics
-
-`POST /api/track` takes `{chains: [ids]}` (ids only) and increments a Redis counter per chain; `GET /api/stats` returns the current counts for all 12 chains, zero-filled, and powers the public `/stats` page (`StatsPage.jsx` + `StatsChart.jsx`). `app/api/_chains.js`'s whitelist was updated to include the 6 India chain ids alongside the original 6 -- both `StatsChart.jsx` and `api/stats.js` iterate their respective chain lists generically, so they picked up the new chains automatically once the whitelist and `constants.js`'s `CHAINS` array were updated.
-
-**Requires Upstash Redis env vars, not yet set up**: `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`. Until a free Upstash database is created and these are set (in `app/.env.local` for local `vercel dev`, and in Vercel Project Settings for Production/Preview), both API routes will 500 and `/stats` shows a friendly "backend may not be configured yet" message rather than crashing — this is expected, not a bug.
-
 ## Visual design ("scrappy" reskin)
 
 The original theme (warm cream `#faf6ee` background, teal accent, Poppins/Inter pairing, `999px` pill chips, soft drop shadows) was a deliberate v1 default that the user later called out as reading "too AI-generated" -- it matches the exact templated look (soft neutral paper tone, rounded-everything, safe font pairing) that's common across AI-generated pages. Replaced with an "indie-hacker/terminal" look, chosen from three pitched directions (the others were a stark black-and-white brutalist look and a playful zine/scrapbook look):
@@ -116,16 +108,15 @@ Live at **https://hotel-points-optimizer.vercel.app**, source at **https://githu
 1. Created the GitHub repo, pushed this repo directly (`git push -u origin main` — the existing macOS git credential helper handled auth, no `gh` CLI needed).
 2. Imported into Vercel with **Root Directory = `app`**.
 3. Granting the Vercel GitHub App access needed to be done from GitHub's side directly (`github.com/settings/installations` → Vercel → Configure → add the repo under "Repository access") — the repo didn't show up in Vercel's own import picker until this was done first.
-4. Upstash env vars are **not** set (see "Known limitations" below) — deployed without them since they're only needed for the optional analytics feature, not the core app.
-5. Auto-deploy on push to `main` is active (Vercel's default for a GitHub-imported project).
-6. Verified: the deep hash route `/#/stats` loads directly with no server-side rewrite needed, and with Upstash unconfigured it shows the friendly "backend may not be configured yet" fallback rather than crashing — confirmed in-browser.
+4. Auto-deploy on push to `main` is active (Vercel's default for a GitHub-imported project).
+5. Verified: the deep hash route `/#/hotels` loads directly with no server-side rewrite needed — confirmed in-browser.
+
+The analytics backend (Redis-backed `/api/track` + `/api/stats`, a `/stats` page) that originally motivated the "Root Directory = `app`, tiny serverless backend" setup was removed before Upstash was ever configured — it wasn't needed and the unconfigured-backend 500s were pure friction with no upside. The app is now fully static (no `app/api/` at all); Root Directory = `app` is still correct, it's just serving a plain Vite build now.
 
 Neither `gh` nor the `vercel` CLI was available in the environment used for this deploy, and there was no browser session already authenticated to GitHub/Vercel — so repo creation and the Vercel GitHub App permission grant were done manually by the user, everything else (push, verification) was automated.
 
 ## Known limitations / next steps
 
-- Upstash account/database not yet created — analytics backend is wired up but non-functional until env vars are set in Vercel (Project Settings → Environment Variables → `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`, then redeploy). The app is live without it; `/stats` and `/api/track` just no-op gracefully until then.
-- `app/api/_chains.js` duplicates the chain id list from `src/constants.js` by design (client and serverless bundles build separately) — update both if a 13th chain is ever added.
 - No automated tests, matching the sibling project's convention. Verified manually via the Browser pane: full membership → destination → results flow (both markets), region-match and no-match cases, mid-flow refresh (correctly redirects to `/memberships` since state is session-only), points/currency math spot-checked against the data, no horizontal overflow at desktop or mobile widths.
 - If usage feedback suggests people want their memberships to persist across visits, revisit the "session-only, no accounts" decision — it was deliberate for v1, not a limitation to silently fix.
 - India's hometown coverage (`indiaCities.js`, ~130 hand-curated cities) is meaningfully less complete than the US's (`usPlaces.json`, ~31,830 places from Census data) — see "India extension" above. Worth revisiting if India usage grows and small-town coverage becomes a real complaint, the same way the US one did.

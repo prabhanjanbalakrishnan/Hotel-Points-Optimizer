@@ -17,8 +17,7 @@ export default function Home() {
       </button>
       <p className="home__privacy-note">
         Your membership numbers and balances stay in your browser for this session only — we
-        never save them. We do keep an anonymous count of which programs get selected, with no
-        personal data attached, so we can see overall interest across programs.
+        never save them.
       </p>
     </section>
   )

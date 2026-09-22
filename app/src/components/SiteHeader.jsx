@@ -12,7 +12,6 @@ export default function SiteHeader() {
           Home
         </NavLink>
         <NavLink to="/hotels">More Hotel Info</NavLink>
-        <NavLink to="/stats">Stats</NavLink>
       </nav>
     </header>
   )

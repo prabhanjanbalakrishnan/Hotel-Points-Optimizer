@@ -4,16 +4,6 @@ import DestinationInput from '../components/DestinationInput.jsx'
 import TripDetailsInput from '../components/TripDetailsInput.jsx'
 import './DestinationPage.css'
 
-function trackSelections(chainIds) {
-  fetch('/api/track', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chains: chainIds }),
-  }).catch(() => {
-    // Anonymous analytics failing should never block the user's flow.
-  })
-}
-
 export default function DestinationPage() {
   const { state, dispatch } = useOptimizer()
   const navigate = useNavigate()
@@ -26,10 +16,6 @@ export default function DestinationPage() {
       return
     }
     if (datesInvalid) return
-    if (!state.trackSubmitted) {
-      trackSelections(state.memberships.map((m) => m.chainId))
-      dispatch({ type: 'MARK_TRACKED' })
-    }
     navigate('/results')
   }
 

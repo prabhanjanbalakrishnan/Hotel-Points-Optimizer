@@ -7,7 +7,6 @@ import DestinationPage from './pages/DestinationPage.jsx'
 import ExplorePage from './pages/ExplorePage.jsx'
 import ResultsPage from './pages/ResultsPage.jsx'
 import HotelInfoPage from './pages/HotelInfoPage.jsx'
-import StatsPage from './pages/StatsPage.jsx'
 import './App.css'
 
 export default function App() {
@@ -23,7 +22,6 @@ export default function App() {
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/results" element={<ResultsPage />} />
             <Route path="/hotels" element={<HotelInfoPage />} />
-            <Route path="/stats" element={<StatsPage />} />
           </Routes>
         </main>
       </OptimizerProvider>

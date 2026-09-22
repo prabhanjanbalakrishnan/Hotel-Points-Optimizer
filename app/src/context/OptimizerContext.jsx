@@ -11,7 +11,6 @@ const initialState = {
   rooms: 1,
   homeMarket: 'US',
   homeCity: '',
-  trackSubmitted: false,
 }
 
 let nextRowId = 1
@@ -45,8 +44,6 @@ function reducer(state, action) {
       // Reset homeCity when switching markets -- a US city isn't a valid
       // lookup against the India dataset and vice versa.
       return { ...state, homeMarket: action.homeMarket, homeCity: '' }
-    case 'MARK_TRACKED':
-      return { ...state, trackSubmitted: true }
     case 'RESET':
       return initialState
     default:
