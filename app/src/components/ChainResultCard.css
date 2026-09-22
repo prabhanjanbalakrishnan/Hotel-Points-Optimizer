@@ -47,16 +47,9 @@
 .chain-result-card__brands {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  align-items: flex-start;
+  gap: 0.4rem 0.5rem;
   margin-bottom: 1.1rem;
-}
-
-.chain-result-card__brand-chip {
-  background: var(--chip);
-  color: var(--ink-soft);
-  border-radius: 0;
-  padding: 0.2rem 0.65rem;
-  font-size: 0.75rem;
 }
 
 .chain-result-card__perks h4 {

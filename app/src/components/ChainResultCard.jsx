@@ -1,6 +1,7 @@
 import { NO_STATUS_TIER } from '../constants.js'
 import { getTier, computeNights, formatCurrency } from '../utils/pointsLogic.js'
 import RedemptionTable from './RedemptionTable.jsx'
+import BrandChip from './BrandChip.jsx'
 import './ChainResultCard.css'
 
 function formatDate(dateStr) {
@@ -52,9 +53,7 @@ export default function ChainResultCard({ chain, membership, region, destination
 
       <div className="chain-result-card__brands">
         {chain.brandFamily.map((brand) => (
-          <span key={brand.name} className="chain-result-card__brand-chip">
-            {brand.name}
-          </span>
+          <BrandChip key={brand.name} brand={brand} />
         ))}
       </div>
 
