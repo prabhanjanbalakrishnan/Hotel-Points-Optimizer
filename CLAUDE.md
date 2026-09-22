@@ -110,20 +110,21 @@ The original theme (warm cream `#faf6ee` background, teal accent, Poppins/Inter 
 
 **The `HotelInfoCard` left-rail went one step further and dropped `accentColor` entirely, per direct user feedback that the stripes "blend in with the background."** The predicted softness for dark corporate colors (Oberoi's brown especially) turned out to be a real, noticed problem, not just a hypothetical -- about half the 12 chains' brand colors are dark/muted enough to read as low-contrast against `--paper-raised` on black. Rather than only fixing the worst offender, `.hotel-info-card`'s `border-left` is now a flat `var(--ink)` (white) for every chain, matching the user's own suggested fix ("put it in white font"). This means the More Hotel Info page no longer shows any per-chain brand color at all -- the chain name and logo-less design already carry the identity, so this was judged an acceptable trade against guaranteed legibility. **`ChainResultCard` (the Results page) still uses `accentColor` for its own left rail and was deliberately left alone** -- the user's feedback named "the More Hotel Info stripes" specifically, and Results' rail wasn't reported as a problem; if the same low-contrast complaint comes up there too, apply the identical fix (drop `accentColor`, use `var(--ink)`).
 
-## Deployment (not yet done)
+## Deployment
 
-Not yet pushed to GitHub or deployed. Follow the sibling project's pattern:
-1. Create a new GitHub repo, push this repo directly.
-2. Import into Vercel with **Root Directory = `app`** (must be set explicitly).
-3. Grant the Vercel GitHub App access to the new repo via "Adjust GitHub App Permissions" on the Vercel new-project page — it won't appear in the import picker otherwise.
-4. Set the two Upstash env vars in Vercel before expecting `/stats` or `/api/track` to work in production.
-5. Auto-deploy on push to `main`.
-6. Confirm a deep hash route works with no server-side rewrite (e.g. load `/#/stats` directly on the deployed domain).
+Live at **https://hotel-points-optimizer.vercel.app**, source at **https://github.com/prabhanjanbalakrishnan/Hotel-Points-Optimizer** (private repo). Deployed following the sibling project's pattern:
+1. Created the GitHub repo, pushed this repo directly (`git push -u origin main` — the existing macOS git credential helper handled auth, no `gh` CLI needed).
+2. Imported into Vercel with **Root Directory = `app`**.
+3. Granting the Vercel GitHub App access needed to be done from GitHub's side directly (`github.com/settings/installations` → Vercel → Configure → add the repo under "Repository access") — the repo didn't show up in Vercel's own import picker until this was done first.
+4. Upstash env vars are **not** set (see "Known limitations" below) — deployed without them since they're only needed for the optional analytics feature, not the core app.
+5. Auto-deploy on push to `main` is active (Vercel's default for a GitHub-imported project).
+6. Verified: the deep hash route `/#/stats` loads directly with no server-side rewrite needed, and with Upstash unconfigured it shows the friendly "backend may not be configured yet" fallback rather than crashing — confirmed in-browser.
+
+Neither `gh` nor the `vercel` CLI was available in the environment used for this deploy, and there was no browser session already authenticated to GitHub/Vercel — so repo creation and the Vercel GitHub App permission grant were done manually by the user, everything else (push, verification) was automated.
 
 ## Known limitations / next steps
 
-- Upstash account/database not yet created — analytics backend is wired up but non-functional until env vars are set (see above).
-- Not yet pushed to GitHub or deployed to Vercel.
+- Upstash account/database not yet created — analytics backend is wired up but non-functional until env vars are set in Vercel (Project Settings → Environment Variables → `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`, then redeploy). The app is live without it; `/stats` and `/api/track` just no-op gracefully until then.
 - `app/api/_chains.js` duplicates the chain id list from `src/constants.js` by design (client and serverless bundles build separately) — update both if a 13th chain is ever added.
 - No automated tests, matching the sibling project's convention. Verified manually via the Browser pane: full membership → destination → results flow (both markets), region-match and no-match cases, mid-flow refresh (correctly redirects to `/memberships` since state is session-only), points/currency math spot-checked against the data, no horizontal overflow at desktop or mobile widths.
 - If usage feedback suggests people want their memberships to persist across visits, revisit the "session-only, no accounts" decision — it was deliberate for v1, not a limitation to silently fix.
