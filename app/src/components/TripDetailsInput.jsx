@@ -7,6 +7,29 @@ function today() {
 export default function TripDetailsInput({ checkIn, checkOut, guests, rooms, onChange }) {
   const datesInvalid = checkIn && checkOut && checkOut <= checkIn
 
+  // The `min` attribute below only affects the native calendar widget's
+  // styling -- it doesn't stop a browser from firing onChange with an
+  // out-of-range value (Safari's date picker lets you scroll past `min`,
+  // and typing digits directly into any date input bypasses it entirely).
+  // Rejecting the update here, not just flagging it as invalid afterward,
+  // is what actually prevents picking a past check-in or a check-out on or
+  // before check-in.
+  const handleCheckInChange = (value) => {
+    if (value < today()) return
+    const patch = { checkIn: value }
+    // A check-out that's now on or before the new check-in is no longer
+    // valid -- clear it rather than leaving a stale invalid value sitting
+    // there silently until the user notices the error hint.
+    if (checkOut && checkOut <= value) patch.checkOut = ''
+    onChange(patch)
+  }
+
+  const handleCheckOutChange = (value) => {
+    if (checkIn && value <= checkIn) return
+    if (!checkIn && value < today()) return
+    onChange({ checkOut: value })
+  }
+
   return (
     <div className="trip-details-input">
       <div className="trip-details-input__row">
@@ -16,7 +39,7 @@ export default function TripDetailsInput({ checkIn, checkOut, guests, rooms, onC
             type="date"
             min={today()}
             value={checkIn}
-            onChange={(e) => onChange({ checkIn: e.target.value })}
+            onChange={(e) => handleCheckInChange(e.target.value)}
           />
         </label>
         <label>
@@ -25,7 +48,7 @@ export default function TripDetailsInput({ checkIn, checkOut, guests, rooms, onC
             type="date"
             min={checkIn || today()}
             value={checkOut}
-            onChange={(e) => onChange({ checkOut: e.target.value })}
+            onChange={(e) => handleCheckOutChange(e.target.value)}
           />
         </label>
       </div>
