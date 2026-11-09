@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import './TripDetailsInput.css'
 
+// Local date, not toISOString() -- that's UTC, which is already "tomorrow"
+// for US users every evening (after 7pm Eastern), blocking today's check-in.
 function today() {
-  return new Date().toISOString().slice(0, 10)
+  const d = new Date()
+  const pad = (n) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
 }
 
 /**
