@@ -22,14 +22,14 @@ export default function RedemptionTable({ chain, balance, nights, rooms = 1 }) {
             <th>Points / night</th>
             <th>Est. cash value / night</th>
             {nights ? <th>Est. total for {nights}-night trip{rooms > 1 ? `, ${rooms} rooms` : ''}</th> : null}
-            {balance ? <th>Nights your balance covers</th> : null}
+            {balance > 0 ? <th>Nights your balance covers</th> : null}
           </tr>
         </thead>
         <tbody>
           {PROPERTY_TIERS.map((tier) => {
             const range = pointsPerNightByTier[tier]
             const cash = estimateCashValue(range.min, range.max, valuePerPoint)
-            const nightsCovered = balance
+            const nightsCovered = balance > 0
               ? estimateNightsCovered(balance, range.min, range.max, rooms)
               : null
             const trip = nights
@@ -51,7 +51,7 @@ export default function RedemptionTable({ chain, balance, nights, rooms = 1 }) {
                     ({formatCurrency(trip.cash.min, currency)}–{formatCurrency(trip.cash.max, currency)})
                   </td>
                 ) : null}
-                {balance ? (
+                {nightsCovered ? (
                   <td className="num">
                     {nightsCovered.max > 0
                       ? `~${nightsCovered.min}–${nightsCovered.max} nights`

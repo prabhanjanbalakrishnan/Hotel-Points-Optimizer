@@ -2,8 +2,7 @@ import { useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useOptimizer } from '../context/OptimizerContext.jsx'
 import chainsData from '../data/chains.json'
-import { matchRegion, rankChainsByRegion } from '../utils/pointsLogic.js'
-import { INDIA_DESTINATION_KEYWORDS } from '../data/regionMappingIndia.js'
+import { resolveDestination, rankChainsByPresence } from '../utils/pointsLogic.js'
 import ChainResultCard from '../components/ChainResultCard.jsx'
 import './ResultsPage.css'
 
@@ -17,13 +16,10 @@ export default function ResultsPage() {
     if (memberships.length === 0) navigate('/memberships', { replace: true })
   }, [memberships.length, navigate])
 
-  const region = useMemo(
-    () => matchRegion(destination, state.homeMarket === 'India' ? INDIA_DESTINATION_KEYWORDS : undefined),
-    [destination, state.homeMarket],
-  )
+  const resolved = useMemo(() => resolveDestination(destination), [destination])
   const ranked = useMemo(
-    () => rankChainsByRegion(memberships, region, chainsData.chains),
-    [memberships, region],
+    () => rankChainsByPresence(memberships, resolved, chainsData.chains),
+    [memberships, resolved],
   )
 
   if (memberships.length === 0) return null
@@ -41,7 +37,7 @@ export default function ResultsPage() {
               key={m.id}
               chain={chain}
               membership={m}
-              region={region}
+              resolved={resolved}
               destination={destination}
               trip={trip}
             />

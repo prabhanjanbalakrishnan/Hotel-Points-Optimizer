@@ -17,6 +17,7 @@ import {
   LOCAL_RADIUS_MILES,
   LOCAL_RADIUS_KM,
 } from '../utils/distance.js'
+import { resolveDestination, presenceFor } from '../utils/pointsLogic.js'
 import CityPicker from '../components/CityPicker.jsx'
 import ExploreDestinationCard from '../components/ExploreDestinationCard.jsx'
 import './ExplorePage.css'
@@ -103,21 +104,16 @@ export default function ExplorePage() {
     }))
   }, [market, home])
 
-  const chainHintsFor = (region) =>
-    state.memberships
+  // Same lookup the Results page ranks by (presenceFor in pointsLogic.js), so
+  // a destination's hints here always agree with its results there.
+  const chainHintsFor = (destinationName) => {
+    const resolved = resolveDestination(destinationName)
+    return state.memberships
       .map((m) => chainsData.chains.find((c) => c.id === m.chainId))
       .filter(Boolean)
-      .map((c) => ({
-        name: c.name,
-        // Chains with a world-region taxonomy (Hilton, Marriott, ...) have
-        // no "International" key, so this fallback is a no-op for them.
-        // Chains with an India-region taxonomy (Taj, Oberoi, ...) track
-        // overseas presence as one lump "International" figure instead of
-        // per-world-region, so this is what surfaces their hint on any
-        // destination outside India, not just ones literally in that list.
-        presence: c.regionPresence?.[region] ?? c.regionPresence?.International,
-      }))
+      .map((c) => ({ name: c.name, presence: presenceFor(c, resolved)?.level }))
       .filter((h) => h.presence)
+  }
 
   const handleChoose = (destinationName) => {
     dispatch({ type: 'SET_DESTINATION', destination: destinationName })
@@ -130,7 +126,7 @@ export default function ExplorePage() {
         <ExploreDestinationCard
           key={d.name}
           destination={d}
-          chainHints={chainHintsFor(d.region)}
+          chainHints={chainHintsFor(d.name)}
           onChoose={handleChoose}
           unit={market.home.unit}
         />

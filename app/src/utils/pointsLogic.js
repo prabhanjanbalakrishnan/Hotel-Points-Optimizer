@@ -1,4 +1,8 @@
 import { DESTINATION_KEYWORDS } from '../data/regionMapping.js'
+import { INDIA_DESTINATION_KEYWORDS } from '../data/regionMappingIndia.js'
+import destinationsUS from '../data/destinations.json'
+import destinationsIndia from '../data/destinationsIndia.json'
+import destinationsInternational from '../data/destinationsInternational.json'
 import { PROPERTY_TIERS, NO_STATUS_TIER, CURRENCY_LOCALES, CURRENCY_SYMBOLS } from '../constants.js'
 
 /**
@@ -22,7 +26,7 @@ export function formatCurrency(amount, currencyCode) {
 
 /** Roughly how many nights a points balance covers at a given points-per-night range. */
 export function estimateNightsCovered(balance, pointsMin, pointsMax, rooms = 1) {
-  if (!balance || balance <= 0) return null
+  if (!(balance > 0)) return null
   const perNightMin = pointsMin * rooms
   const perNightMax = pointsMax * rooms
   return {
@@ -51,36 +55,94 @@ export function estimateTripCost(pointsMin, pointsMax, valuePerPoint, nights, ro
   }
 }
 
+// Every curated destination, tagged with whether it's in India -- an exact
+// pick from the dropdown uses the region already stored on the destination
+// rather than re-deriving it from keywords.
+const LISTED_DESTINATIONS = [
+  ...destinationsUS.destinations.map((d) => ({ ...d, inIndia: false })),
+  ...destinationsIndia.destinations.map((d) => ({ ...d, inIndia: true })),
+  ...destinationsInternational.destinations.map((d) => ({ ...d, inIndia: false })),
+]
+
+const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
 /**
- * Returns the matching region for a free-text destination, or null if
- * nothing matches. `keywordMap` defaults to the US world-region map, but
- * India mode passes its own India-region map (see regionMappingIndia.js) --
- * same shape, different taxonomy.
+ * Region whose keyword matches `text` as a whole word/phrase, preferring the
+ * longest matching keyword ("south america" beats "america"). Whole-word
+ * matching is what stops "uk" matching Phuket, "india" matching
+ * Indianapolis, and "oman" matching Romania.
  */
-export function matchRegion(destinationText, keywordMap = DESTINATION_KEYWORDS) {
-  if (!destinationText || !destinationText.trim()) return null
-  const text = destinationText.toLowerCase()
+function bestKeywordMatch(text, keywordMap, skipRegions = []) {
+  let best = null
+  let bestLength = 0
   for (const [region, keywords] of Object.entries(keywordMap)) {
-    if (keywords.some((kw) => text.includes(kw))) return region
+    if (skipRegions.includes(region)) continue
+    for (const kw of keywords) {
+      if (kw.length <= bestLength) continue
+      if (new RegExp(`\\b${escapeRegExp(kw)}\\b`).test(text)) {
+        best = region
+        bestLength = kw.length
+      }
+    }
   }
+  return best
+}
+
+/**
+ * Resolves a destination (picked from the list or free text) to BOTH region
+ * taxonomies at once: `worldRegion` (Asia, Europe, ...) and, for places in
+ * India, `indiaRegion` (West India, South India, ...). Chains carry presence
+ * data in one taxonomy or the other (Radisson has both), so resolving both
+ * and letting presenceFor() pick is what lets a US chain and an India chain
+ * be ranked side by side for the same destination -- independent of the
+ * user's Explore hometown. Returns null if nothing matches.
+ */
+export function resolveDestination(destinationText) {
+  if (!destinationText || !destinationText.trim()) return null
+  const text = destinationText.trim().toLowerCase()
+
+  const listed = LISTED_DESTINATIONS.find((d) => d.name.toLowerCase() === text)
+  if (listed) {
+    return listed.inIndia
+      ? { worldRegion: 'Asia', indiaRegion: listed.region, inIndia: true }
+      : { worldRegion: listed.region, indiaRegion: null, inIndia: false }
+  }
+
+  // India map's "International" bucket is for Indian travelers going abroad,
+  // not a place -- never match a destination into it.
+  const indiaRegion = bestKeywordMatch(text, INDIA_DESTINATION_KEYWORDS, ['International'])
+  const inIndia = Boolean(indiaRegion) || /\bindia\b/.test(text)
+  const worldRegion = inIndia ? 'Asia' : bestKeywordMatch(text, DESTINATION_KEYWORDS)
+  if (!worldRegion && !indiaRegion) return null
+  return { worldRegion, indiaRegion, inIndia }
+}
+
+/**
+ * A chain's presence at a resolved destination: its India-zone rating if the
+ * destination is in India and the chain tracks that zone, else its
+ * world-region rating, else (India-taxonomy chains abroad) its lump
+ * "International" rating. Null when the chain has no data for it.
+ */
+export function presenceFor(chain, dest) {
+  if (!chain || !dest) return null
+  const rp = chain.regionPresence ?? {}
+  if (dest.indiaRegion && rp[dest.indiaRegion]) return { region: dest.indiaRegion, level: rp[dest.indiaRegion] }
+  if (dest.worldRegion && rp[dest.worldRegion]) return { region: dest.worldRegion, level: rp[dest.worldRegion] }
+  if (!dest.inIndia && rp.International) return { region: 'International', level: rp.International }
   return null
 }
 
 const PRESENCE_RANK = { Strong: 0, Growing: 1, Limited: 2 }
 
 /**
- * Sorts a user's memberships by how strong their chain's presence is in the
- * matched region. Falls back to entry order (stable sort, no ranking) when
- * region is null.
+ * Sorts a user's memberships by how strong their chain's presence is at the
+ * resolved destination. Keeps entry order when the destination is null.
  */
-export function rankChainsByRegion(memberships, region, chains) {
-  if (!region) return memberships
+export function rankChainsByPresence(memberships, dest, chains) {
+  if (!dest) return memberships
   const byId = Object.fromEntries(chains.map((c) => [c.id, c]))
-  return [...memberships].sort((a, b) => {
-    const rankA = PRESENCE_RANK[byId[a.chainId]?.regionPresence?.[region]] ?? 3
-    const rankB = PRESENCE_RANK[byId[b.chainId]?.regionPresence?.[region]] ?? 3
-    return rankA - rankB
-  })
+  const rank = (m) => PRESENCE_RANK[presenceFor(byId[m.chainId], dest)?.level] ?? 3
+  return [...memberships].sort((a, b) => rank(a) - rank(b))
 }
 
 /** Looks up a named elite tier on a chain, or null for "No status"/unknown. */
