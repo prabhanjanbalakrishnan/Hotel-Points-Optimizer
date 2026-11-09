@@ -11,6 +11,7 @@ const initialState = {
   rooms: 1,
   homeMarket: 'US',
   homeCity: '',
+  paymentCard: '',
 }
 
 let nextRowId = 1

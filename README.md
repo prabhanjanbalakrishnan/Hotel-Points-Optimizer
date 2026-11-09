@@ -7,6 +7,7 @@ A hotel loyalty points optimizer. Add the loyalty programs you belong to, tell i
 ## What it does
 
 - **Add your memberships** — chain, optional points balance, optional elite tier. Nothing is saved anywhere; it lives in your browser for the session only.
+- **Tell it which credit card you'll pay with** (optional — pick from US, hotel co-brand, and Indian cards, or type any card) and each result notes how that card relates to the chain: points that transfer into it, a co-brand card that earns it directly, or elite status the card grants. Card name only, never a card number.
 - **Type a destination** (or pick one from a grouped dropdown of popular US, Indian, and international spots) and get a per-chain breakdown: expected property tier, points-per-night range, a cash-vs-points rule of thumb, and the perks your current tier unlocks.
 - **Explore Destinations** — don't know where you're headed yet? Pick your hometown from a grouped city dropdown and browse destinations sectioned into Domestic, the other country's, and International, each showing which of your programs have good presence there.
 - **More Hotel Info** (`/hotels`) — a full reference browser for all 12 chains: sub-brand families (each one expandable with a positioning blurb and a link to that brand's own site), the complete elite tier ladder, and how each program's redemption math actually works.

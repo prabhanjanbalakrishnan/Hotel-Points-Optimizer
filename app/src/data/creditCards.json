@@ -1,0 +1,753 @@
+{
+  "_meta": {
+    "lastUpdated": "2026-11-09",
+    "disclaimer": "Card notes are hand-compiled from public sources (November 2026), not a live feed. Transfer ratios, partner lists, and status perks change often — confirm with your card issuer before transferring points or applying. Where sources disagreed, the note says so.",
+    "sources": "Not displayed. US card list started from the sibling Credit Card App Project draft dataset (app/src/data/cards.json), but every hotel link was re-checked against 2026 web sources (issuer pages, TPG, OMAAT, AwardWallet, NerdWallet, Marriott/Wyndham press releases, Indian blogs such as LiveFromALounge/CardInsider/PointsMath). Where only one secondary source was found, the link carries a caveat; where nothing could be confirmed (Axis hotel partners, Marriott Bonvoy Bold, Choice/Radisson co-brands) no link is claimed."
+  },
+  "cards": [
+    {
+      "id": "amex-platinum",
+      "name": "Amex Platinum",
+      "issuer": "American Express",
+      "group": "US",
+      "aliases": [
+        "The Platinum Card",
+        "American Express Platinum",
+        "Amex Plat"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "hilton",
+          "kind": "transfers",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "chainId": "marriott",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "choice",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "hilton",
+          "kind": "status",
+          "status": "Gold",
+          "caveat": "Needs a one-time enrollment through Amex."
+        },
+        {
+          "chainId": "marriott",
+          "kind": "status",
+          "status": "Gold",
+          "caveat": "Needs a one-time enrollment through Amex."
+        }
+      ]
+    },
+    {
+      "id": "amex-gold",
+      "name": "Amex Gold",
+      "issuer": "American Express",
+      "group": "US",
+      "aliases": [
+        "American Express Gold",
+        "American Express Gold Card"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "hilton",
+          "kind": "transfers",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "chainId": "marriott",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "choice",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        }
+      ]
+    },
+    {
+      "id": "chase-sapphire-preferred",
+      "name": "Chase Sapphire Preferred",
+      "issuer": "Chase",
+      "group": "US",
+      "aliases": [
+        "Sapphire Preferred",
+        "CSP"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "hyatt",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1,
+          "caveat": "Some sources report this moved to 4:3 for the Preferred in October 2026 — check Chase before transferring."
+        },
+        {
+          "chainId": "ihg",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "marriott",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "wyndham",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        }
+      ]
+    },
+    {
+      "id": "chase-sapphire-reserve",
+      "name": "Chase Sapphire Reserve",
+      "issuer": "Chase",
+      "group": "US",
+      "aliases": [
+        "Sapphire Reserve",
+        "CSR"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "hyatt",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "ihg",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "marriott",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "wyndham",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "ihg",
+          "kind": "status",
+          "status": "Platinum Elite",
+          "caveat": "Through December 31, 2027, and you have to link your IHG account to the card to activate it."
+        }
+      ]
+    },
+    {
+      "id": "capital-one-venture-x",
+      "name": "Capital One Venture X",
+      "issuer": "Capital One",
+      "group": "US",
+      "aliases": [
+        "Venture X"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "choice",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "wyndham",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        }
+      ]
+    },
+    {
+      "id": "capital-one-venture",
+      "name": "Capital One Venture",
+      "issuer": "Capital One",
+      "group": "US",
+      "aliases": [
+        "Venture Rewards",
+        "Capital One Venture Rewards"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "choice",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "wyndham",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        }
+      ]
+    },
+    {
+      "id": "citi-strata-premier",
+      "name": "Citi Strata Premier",
+      "issuer": "Citi",
+      "group": "US",
+      "aliases": [
+        "Strata Premier"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "choice",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1.5,
+          "caveat": "Dropped from 1:2 to 1:1.5 in April 2026."
+        },
+        {
+          "chainId": "wyndham",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1,
+          "caveat": "Reported as 1:1 for Citi's premium cards; older coverage varied by card, so confirm on Citi's site."
+        }
+      ]
+    },
+    {
+      "id": "wells-fargo-autograph-journey",
+      "name": "Wells Fargo Autograph Journey",
+      "issuer": "Wells Fargo",
+      "group": "US",
+      "aliases": [
+        "Autograph Journey"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "choice",
+          "kind": "transfers",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "chainId": "wyndham",
+          "kind": "transfers",
+          "from": 1,
+          "to": 2
+        }
+      ]
+    },
+    {
+      "id": "bofa-premium-rewards",
+      "name": "Bank of America Premium Rewards",
+      "issuer": "Bank of America",
+      "group": "US",
+      "aliases": [
+        "BofA Premium Rewards",
+        "Premium Rewards"
+      ],
+      "chainLinks": [],
+      "note": "No hotel-program transfers that we know of — its points redeem at a fixed value instead."
+    },
+    {
+      "id": "bofa-premium-rewards-elite",
+      "name": "Bank of America Premium Rewards Elite",
+      "issuer": "Bank of America",
+      "group": "US",
+      "aliases": [
+        "BofA Premium Rewards Elite",
+        "Premium Rewards Elite"
+      ],
+      "chainLinks": [],
+      "note": "No hotel-program transfers that we know of — its points redeem at a fixed value instead."
+    },
+    {
+      "id": "chase-freedom-unlimited",
+      "name": "Chase Freedom Unlimited",
+      "issuer": "Chase",
+      "group": "US",
+      "aliases": [
+        "Freedom Unlimited"
+      ],
+      "chainLinks": [],
+      "note": "No direct hotel-program transfers on its own."
+    },
+    {
+      "id": "chase-freedom-flex",
+      "name": "Chase Freedom Flex",
+      "issuer": "Chase",
+      "group": "US",
+      "aliases": [
+        "Freedom Flex"
+      ],
+      "chainLinks": [],
+      "note": "No direct hotel-program transfers on its own."
+    },
+    {
+      "id": "chase-freedom-rise",
+      "name": "Chase Freedom Rise",
+      "issuer": "Chase",
+      "group": "US",
+      "aliases": [
+        "Freedom Rise"
+      ],
+      "chainLinks": [],
+      "note": "No direct hotel-program transfers on its own."
+    },
+    {
+      "id": "amex-blue-cash-preferred",
+      "name": "Amex Blue Cash Preferred",
+      "issuer": "American Express",
+      "group": "US",
+      "aliases": [
+        "Blue Cash Preferred"
+      ],
+      "chainLinks": [],
+      "note": "Straight cash back — no hotel-program transfers."
+    },
+    {
+      "id": "amex-blue-cash-everyday",
+      "name": "Amex Blue Cash Everyday",
+      "issuer": "American Express",
+      "group": "US",
+      "aliases": [
+        "Blue Cash Everyday"
+      ],
+      "chainLinks": [],
+      "note": "Straight cash back — no hotel-program transfers."
+    },
+    {
+      "id": "discover-it-cash-back",
+      "name": "Discover it Cash Back",
+      "issuer": "Discover",
+      "group": "US",
+      "aliases": [
+        "Discover it"
+      ],
+      "chainLinks": [],
+      "note": "Straight cash back — no hotel-program transfers."
+    },
+    {
+      "id": "discover-it-miles",
+      "name": "Discover it Miles",
+      "issuer": "Discover",
+      "group": "US",
+      "aliases": [],
+      "chainLinks": [],
+      "note": "Flat-rate miles that redeem like cash back — no hotel-program transfers."
+    },
+    {
+      "id": "apple-card",
+      "name": "Apple Card",
+      "issuer": "Apple",
+      "group": "US",
+      "aliases": [],
+      "chainLinks": [],
+      "note": "Daily Cash is straight cash back — no hotel-program transfers."
+    },
+    {
+      "id": "marriott-bonvoy-boundless",
+      "name": "Marriott Bonvoy Boundless",
+      "issuer": "Chase",
+      "group": "Hotel co-brand",
+      "aliases": [
+        "Bonvoy Boundless",
+        "Marriott Boundless"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "marriott",
+          "kind": "earns-directly"
+        },
+        {
+          "chainId": "marriott",
+          "kind": "status",
+          "status": "Silver Elite"
+        }
+      ]
+    },
+    {
+      "id": "marriott-bonvoy-brilliant",
+      "name": "Marriott Bonvoy Brilliant",
+      "issuer": "American Express",
+      "group": "Hotel co-brand",
+      "aliases": [
+        "Bonvoy Brilliant",
+        "Marriott Brilliant"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "marriott",
+          "kind": "earns-directly"
+        },
+        {
+          "chainId": "marriott",
+          "kind": "status",
+          "status": "Platinum Elite",
+          "caveat": "Can take up to 12 weeks to show up on your Marriott account."
+        }
+      ]
+    },
+    {
+      "id": "hilton-honors-amex",
+      "name": "Hilton Honors American Express Card",
+      "issuer": "American Express",
+      "group": "Hotel co-brand",
+      "aliases": [
+        "Hilton Honors Amex",
+        "Hilton Amex",
+        "Hilton No Annual Fee Card"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "hilton",
+          "kind": "earns-directly"
+        },
+        {
+          "chainId": "hilton",
+          "kind": "status",
+          "status": "Silver"
+        }
+      ]
+    },
+    {
+      "id": "hilton-honors-surpass",
+      "name": "Hilton Honors Amex Surpass",
+      "issuer": "American Express",
+      "group": "Hotel co-brand",
+      "aliases": [
+        "Hilton Surpass",
+        "Hilton Honors Surpass",
+        "Hilton Honors American Express Surpass Card"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "hilton",
+          "kind": "earns-directly"
+        },
+        {
+          "chainId": "hilton",
+          "kind": "status",
+          "status": "Gold",
+          "caveat": "Reaches Diamond if you spend $40,000 on the card in a calendar year."
+        }
+      ]
+    },
+    {
+      "id": "hilton-honors-aspire",
+      "name": "Hilton Honors Amex Aspire",
+      "issuer": "American Express",
+      "group": "Hotel co-brand",
+      "aliases": [
+        "Hilton Aspire",
+        "Hilton Honors Aspire",
+        "Hilton Honors American Express Aspire Card"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "hilton",
+          "kind": "earns-directly"
+        },
+        {
+          "chainId": "hilton",
+          "kind": "status",
+          "status": "Diamond"
+        }
+      ]
+    },
+    {
+      "id": "ihg-one-rewards-premier",
+      "name": "IHG One Rewards Premier",
+      "issuer": "Chase",
+      "group": "Hotel co-brand",
+      "aliases": [
+        "IHG Premier",
+        "IHG Premier Card"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "ihg",
+          "kind": "earns-directly"
+        },
+        {
+          "chainId": "ihg",
+          "kind": "status",
+          "status": "Gold Elite",
+          "caveat": "Per October 2026 reporting, new cardholders get Gold (existing ones keep Platinum through 2027). Older pages still say Platinum, so check Chase."
+        }
+      ]
+    },
+    {
+      "id": "world-of-hyatt-credit-card",
+      "name": "World of Hyatt Credit Card",
+      "issuer": "Chase",
+      "group": "Hotel co-brand",
+      "aliases": [
+        "Hyatt Credit Card",
+        "World of Hyatt Card",
+        "Hyatt Card"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "hyatt",
+          "kind": "earns-directly"
+        },
+        {
+          "chainId": "hyatt",
+          "kind": "status",
+          "status": "Discoverist"
+        }
+      ]
+    },
+    {
+      "id": "wyndham-rewards-earner-premier",
+      "name": "Wyndham Rewards Earner Premier",
+      "issuer": "Barclays",
+      "group": "Hotel co-brand",
+      "aliases": [
+        "Wyndham Earner Premier",
+        "Wyndham Premier Card"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "wyndham",
+          "kind": "earns-directly"
+        },
+        {
+          "chainId": "wyndham",
+          "kind": "status",
+          "status": "Diamond",
+          "caveat": "From the June 2026 card refresh — older terms differ."
+        }
+      ]
+    },
+    {
+      "id": "wyndham-rewards-earner",
+      "name": "Wyndham Rewards Earner",
+      "issuer": "Barclays",
+      "group": "Hotel co-brand",
+      "aliases": [
+        "Wyndham Earner",
+        "Wyndham Rewards Earner Card"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "wyndham",
+          "kind": "earns-directly"
+        }
+      ]
+    },
+    {
+      "id": "hdfc-infinia",
+      "name": "HDFC Infinia",
+      "issuer": "HDFC Bank",
+      "group": "India",
+      "aliases": [
+        "HDFC Bank Infinia",
+        "Infinia"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "marriott",
+          "kind": "transfers",
+          "from": 2,
+          "to": 1
+        },
+        {
+          "chainId": "itc",
+          "kind": "transfers",
+          "from": 2,
+          "to": 1,
+          "caveat": "Reported by one secondary source — confirm on HDFC's rewards portal."
+        },
+        {
+          "chainId": "ihg",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1,
+          "caveat": "Reported by one secondary source — confirm on HDFC's rewards portal."
+        },
+        {
+          "chainId": "radisson",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1,
+          "caveat": "Reported by one secondary source — confirm on HDFC's rewards portal."
+        },
+        {
+          "chainId": "wyndham",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1,
+          "caveat": "Reported by one secondary source — confirm on HDFC's rewards portal."
+        }
+      ]
+    },
+    {
+      "id": "hdfc-diners-club-black",
+      "name": "HDFC Diners Club Black",
+      "issuer": "HDFC Bank",
+      "group": "India",
+      "aliases": [
+        "Diners Club Black",
+        "HDFC Diners Black",
+        "Diners Black"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "marriott",
+          "kind": "transfers",
+          "from": 2,
+          "to": 1
+        }
+      ]
+    },
+    {
+      "id": "hdfc-regalia-gold",
+      "name": "HDFC Regalia Gold",
+      "issuer": "HDFC Bank",
+      "group": "India",
+      "aliases": [
+        "Regalia Gold"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "marriott",
+          "kind": "transfers",
+          "from": 3,
+          "to": 1,
+          "caveat": "Reported by secondary sources — confirm on HDFC's rewards portal."
+        }
+      ]
+    },
+    {
+      "id": "marriott-bonvoy-hdfc",
+      "name": "Marriott Bonvoy HDFC Bank",
+      "issuer": "HDFC Bank",
+      "group": "India",
+      "aliases": [
+        "Marriott Bonvoy HDFC Bank Credit Card",
+        "HDFC Marriott Bonvoy",
+        "HDFC Marriott"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "marriott",
+          "kind": "earns-directly"
+        },
+        {
+          "chainId": "marriott",
+          "kind": "status",
+          "status": "Silver Elite"
+        }
+      ]
+    },
+    {
+      "id": "tata-neu-infinity-hdfc",
+      "name": "Tata Neu Infinity HDFC Bank",
+      "issuer": "HDFC Bank",
+      "group": "India",
+      "aliases": [
+        "Tata Neu Infinity",
+        "Tata Neu Infinity HDFC Bank Credit Card",
+        "Tata Neu HDFC"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "taj",
+          "kind": "earns-directly",
+          "detail": "earns NeuCoins (worth ₹1 each), which you can redeem at Taj Hotels"
+        }
+      ]
+    },
+    {
+      "id": "axis-atlas",
+      "name": "Axis Atlas",
+      "issuer": "Axis Bank",
+      "group": "India",
+      "aliases": [
+        "Axis Bank Atlas"
+      ],
+      "chainLinks": [],
+      "note": "Axis changed its hotel transfer partners more than once in 2026, so we're not claiming a specific link — check the Axis Travel EDGE portal for the current list."
+    },
+    {
+      "id": "axis-magnus",
+      "name": "Axis Magnus",
+      "issuer": "Axis Bank",
+      "group": "India",
+      "aliases": [
+        "Axis Bank Magnus"
+      ],
+      "chainLinks": [],
+      "note": "Axis changed its hotel transfer partners more than once in 2026, so we're not claiming a specific link — check the Axis Travel EDGE portal for the current list."
+    },
+    {
+      "id": "amex-platinum-travel-india",
+      "name": "American Express Platinum Travel Card (India)",
+      "issuer": "American Express India",
+      "group": "India",
+      "aliases": [
+        "Amex Platinum Travel",
+        "Amex Platinum Travel India",
+        "Platinum Travel Card"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "marriott",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "hilton",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1.5,
+          "caveat": "Per an August 2026 Amex India mailer; ratios here have changed recently, so confirm in your Amex account."
+        }
+      ]
+    },
+    {
+      "id": "amex-mrcc-india",
+      "name": "American Express Membership Rewards Credit Card (India)",
+      "issuer": "American Express India",
+      "group": "India",
+      "aliases": [
+        "Amex MRCC",
+        "Amex Membership Rewards Credit Card",
+        "Amex MRCC India"
+      ],
+      "chainLinks": [
+        {
+          "chainId": "marriott",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1
+        },
+        {
+          "chainId": "hilton",
+          "kind": "transfers",
+          "from": 1,
+          "to": 1.5,
+          "caveat": "Per an August 2026 Amex India mailer; ratios here have changed recently, so confirm in your Amex account."
+        }
+      ]
+    }
+  ]
+}

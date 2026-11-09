@@ -44,6 +44,40 @@
   margin: 0 0 1rem;
 }
 
+.chain-result-card__card-notes {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.chain-result-card__card-notes li {
+  min-width: 0;
+  padding: 0.6rem 0.85rem;
+  background: var(--accent-soft);
+  border: 2px solid var(--accent);
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.chain-result-card__card-kind {
+  margin-right: 0.6rem;
+  color: var(--accent);
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chain-result-card__card-caveat {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
 .chain-result-card__brands {
   display: flex;
   flex-wrap: wrap;

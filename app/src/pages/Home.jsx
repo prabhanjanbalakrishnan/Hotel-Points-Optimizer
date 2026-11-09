@@ -203,8 +203,8 @@ export default function Home() {
       </section>
 
       <p className="home__privacy-note">
-        Your membership numbers and balances stay in your browser for this session only — we never
-        save them.
+        Your membership numbers, balances, and card choice stay in your browser for this session
+        only — we never save them.
       </p>
     </div>
   )

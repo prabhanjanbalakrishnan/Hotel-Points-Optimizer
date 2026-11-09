@@ -1,0 +1,21 @@
+.card-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 480px;
+  margin-top: 1.5rem;
+}
+
+.card-input label {
+  font-weight: 600;
+}
+
+.card-input .city-picker {
+  max-width: 480px;
+}
+
+.card-input__hint {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin: 0;
+}

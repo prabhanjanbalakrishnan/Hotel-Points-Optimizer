@@ -1,5 +1,6 @@
 import { NO_STATUS_TIER } from '../constants.js'
 import { getTier, computeNights, formatCurrency } from '../utils/pointsLogic.js'
+import { cardLinksFor, describeLink } from '../utils/cardLogic.js'
 import RedemptionTable from './RedemptionTable.jsx'
 import BrandChip from './BrandChip.jsx'
 import './ChainResultCard.css'
@@ -16,7 +17,14 @@ function formatPointValue(valuePerPoint, currency) {
   return currency === 'INR' ? `${valuePerPoint} paise` : `${valuePerPoint}¢`
 }
 
-export default function ChainResultCard({ chain, membership, region, destination, trip }) {
+const CARD_KIND_LABELS = {
+  transfers: 'Transfer',
+  'earns-directly': 'Earns directly',
+  status: 'Status',
+}
+
+export default function ChainResultCard({ chain, membership, region, destination, trip, card }) {
+  const cardNotes = cardLinksFor(card, chain.id).map((link) => describeLink(card, link, chain))
   const tier = getTier(chain, membership.tier)
   const baseTier = chain.eliteTiers[0]
   const perks = tier?.perks ?? baseTier.perks
@@ -50,6 +58,23 @@ export default function ChainResultCard({ chain, membership, region, destination
           ? `Why ${chain.name}: presence in ${region} is ${presence}.`
           : `We couldn't match your destination to a region — showing ${chain.name} without ranking.`}
       </p>
+
+      {cardNotes.length > 0 && (
+        <ul className="chain-result-card__card-notes">
+          {cardNotes.map((note, i) => (
+            <li key={`${note.kind}-${i}`}>
+              <span className="chain-result-card__card-kind">{CARD_KIND_LABELS[note.kind]}</span>{' '}
+              {note.text}.
+              {note.caveat && (
+                <>
+                  {' '}
+                  <span className="chain-result-card__card-caveat">{note.caveat}</span>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
 
       <div className="chain-result-card__brands">
         {chain.brandFamily.map((brand) => (

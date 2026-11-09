@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useOptimizer } from '../context/OptimizerContext.jsx'
 import DestinationInput from '../components/DestinationInput.jsx'
 import TripDetailsInput from '../components/TripDetailsInput.jsx'
+import CardInput from '../components/CardInput.jsx'
 import './DestinationPage.css'
 
 export default function DestinationPage() {
@@ -35,6 +36,10 @@ export default function DestinationPage() {
         guests={state.guests}
         rooms={state.rooms}
         onChange={(patch) => dispatch({ type: 'SET_TRIP_DETAILS', patch })}
+      />
+      <CardInput
+        value={state.paymentCard}
+        onChange={(paymentCard) => dispatch({ type: 'SET_TRIP_DETAILS', patch: { paymentCard } })}
       />
       <div className="destination-page__actions">
         <button type="button" className="destination-page__back" onClick={() => navigate('/memberships')}>
