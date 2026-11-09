@@ -204,7 +204,16 @@
         { "name": "Ascend Hotel Collection", "blurb": "A soft-brand collection of independent hotels that keep their own character while joining Choice's loyalty program.", "url": "https://www.choicehotels.com/ascend" },
         { "name": "Comfort Inn", "blurb": "Choice's core midscale brand, focused on consistent, affordable comfort.", "url": "https://www.choicehotels.com/comfort-inn" },
         { "name": "Quality Inn", "blurb": "Midscale, value-oriented brand positioned just below Comfort Inn.", "url": "https://www.choicehotels.com/quality-inn" },
-        { "name": "Econo Lodge", "blurb": "Choice's economy brand for no-frills, budget-focused stays.", "url": "https://www.choicehotels.com/econo-lodge" }
+        { "name": "Econo Lodge", "blurb": "Choice's economy brand for no-frills, budget-focused stays.", "url": "https://www.choicehotels.com/econo-lodge" },
+        { "name": "Radisson Blu (Americas)", "blurb": "Upper-upscale, design-led Radisson brand. In the US, Canada, Latin America and the Caribbean it's a Choice brand, booked with Choice Privileges points.", "url": "https://www.choicehotels.com/about/brands" },
+        { "name": "Radisson Collection (Americas)", "blurb": "Radisson's top-end luxury collection. Americas rights belong to Choice, though Americas hotels are rare.", "url": "https://www.choicehotels.com/about/brands" },
+        { "name": "Radisson (Americas)", "blurb": "The core upscale, full-service Radisson brand. Its US, Canada, Latin America and Caribbean hotels earn and redeem Choice Privileges points.", "url": "https://www.choicehotels.com/radisson" },
+        { "name": "Radisson RED (Americas)", "blurb": "Upscale lifestyle brand with a playful, social vibe. Americas locations are part of Choice.", "url": "https://www.choicehotels.com/about/brands" },
+        { "name": "Radisson Individuals (Americas)", "blurb": "Independent, one-of-a-kind hotels affiliated with Radisson. Americas members are part of Choice.", "url": "https://www.choicehotels.com/about/brands" },
+        { "name": "Park Plaza (Americas)", "blurb": "Upscale city-center hotels. Americas locations are part of Choice.", "url": "https://www.choicehotels.com/about/brands" },
+        { "name": "Country Inn & Suites by Radisson", "blurb": "Upper-midscale brand with free hot breakfast. The largest Radisson brand Choice took over (450+ hotels at the 2022 acquisition), mostly in the US.", "url": "https://www.choicehotels.com/country-inn-suites" },
+        { "name": "Park Inn by Radisson (Americas)", "blurb": "Midscale brand focused on friendly service and simple essentials. Americas locations are part of Choice.", "url": "https://www.choicehotels.com/about/brands" },
+        { "name": "Radisson Inn & Suites", "blurb": "Midscale-to-upper-midscale Radisson brand, owned by Choice in the Americas.", "url": "https://www.choicehotels.com/about/brands" }
       ],
       "eliteTiers": [
         { "name": "Member", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Member-only rates"] },
@@ -214,7 +223,7 @@
       ],
       "redemptionGuidance": {
         "pricingModel": "dynamic",
-        "note": "Choice skews budget/midscale overall (Cambria and Ascend are its highest brands, not true luxury), so its top bucket has the lowest ceiling of the 6 chains here.",
+        "note": "Choice Privileges also covers Radisson-branded hotels in the US, Canada, Latin America and the Caribbean (Choice bought Radisson Hotels Americas in 2022), so Choice points work at those Radissons. Choice skews budget/midscale overall (its top brands -- Radisson Blu, Cambria and Ascend -- are upscale, not true luxury), so its top bucket has the lowest ceiling of the 6 chains here.",
         "pointsPerNightByTier": {
           "Budget/Midscale": { "min": 8000, "max": 16000 },
           "Upscale": { "min": 16000, "max": 25000 },
