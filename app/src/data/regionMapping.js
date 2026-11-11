@@ -17,7 +17,7 @@ export const DESTINATION_KEYWORDS = {
   'Europe': [
     'france', 'paris', 'italy', 'rome', 'milan', 'spain', 'madrid', 'barcelona', 'uk',
     'london', 'england', 'germany', 'berlin', 'greece', 'portugal', 'lisbon', 'amsterdam',
-    'switzerland', 'vienna', 'prague',
+    'switzerland', 'vienna', 'prague', 'dublin', 'ireland',
   ],
   'Asia': [
     'japan', 'tokyo', 'kyoto', 'china', 'beijing', 'shanghai', 'thailand', 'bangkok',

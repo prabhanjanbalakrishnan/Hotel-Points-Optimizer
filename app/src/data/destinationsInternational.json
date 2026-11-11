@@ -15,6 +15,7 @@
     { "name": "Vienna, Austria", "region": "Europe", "lat": 48.2082, "lng": 16.3738 },
     { "name": "Prague, Czechia", "region": "Europe", "lat": 50.0755, "lng": 14.4378 },
     { "name": "Athens, Greece", "region": "Europe", "lat": 37.9838, "lng": 23.7275 },
+    { "name": "Dublin, Ireland", "region": "Europe", "lat": 53.3498, "lng": -6.2603 },
     { "name": "Tokyo, Japan", "region": "Asia", "lat": 35.6762, "lng": 139.6503 },
     { "name": "Bangkok, Thailand", "region": "Asia", "lat": 13.7563, "lng": 100.5018 },
     { "name": "Bali, Indonesia", "region": "Asia", "lat": -8.3405, "lng": 115.092 },
