@@ -1,0 +1,125 @@
+.points-pooling {
+  margin: 1.5rem 0;
+  padding: 1.1rem 1.2rem;
+  border: 2px solid var(--rule);
+  background: var(--paper-raised);
+}
+
+.points-pooling h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.points-pooling__intro,
+.points-pooling__note {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.points-pooling__note {
+  margin: 1rem 0 0;
+}
+
+.points-pooling__cards,
+.points-pooling__options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.points-pooling__card h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 0.75rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.points-pooling__balance {
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.points-pooling__option {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+  padding: 0.65rem 0.8rem;
+  border: 2px solid var(--rule);
+  background: var(--paper);
+  overflow-wrap: anywhere;
+}
+
+.points-pooling__option--best {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.points-pooling__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.points-pooling__badge {
+  padding: 0.05rem 0.4rem;
+  background: var(--accent);
+  color: var(--paper);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.points-pooling__move {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.points-pooling__result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+.points-pooling__fit {
+  padding: 0 0.4rem;
+  border: 2px solid var(--rule-strong);
+  font-size: 0.75rem;
+}
+
+.points-pooling__fit--covers {
+  background: var(--good-soft);
+}
+
+.points-pooling__fit--short {
+  background: var(--warn-soft);
+}
+
+.points-pooling__presence,
+.points-pooling__caveat {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+.points-pooling__empty,
+.points-pooling__other {
+  margin: 0.5rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.points-pooling__empty {
+  margin-top: 0;
+}

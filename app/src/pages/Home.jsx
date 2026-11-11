@@ -195,7 +195,7 @@ export default function Home() {
       <section className="home__band">
         <div>
           <h2>Add a program, pick a place, get your answer.</h2>
-          <p>No sign-up. Nothing saved. Just the math.</p>
+          <p>No sign-up. Nothing saved unless you ask. Just the math.</p>
         </div>
         <button type="button" className="home__band-cta" onClick={() => navigate('/memberships')}>
           Optimize Your Stay <span aria-hidden="true">→</span>
@@ -203,8 +203,9 @@ export default function Home() {
       </section>
 
       <p className="home__privacy-note">
-        Your membership numbers, balances, and card choice stay in your browser for this session
-        only — we never save them.
+        Your membership numbers, balances, and card choice stay in your browser. They’re forgotten
+        when you close the tab unless you choose “remember on this device” — and either way, we
+        never send them anywhere.
       </p>
     </div>
   )

@@ -21,3 +21,6 @@ export const NO_STATUS_TIER = 'No status'
 // (e.g. ₹12,34,567) rather than the US-style ₹1,234,567.
 export const CURRENCY_LOCALES = { USD: 'en-US', INR: 'en-IN' }
 export const CURRENCY_SYMBOLS = { USD: '$', INR: '₹' }
+
+// How many extra destinations the Results page's compare panel accepts (on top of the main one).
+export const MAX_COMPARE = 3

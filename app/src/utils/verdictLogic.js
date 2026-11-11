@@ -12,6 +12,16 @@ import {
  */
 export const REFERENCE_TIER = 'Upscale'
 
+/** Plain-language labels for summarizeMembership()'s `fit`. */
+export const FIT_LABELS = { covers: 'Covers your trip', maybe: 'Might cover your trip', short: 'Falls short' }
+
+/** "about 2–4 nights" / "under 1 night", for a {min, max} nights-covered range. */
+export function formatNights({ min, max }) {
+  if (max < 1) return 'under 1 night'
+  if (min === max) return `about ${max} night${max === 1 ? '' : 's'}`
+  return `about ${min}–${max} nights`
+}
+
 // A chain whose regionPresence has no entry for the matched region ranks
 // after Limited -- same convention as rankChainsByPresence().
 const NO_DATA_RANK = 3

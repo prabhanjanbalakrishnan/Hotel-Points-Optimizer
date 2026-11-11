@@ -1,5 +1,6 @@
 import { CHAINS, NO_STATUS_TIER } from '../constants.js'
-import parseBalance from '../utils/parseBalance.js'
+import parseBalance, { parseNights } from '../utils/parseBalance.js'
+import { tierThresholds } from '../utils/statusLogic.js'
 import './MembershipRow.css'
 
 export default function MembershipRow({ membership, chainsData, takenChainIds, onChange, onRemove }) {
@@ -11,13 +12,14 @@ export default function MembershipRow({ membership, chainsData, takenChainIds, o
     availableChains.filter((c) => chainsData.find((cd) => cd.id === c.slug)?.market === market)
 
   const hasBalance = chain?.programType !== 'discount-tier'
+  const canTrackNights = tierThresholds(chain).length > 0
   const balanceLabel = chain?.programType === 'cashback-currency' ? 'Coin/point balance' : 'Points balance'
 
   return (
     <div className="membership-row">
       <select
         value={membership.chainId}
-        onChange={(e) => onChange(membership.id, { chainId: e.target.value, tier: null, balance: null })}
+        onChange={(e) => onChange(membership.id, { chainId: e.target.value, tier: null, balance: null, nightsThisYear: null })}
         aria-label="Loyalty program"
       >
         <optgroup label="US-origin chains">
@@ -72,6 +74,20 @@ export default function MembershipRow({ membership, chainsData, takenChainIds, o
       >
         Remove
       </button>
+
+      {canTrackNights && (
+        <label className="membership-row__nights">
+          <span>Nights stayed this year (optional) — to track your progress to the next tier</span>
+          <input
+            type="number"
+            min="0"
+            placeholder="0"
+            value={membership.nightsThisYear ?? ''}
+            onChange={(e) => onChange(membership.id, { nightsThisYear: parseNights(e.target.value) })}
+            aria-label="Nights stayed this year"
+          />
+        </label>
+      )}
     </div>
   )
 }

@@ -1,14 +1,6 @@
 import { formatCurrency } from '../utils/pointsLogic.js'
-import { REFERENCE_TIER } from '../utils/verdictLogic.js'
+import { REFERENCE_TIER, FIT_LABELS, formatNights } from '../utils/verdictLogic.js'
 import './ResultsSummary.css'
-
-function formatNights({ min, max }) {
-  if (max < 1) return `under 1 night`
-  if (min === max) return `about ${max} night${max === 1 ? '' : 's'}`
-  return `about ${min}–${max} nights`
-}
-
-const FIT_LABELS = { covers: 'Covers your trip', maybe: 'Might cover your trip', short: 'Falls short' }
 
 /** One plain-language line on what a membership can do on this trip. */
 function describe(summary) {

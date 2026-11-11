@@ -6,8 +6,11 @@ import creditCards from '../data/creditCards.json'
 import { resolveDestination, rankChainsByPresence, computeNights } from '../utils/pointsLogic.js'
 import { summarizeMembership, pickVerdict } from '../utils/verdictLogic.js'
 import { findCard, cardLinksFor, transferIn } from '../utils/cardLogic.js'
+import { buildPooling } from '../utils/poolingLogic.js'
 import ChainResultCard from '../components/ChainResultCard.jsx'
 import ResultsSummary from '../components/ResultsSummary.jsx'
+import ComparePanel from '../components/ComparePanel.jsx'
+import PointsPooling from '../components/PointsPooling.jsx'
 import './ResultsPage.css'
 
 export default function ResultsPage() {
@@ -50,6 +53,19 @@ export default function ResultsPage() {
     [ranked, resolved, nights, rooms, transfers],
   )
   const verdict = useMemo(() => pickVerdict(summaries), [summaries])
+  const pooling = useMemo(
+    () =>
+      buildPooling({
+        bankPoints: state.bankPoints,
+        cards: creditCards.cards,
+        memberships,
+        chains: chainsData.chains,
+        resolved,
+        nights,
+        rooms,
+      }),
+    [state.bankPoints, memberships, resolved, nights, rooms],
+  )
 
   const typedCard = state.paymentCard.trim()
   const card = useMemo(() => findCard(typedCard, creditCards.cards), [typedCard])
@@ -83,6 +99,20 @@ export default function ResultsPage() {
         nights={nights}
       />
 
+      <PointsPooling entries={pooling} destination={destination} nights={nights} />
+
+      <ComparePanel
+        destination={destination}
+        compareTo={state.compareTo}
+        memberships={memberships}
+        chains={chainsData.chains}
+        nights={nights}
+        rooms={rooms}
+        transfers={transfers}
+        onAdd={(name) => dispatch({ type: 'ADD_COMPARE', name })}
+        onRemove={(name) => dispatch({ type: 'REMOVE_COMPARE', name })}
+      />
+
       <div className="results-page__cards">
         {ranked.map((m) => {
           const chain = chainsData.chains.find((c) => c.id === m.chainId)
@@ -105,11 +135,17 @@ export default function ResultsPage() {
         type="button"
         className="results-page__restart"
         onClick={() => {
-          dispatch({ type: 'RESET' })
-          navigate('/memberships')
+          if (state.remember) {
+            // Keep the remembered programs and card points; clear just this trip.
+            dispatch({ type: 'NEW_TRIP' })
+            navigate('/destination')
+          } else {
+            dispatch({ type: 'RESET' })
+            navigate('/memberships')
+          }
         }}
       >
-        Start over
+        {state.remember ? 'Plan another trip' : 'Start over'}
       </button>
     </section>
   )

@@ -6,11 +6,15 @@ A hotel loyalty points optimizer. Add the loyalty programs you belong to, tell i
 
 ## What it does
 
-- **Add your memberships** — chain, optional points balance, optional elite tier. Nothing is saved anywhere; it lives in your browser for the session only.
+- **Add your memberships** — chain, optional points balance, optional elite tier. Nothing is saved unless you ask: tick "remember on this device" and your programs and card points are kept in your own browser (never sent anywhere), and unticking erases them.
 - **Tell it which credit card you'll pay with** (optional — pick from US, hotel co-brand, and Indian cards, or type any card) and each result notes how that card relates to the chain: points that transfer into it, a co-brand card that earns it directly, or elite status the card grants. Card name only, never a card number.
 - **Type a destination** (or pick one from a grouped dropdown of popular US, Indian, and international spots) and get a per-chain breakdown: expected property tier, points-per-night range, a cash-vs-points rule of thumb, and the perks your current tier unlocks.
 - **An at-a-glance verdict** at the top of the results: which of your programs fits this trip best (regional presence first, then how far your balance goes), whether any balance actually covers your dates, and a one-line summary per program that jumps to its full breakdown.
 - **Count your bank points too.** Add the points you hold on a card (Chase Ultimate Rewards, Amex Membership Rewards, Capital One, HDFC and more) and each result shows what they become in that hotel program, using the issuer's transfer ratio, and folds them into how many nights your balance covers.
+- **See where to pool them.** Enter the points on the card you'll pay with, right on the destination step, and Results ranks the programs you belong to by where those points go furthest for your destination.
+- **Status-chase tracker.** Enter the nights you've stayed this year and each result shows how far you are from the program's next tier, and whether this trip would get you there.
+- **Compare destinations.** Add up to three other places and see which of your programs is strongest in each, side by side.
+- **Remember on this device (opt-in).** Keep your programs, balances and card points between visits without an account.
 - **A "check a real price" calculator** on every points-based result: type the cash and points price you found on the chain's own site and it tells you whether to use points, pay cash, or that it's a close call, plus the total for your stay and whether your balance covers it.
 - **Explore Destinations** — don't know where you're headed yet? Pick your hometown from a grouped city dropdown and browse destinations sectioned into Domestic, the other country's, and International, each showing which of your programs have good presence there.
 - **More Hotel Info** (`/hotels`) — a full reference browser for all 12 chains: sub-brand families (each one expandable with a positioning blurb and a link to that brand's own site), the complete elite tier ladder, and how each program's redemption math actually works.
@@ -26,7 +30,7 @@ Three different program models are represented honestly rather than forced into 
 
 - **No live hotel data or scraping.** Loyalty programs don't offer public APIs and prohibit automated access in their terms — every chain's data is hand-compiled and reflects general program terms, not real-time pricing or availability.
 - **Chain-level guidance, not a booking engine.** Results never name a specific bookable property — that would require exactly the live-data problem above. Each result ends with a link to the chain's own real search page so you can book with your own account.
-- **Session-only.** No accounts, no localStorage, no tracking. Refresh mid-flow and you start over — that's intentional.
+- **Private by default.** No accounts and no tracking. Your programs and balances live in your browser only for the visit — refresh mid-flow and you start over — unless you opt in to "remember on this device", which stores them in your own browser's local storage (never sent anywhere; trip details like destination and dates are never saved).
 
 ## Tech stack
 
@@ -66,7 +70,7 @@ app/
 │   ├── data/          # hand-curated JSON: chains, destinations, city lists
 │   ├── components/    # CityPicker, ChainResultCard, TierLadder, BrandChip, ...
 │   ├── pages/          # Home, Memberships, Destination, Explore, Results, Hotel Info
-│   ├── context/        # session-only React state (useReducer, no persistence)
+│   ├── context/        # React state (useReducer); persisted to localStorage only if the user opts in
 │   └── utils/          # points math, region matching, distance calculations
 └── public/
 ```

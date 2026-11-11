@@ -61,6 +61,20 @@
   background: var(--warn-soft);
 }
 
+.membership-row__nights {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.membership-row__nights input {
+  flex: none;
+  width: 6rem;
+}
+
 @media (max-width: 640px) {
   .membership-row {
     grid-template-columns: 1fr;

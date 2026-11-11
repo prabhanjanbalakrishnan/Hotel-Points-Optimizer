@@ -8,3 +8,14 @@ export default function parseBalance(raw) {
   const n = Math.floor(Number(raw))
   return Number.isFinite(n) && n > 0 ? n : null
 }
+
+/**
+ * A night count: blank or invalid is "not tracking" (null), but 0 is a real
+ * answer ("I've stayed no nights yet"), unlike a points balance where 0 and
+ * blank mean the same thing.
+ */
+export function parseNights(raw) {
+  if (raw === '') return null
+  const n = Math.floor(Number(raw))
+  return Number.isFinite(n) && n >= 0 ? n : null
+}

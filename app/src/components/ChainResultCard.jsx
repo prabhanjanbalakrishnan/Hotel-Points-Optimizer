@@ -4,6 +4,7 @@ import { cardLinksFor, describeLink } from '../utils/cardLogic.js'
 import RedemptionTable from './RedemptionTable.jsx'
 import BrandChip from './BrandChip.jsx'
 import DealChecker from './DealChecker.jsx'
+import StatusTracker from './StatusTracker.jsx'
 import './ChainResultCard.css'
 
 function formatDate(dateStr) {
@@ -125,6 +126,8 @@ export default function ChainResultCard({
           </p>
         </div>
       )}
+
+      <StatusTracker chain={chain} nightsSoFar={membership.nightsThisYear} tripNights={nights} />
 
       <div className="chain-result-card__perks">
         <h4>Perks at your tier</h4>

@@ -1,5 +1,9 @@
+import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useOptimizer } from '../context/OptimizerContext.jsx'
+import creditCards from '../data/creditCards.json'
+import { findCard } from '../utils/cardLogic.js'
+import CardPointsInput from '../components/CardPointsInput.jsx'
 import DestinationInput from '../components/DestinationInput.jsx'
 import TripDetailsInput from '../components/TripDetailsInput.jsx'
 import CardInput from '../components/CardInput.jsx'
@@ -10,6 +14,18 @@ export default function DestinationPage() {
   const navigate = useNavigate()
 
   const datesInvalid = state.checkIn && state.checkOut && state.checkOut <= state.checkIn
+
+  const card = useMemo(() => findCard(state.paymentCard, creditCards.cards), [state.paymentCard])
+
+  // Writes to the same bankPoints list the Memberships page edits. Clearing
+  // the field removes the row (an empty one holds nothing); a first balance
+  // creates it.
+  const setCardPoints = (c, balance) => {
+    const row = state.bankPoints.find((b) => b.cardId === c.id)
+    if (row && balance === null) dispatch({ type: 'REMOVE_BANK_POINTS', id: row.id })
+    else if (row) dispatch({ type: 'UPDATE_BANK_POINTS', id: row.id, patch: { balance } })
+    else if (balance !== null) dispatch({ type: 'ADD_BANK_POINTS', cardId: c.id, balance })
+  }
 
   const handleNext = () => {
     if (state.memberships.length === 0) {
@@ -40,6 +56,12 @@ export default function DestinationPage() {
       <CardInput
         value={state.paymentCard}
         onChange={(paymentCard) => dispatch({ type: 'SET_TRIP_DETAILS', patch: { paymentCard } })}
+      />
+      <CardPointsInput
+        card={card}
+        bankPoints={state.bankPoints}
+        onSetBalance={setCardPoints}
+        onOpenMemberships={() => navigate('/memberships')}
       />
       <div className="destination-page__actions">
         <button type="button" className="destination-page__back" onClick={() => navigate('/memberships')}>

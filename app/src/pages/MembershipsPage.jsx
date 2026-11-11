@@ -4,6 +4,7 @@ import { CHAINS } from '../constants.js'
 import chainsData from '../data/chains.json'
 import MembershipList from '../components/MembershipList.jsx'
 import BankPointsSection from '../components/BankPointsSection.jsx'
+import RememberToggle from '../components/RememberToggle.jsx'
 import './MembershipsPage.css'
 
 export default function MembershipsPage() {
@@ -48,6 +49,11 @@ export default function MembershipsPage() {
           onRemove={(id) => dispatch({ type: 'REMOVE_BANK_POINTS', id })}
         />
       )}
+
+      <RememberToggle
+        checked={state.remember}
+        onChange={(value) => dispatch({ type: 'SET_REMEMBER', value })}
+      />
 
       <div className="memberships-page__actions">
         <button

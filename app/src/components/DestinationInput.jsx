@@ -48,7 +48,21 @@ function searchGroup(group, query, limit = 6) {
  * plain controlled input the whole time, and picking a suggestion just
  * fills it in rather than being the only way to set it.
  */
-export default function DestinationInput({ value, onChange }) {
+const DEFAULT_HINT =
+  "This just helps us guess which of your programs have good presence there — it's not a live search of specific hotels. Pick a suggestion or type anywhere else you're headed."
+
+export default function DestinationInput({
+  value,
+  onChange,
+  // Optional, so the same component (and the same three shared lists) can also
+  // be the "add a destination to compare" field without forking it.
+  id = 'destination',
+  label = 'Destination',
+  placeholder = 'e.g. Tokyo, Paris, rural Montana',
+  hint = DEFAULT_HINT,
+  onCommit, // called with the name when a suggestion is picked
+  onSubmit, // called on Enter when no suggestion is highlighted (free text)
+}) {
   const [open, setOpen] = useState(false)
   const [highlight, setHighlight] = useState(0)
   const containerRef = useRef(null)
@@ -83,6 +97,7 @@ export default function DestinationInput({ value, onChange }) {
   const commit = (option) => {
     onChange(option.name)
     setOpen(false)
+    onCommit?.(option.name)
   }
 
   const handleKeyDown = (e) => {
@@ -102,6 +117,10 @@ export default function DestinationInput({ value, onChange }) {
       if (picked) {
         e.preventDefault()
         commit(picked)
+      } else if (onSubmit) {
+        e.preventDefault()
+        setOpen(false)
+        onSubmit()
       }
     } else if (e.key === 'Escape') {
       setOpen(false)
@@ -110,13 +129,13 @@ export default function DestinationInput({ value, onChange }) {
 
   return (
     <div className="destination-input">
-      <label htmlFor="destination">Destination</label>
+      <label htmlFor={id}>{label}</label>
       <div className="city-picker" ref={containerRef}>
         <input
-          id="destination"
+          id={id}
           type="text"
           className="city-picker__input"
-          placeholder="e.g. Tokyo, Paris, rural Montana"
+          placeholder={placeholder}
           value={value}
           onChange={(e) => {
             onChange(e.target.value)
@@ -161,10 +180,7 @@ export default function DestinationInput({ value, onChange }) {
           </div>
         )}
       </div>
-      <p className="destination-input__hint">
-        This just helps us guess which of your programs have good presence there — it's not a
-        live search of specific hotels. Pick a suggestion or type anywhere else you're headed.
-      </p>
+      {hint && <p className="destination-input__hint">{hint}</p>}
     </div>
   )
 }
