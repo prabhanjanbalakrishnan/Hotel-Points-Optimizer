@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { useOptimizer } from '../context/OptimizerContext.jsx'
 import chainsData from '../data/chains.json'
 import creditCards from '../data/creditCards.json'
-import { matchRegion, rankChainsByRegion, computeNights } from '../utils/pointsLogic.js'
+import { resolveDestination, rankChainsByPresence, computeNights } from '../utils/pointsLogic.js'
 import { summarizeMembership, pickVerdict } from '../utils/verdictLogic.js'
 import { findCard, cardLinksFor } from '../utils/cardLogic.js'
-import { INDIA_DESTINATION_KEYWORDS } from '../data/regionMappingIndia.js'
 import ChainResultCard from '../components/ChainResultCard.jsx'
 import ResultsSummary from '../components/ResultsSummary.jsx'
 import './ResultsPage.css'
@@ -21,13 +20,10 @@ export default function ResultsPage() {
     if (memberships.length === 0) navigate('/memberships', { replace: true })
   }, [memberships.length, navigate])
 
-  const region = useMemo(
-    () => matchRegion(destination, state.homeMarket === 'India' ? INDIA_DESTINATION_KEYWORDS : undefined),
-    [destination, state.homeMarket],
-  )
+  const resolved = useMemo(() => resolveDestination(destination), [destination])
   const ranked = useMemo(
-    () => rankChainsByRegion(memberships, region, chainsData.chains),
-    [memberships, region],
+    () => rankChainsByPresence(memberships, resolved, chainsData.chains),
+    [memberships, resolved],
   )
 
   const nights = computeNights(checkIn, checkOut)
@@ -37,12 +33,12 @@ export default function ResultsPage() {
         summarizeMembership({
           chain: chainsData.chains.find((c) => c.id === m.chainId),
           membership: m,
-          region,
+          resolved,
           nights,
           rooms,
         }),
       ),
-    [ranked, region, nights, rooms],
+    [ranked, resolved, nights, rooms],
   )
   const verdict = useMemo(() => pickVerdict(summaries), [summaries])
 
@@ -73,7 +69,7 @@ export default function ResultsPage() {
       <ResultsSummary
         summaries={summaries}
         verdict={verdict}
-        region={region}
+        resolved={resolved}
         destination={destination}
         nights={nights}
       />
@@ -86,7 +82,7 @@ export default function ResultsPage() {
               key={m.id}
               chain={chain}
               membership={m}
-              region={region}
+              resolved={resolved}
               destination={destination}
               trip={trip}
               card={card}

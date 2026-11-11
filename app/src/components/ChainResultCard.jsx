@@ -1,5 +1,5 @@
 import { NO_STATUS_TIER } from '../constants.js'
-import { getTier, computeNights, formatCurrency } from '../utils/pointsLogic.js'
+import { getTier, computeNights, formatCurrency, presenceFor } from '../utils/pointsLogic.js'
 import { cardLinksFor, describeLink } from '../utils/cardLogic.js'
 import RedemptionTable from './RedemptionTable.jsx'
 import BrandChip from './BrandChip.jsx'
@@ -23,14 +23,15 @@ const CARD_KIND_LABELS = {
   status: 'Status',
 }
 
-export default function ChainResultCard({ chain, membership, region, destination, trip, card }) {
+export default function ChainResultCard({ chain, membership, resolved, destination, trip, card }) {
   const cardNotes = cardLinksFor(card, chain.id).map((link) => describeLink(card, link, chain))
   const tier = getTier(chain, membership.tier)
   const baseTier = chain.eliteTiers[0]
   const perks = tier?.perks ?? baseTier.perks
   const tierLabel = tier?.name ?? NO_STATUS_TIER
 
-  const presence = region ? chain.regionPresence[region] : null
+  const presence = presenceFor(chain, resolved)
+  const regionLabel = presence?.region === 'International' ? 'markets outside India' : presence?.region
 
   const nights = computeNights(trip.checkIn, trip.checkOut)
   const showTripSummary = nights || trip.rooms > 1 || trip.guests > 1
@@ -53,11 +54,15 @@ export default function ChainResultCard({ chain, membership, region, destination
 
       {showTripSummary && <p className="chain-result-card__trip-summary">{tripParts.join(' · ')}</p>}
 
-      <p className="chain-result-card__region-hint">
-        {region && presence
-          ? `Why ${chain.name}: presence in ${region} is ${presence}.`
-          : `We couldn't match your destination to a region — showing ${chain.name} without ranking.`}
-      </p>
+      {destination && (
+        <p className="chain-result-card__region-hint">
+          {presence
+            ? `Why ${chain.name}: presence in ${regionLabel} is ${presence.level}.`
+            : resolved
+              ? `We don't have ${chain.name} presence data for ${destination} — showing it without ranking.`
+              : `We couldn't match your destination to a region — showing ${chain.name} without ranking.`}
+        </p>
+      )}
 
       {cardNotes.length > 0 && (
         <ul className="chain-result-card__card-notes">
@@ -101,9 +106,11 @@ export default function ChainResultCard({ chain, membership, region, destination
           />
           <p className="chain-result-card__valuation">
             Rule of thumb: your {chain.name} points are worth about{' '}
-            {formatPointValue(chain.pointValuation.valuePerPoint, chain.currency)} each. If a cash
-            rate divided by the points price beats that, paying cash is the better deal —
-            otherwise points win.
+            {formatPointValue(chain.pointValuation.valuePerPoint, chain.currency)} each. To check a
+            real booking, divide the cash rate by the points price (in{' '}
+            {chain.currency === 'INR' ? 'paise' : 'cents'}). If that beats{' '}
+            {formatPointValue(chain.pointValuation.valuePerPoint, chain.currency)}, use points —
+            you're getting more than usual for them. If it's lower, pay cash and save your points.
           </p>
         </>
       )}
@@ -111,7 +118,7 @@ export default function ChainResultCard({ chain, membership, region, destination
       {chain.programType === 'cashback-currency' && (
         <div className="chain-result-card__cashback">
           <p className="chain-result-card__cashback-peg">{chain.cashbackDetails.pegDescription}</p>
-          {membership.balance ? (
+          {membership.balance > 0 ? (
             <p className="chain-result-card__cashback-balance">
               Your balance of {membership.balance.toLocaleString()} {chain.cashbackDetails.currencyName}{' '}
               is worth exactly {formatCurrency(membership.balance, chain.currency)} toward any stay.

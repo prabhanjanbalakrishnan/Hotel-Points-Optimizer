@@ -22,18 +22,18 @@ function describe(summary) {
   return `${formatNights(summary.nightsCovered)} at an ${REFERENCE_TIER} hotel`
 }
 
-function headlineParts(verdict, region, destination) {
+function headlineParts(verdict, destination) {
   const { winners, presenceDecided, balanceDecided, balanceLeader } = verdict
   const names = winners.map((w) => w.name)
   const tied = winners.length > 1
   const lines = []
 
   if (presenceDecided) {
-    const presence = winners[0].presence
+    const { presence, presenceRegion } = winners[0]
     lines.push(
       tied
-        ? `All ${winners.length} rate ${presence} presence in ${region}.`
-        : `${presence} presence in ${region}.`,
+        ? `All ${winners.length} rate ${presence} presence${destination ? ` for ${destination}` : ''}.`
+        : `${presence} presence in ${presenceRegion}.`,
     )
   }
   if (balanceDecided) {
@@ -48,8 +48,8 @@ function headlineParts(verdict, region, destination) {
   }
   if (balanceLeader) {
     const where = balanceLeader.presence
-      ? `${balanceLeader.presence.toLowerCase()} presence in ${region}`
-      : `no rating for ${region}`
+      ? `${balanceLeader.presence.toLowerCase()} presence in ${balanceLeader.presenceRegion}`
+      : `no presence rating for ${destination || 'this destination'}`
     lines.push(
       `${balanceLeader.name} stretches furthest on balance (${formatNights(balanceLeader.nightsCovered)}), but has ${where}.`,
     )
@@ -68,9 +68,9 @@ function scrollToResult(membershipId) {
   el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' })
 }
 
-export default function ResultsSummary({ summaries, verdict, region, destination, nights }) {
+export default function ResultsSummary({ summaries, verdict, resolved, destination, nights }) {
   const winnerIds = new Set(verdict ? verdict.winners.map((w) => w.membershipId) : [])
-  const headline = verdict ? headlineParts(verdict, region, destination) : null
+  const headline = verdict ? headlineParts(verdict, destination) : null
   // "Best fit" can still be a program that can't pay for the whole trip -- say so
   // rather than letting the badge imply it can.
   const fits = summaries.map((s) => s.fit).filter(Boolean)
@@ -121,9 +121,11 @@ export default function ResultsSummary({ summaries, verdict, region, destination
                   {s.name}
                   {isWinner && <span className="results-summary__badge">Best fit</span>}
                 </span>
-                {region && (
+                {resolved && (
                   <span className="results-summary__presence">
-                    {s.presence ? `${s.presence} in ${region}` : `Not rated for ${region}`}
+                    {s.presence
+                      ? `${s.presence} in ${s.presenceRegion}`
+                      : `No rating for ${destination || 'this destination'}`}
                   </span>
                 )}
                 <span className="results-summary__detail">

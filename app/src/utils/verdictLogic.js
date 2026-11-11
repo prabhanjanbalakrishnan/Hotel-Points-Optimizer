@@ -1,4 +1,9 @@
-import { PRESENCE_RANK, estimateCashValue, estimateNightsCovered } from './pointsLogic.js'
+import {
+  PRESENCE_RANK,
+  presenceFor,
+  estimateCashValue,
+  estimateNightsCovered,
+} from './pointsLogic.js'
 
 /**
  * Chains' redemption charts differ by property tier, so comparing "how far
@@ -8,16 +13,23 @@ import { PRESENCE_RANK, estimateCashValue, estimateNightsCovered } from './point
 export const REFERENCE_TIER = 'Upscale'
 
 // A chain whose regionPresence has no entry for the matched region ranks
-// after Limited -- same convention as rankChainsByRegion().
+// after Limited -- same convention as rankChainsByPresence().
 const NO_DATA_RANK = 3
 
 /**
  * Condenses one membership into the handful of facts the summary compares.
- * `region` may be null (destination didn't match); `nights` may be null (no
- * dates entered).
+ * `resolved` is resolveDestination()'s result and may be null (destination
+ * didn't match anything); `nights` may be null (no dates entered).
+ *
+ * Presence comes from presenceFor(), the same lookup the ranking and the
+ * result cards use, so the three can't disagree. Each chain is rated against
+ * whichever region taxonomy it tracks, so `presenceRegion` is per-chain (a US
+ * chain may be rated for "Europe" while an India chain, for the same
+ * destination, is rated for "International").
  */
-export function summarizeMembership({ chain, membership, region, nights, rooms }) {
-  const presence = region ? (chain.regionPresence?.[region] ?? null) : null
+export function summarizeMembership({ chain, membership, resolved, nights, rooms }) {
+  const found = presenceFor(chain, resolved)
+  const presence = found?.level ?? null
   const summary = {
     membershipId: membership.id,
     chainId: chain.id,
@@ -26,7 +38,12 @@ export function summarizeMembership({ chain, membership, region, nights, rooms }
     programType: chain.programType,
     tier: membership.tier,
     presence,
-    presenceRank: region ? (PRESENCE_RANK[presence] ?? NO_DATA_RANK) : null,
+    presenceRegion: found
+      ? found.region === 'International'
+        ? 'markets outside India'
+        : found.region
+      : null,
+    presenceRank: resolved ? (PRESENCE_RANK[presence] ?? NO_DATA_RANK) : null,
     hasBalance: Boolean(membership.balance && membership.balance > 0),
     nightsCovered: null, // {min, max} at REFERENCE_TIER, redemption-chart chains only
     fit: null, // 'covers' | 'maybe' | 'short' -- needs both a balance and trip dates
