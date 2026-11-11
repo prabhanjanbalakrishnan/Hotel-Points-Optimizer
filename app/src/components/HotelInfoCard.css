@@ -46,11 +46,7 @@
 }
 
 .hotel-info-card__brands {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 0.4rem 0.5rem;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1.3rem;
 }
 
 .hotel-info-card__explainer {

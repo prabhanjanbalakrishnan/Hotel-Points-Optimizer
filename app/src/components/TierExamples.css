@@ -1,0 +1,56 @@
+.tier-examples--collapsible {
+  margin: 0.9rem 0 1.1rem;
+  border: 2px solid var(--rule);
+  background: var(--paper-raised);
+}
+
+.tier-examples--collapsible > summary {
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tier-examples--collapsible > .tier-examples__groups {
+  padding: 0 0.9rem 0.9rem;
+}
+
+.tier-examples__groups {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.tier-examples__group {
+  min-width: 0;
+}
+
+.tier-examples__group h5 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.tier-examples__desc,
+.tier-examples__empty,
+.tier-examples__note {
+  margin: 0.15rem 0 0.45rem;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.tier-examples__empty {
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+.tier-examples__note {
+  margin: 0;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--rule);
+}
+
+.tier-examples__brands {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.4rem 0.5rem;
+}

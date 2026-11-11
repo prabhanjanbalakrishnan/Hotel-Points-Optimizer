@@ -15,6 +15,14 @@ export const CHAINS = [
 
 export const PROPERTY_TIERS = ['Budget/Midscale', 'Upscale', 'Upper Upscale', 'Luxury']
 
+// What each property tier means in plain English, shown beside the example brands.
+export const TIER_DESCRIPTIONS = {
+  'Budget/Midscale': 'Simple, reliable rooms at everyday prices, often with free breakfast and limited dining.',
+  Upscale: 'A step up: polished or design-led hotels with more space, a bar or restaurant, and better finishes.',
+  'Upper Upscale': 'Full-service hotels, usually in prime locations, with restaurants, event space and plenty of amenities.',
+  Luxury: 'Flagship and landmark hotels and resorts with top-end service and the highest prices.',
+}
+
 export const NO_STATUS_TIER = 'No status'
 
 // Number-formatting locale per currency, so INR amounts group as lakhs/crores

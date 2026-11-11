@@ -3,6 +3,7 @@ import { getTier, computeNights, formatCurrency, presenceFor } from '../utils/po
 import { cardLinksFor, describeLink } from '../utils/cardLogic.js'
 import RedemptionTable from './RedemptionTable.jsx'
 import BrandChip from './BrandChip.jsx'
+import TierExamples from './TierExamples.jsx'
 import DealChecker from './DealChecker.jsx'
 import StatusTracker from './StatusTracker.jsx'
 import './ChainResultCard.css'
@@ -146,6 +147,7 @@ export default function ChainResultCard({
             nights={nights}
             rooms={trip.rooms}
           />
+          <TierExamples chain={chain} />
           <p className="chain-result-card__valuation">
             Rule of thumb: your {chain.name} points are worth about{' '}
             {formatPointValue(chain.pointValuation.valuePerPoint, chain.currency)} each. If a room's

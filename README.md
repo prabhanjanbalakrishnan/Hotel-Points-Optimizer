@@ -14,6 +14,7 @@ A hotel loyalty points optimizer. Add the loyalty programs you belong to, tell i
 - **See where to pool them.** Enter the points on the card you'll pay with, right on the destination step, and Results ranks the programs you belong to by where those points go furthest for your destination.
 - **Status-chase tracker.** Enter the nights you've stayed this year and each result shows how far you are from the program's next tier, and whether this trip would get you there.
 - **Compare destinations.** Add up to three other places and see which of your programs is strongest in each, side by side.
+- **See what each property tier means.** Every redemption table has a "What do these tiers look like?" section listing example brands for Budget/Midscale, Upscale, Upper Upscale and Luxury, each linking to the brand's own site. The More Hotel Info page groups each chain's brands the same way.
 - **Remember on this device (opt-in).** Keep your programs, balances and card points between visits without an account.
 - **A "check a real price" calculator** on every points-based result: type the cash and points price you found on the chain's own site and it tells you whether to use points, pay cash, or that it's a close call, plus the total for your stay and whether your balance covers it.
 - **Explore Destinations** — don't know where you're headed yet? Pick your hometown from a grouped city dropdown and browse destinations sectioned into Domestic, the other country's, and International, each showing which of your programs have good presence there.
