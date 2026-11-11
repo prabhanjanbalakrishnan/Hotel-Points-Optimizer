@@ -3,6 +3,7 @@
   border: 2px solid var(--rule);
   border-radius: 0;
   padding: 1.5rem;
+  scroll-margin-top: 1rem;
 }
 
 .chain-result-card__header {

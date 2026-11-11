@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { useOptimizer } from '../context/OptimizerContext.jsx'
 import chainsData from '../data/chains.json'
 import creditCards from '../data/creditCards.json'
-import { matchRegion, rankChainsByRegion } from '../utils/pointsLogic.js'
+import { matchRegion, rankChainsByRegion, computeNights } from '../utils/pointsLogic.js'
+import { summarizeMembership, pickVerdict } from '../utils/verdictLogic.js'
 import { findCard, cardLinksFor } from '../utils/cardLogic.js'
 import { INDIA_DESTINATION_KEYWORDS } from '../data/regionMappingIndia.js'
 import ChainResultCard from '../components/ChainResultCard.jsx'
+import ResultsSummary from '../components/ResultsSummary.jsx'
 import './ResultsPage.css'
 
 export default function ResultsPage() {
@@ -27,6 +29,22 @@ export default function ResultsPage() {
     () => rankChainsByRegion(memberships, region, chainsData.chains),
     [memberships, region],
   )
+
+  const nights = computeNights(checkIn, checkOut)
+  const summaries = useMemo(
+    () =>
+      ranked.map((m) =>
+        summarizeMembership({
+          chain: chainsData.chains.find((c) => c.id === m.chainId),
+          membership: m,
+          region,
+          nights,
+          rooms,
+        }),
+      ),
+    [ranked, region, nights, rooms],
+  )
+  const verdict = useMemo(() => pickVerdict(summaries), [summaries])
 
   const typedCard = state.paymentCard.trim()
   const card = useMemo(() => findCard(typedCard, creditCards.cards), [typedCard])
@@ -51,6 +69,14 @@ export default function ResultsPage() {
       <p className="results-page__disclaimer">{chainsData._meta.disclaimer}</p>
       {card && <p className="results-page__disclaimer">{creditCards._meta.disclaimer}</p>}
       {cardBanner && <p className="results-page__card-banner">{cardBanner}</p>}
+
+      <ResultsSummary
+        summaries={summaries}
+        verdict={verdict}
+        region={region}
+        destination={destination}
+        nights={nights}
+      />
 
       <div className="results-page__cards">
         {ranked.map((m) => {

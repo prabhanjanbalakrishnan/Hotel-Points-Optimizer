@@ -42,7 +42,7 @@ export default function ChainResultCard({ chain, membership, region, destination
   ].filter(Boolean)
 
   return (
-    <article className="chain-result-card">
+    <article className="chain-result-card" id={`result-${membership.id}`}>
       <header
         className="chain-result-card__header"
         style={{ borderLeftColor: chain.accentColor }}

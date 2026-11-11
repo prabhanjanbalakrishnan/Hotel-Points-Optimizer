@@ -66,7 +66,7 @@ export function matchRegion(destinationText, keywordMap = DESTINATION_KEYWORDS) 
   return null
 }
 
-const PRESENCE_RANK = { Strong: 0, Growing: 1, Limited: 2 }
+export const PRESENCE_RANK = { Strong: 0, Growing: 1, Limited: 2 }
 
 /**
  * Sorts a user's memberships by how strong their chain's presence is in the
