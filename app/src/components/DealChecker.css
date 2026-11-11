@@ -1,0 +1,117 @@
+.deal-checker {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border: 2px dashed var(--rule);
+}
+
+.deal-checker h4 {
+  font-size: 0.95rem;
+}
+
+.deal-checker__hint {
+  margin: 0.3rem 0 0.8rem;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.deal-checker__inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.deal-checker__inputs label {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.deal-checker__inputs input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.55rem 0.65rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--rule);
+  border-radius: 0;
+  font: inherit;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+.deal-checker__inputs input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.deal-checker__result {
+  margin-top: 0.9rem;
+  padding: 0.75rem 0.95rem;
+  border: 2px solid;
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.deal-checker__result p {
+  margin: 0 0 0.35rem;
+}
+
+.deal-checker__result p:last-child {
+  margin-bottom: 0;
+}
+
+.deal-checker__verdict {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.deal-checker__stay {
+  font-size: 0.83rem;
+}
+
+.deal-checker__result--points {
+  background: var(--good-soft);
+  border-color: var(--good);
+}
+
+.deal-checker__result--points .deal-checker__verdict {
+  color: var(--good);
+}
+
+.deal-checker__result--cash {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.deal-checker__result--cash .deal-checker__verdict {
+  color: var(--accent);
+}
+
+.deal-checker__result--close {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+}
+
+.deal-checker__result--close .deal-checker__verdict {
+  color: var(--gold);
+}
+
+.deal-checker__prompt {
+  margin: 0.7rem 0 0;
+  color: var(--warn);
+  font-size: 0.83rem;
+}
+
+.deal-checker__note {
+  margin: 0.8rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+}
+
+@media (max-width: 520px) {
+  .deal-checker__inputs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

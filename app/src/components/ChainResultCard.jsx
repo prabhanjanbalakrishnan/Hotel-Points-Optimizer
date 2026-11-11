@@ -3,6 +3,7 @@ import { getTier, computeNights, formatCurrency, presenceFor } from '../utils/po
 import { cardLinksFor, describeLink } from '../utils/cardLogic.js'
 import RedemptionTable from './RedemptionTable.jsx'
 import BrandChip from './BrandChip.jsx'
+import DealChecker from './DealChecker.jsx'
 import './ChainResultCard.css'
 
 function formatDate(dateStr) {
@@ -106,12 +107,16 @@ export default function ChainResultCard({ chain, membership, resolved, destinati
           />
           <p className="chain-result-card__valuation">
             Rule of thumb: your {chain.name} points are worth about{' '}
-            {formatPointValue(chain.pointValuation.valuePerPoint, chain.currency)} each. To check a
-            real booking, divide the cash rate by the points price (in{' '}
-            {chain.currency === 'INR' ? 'paise' : 'cents'}). If that beats{' '}
-            {formatPointValue(chain.pointValuation.valuePerPoint, chain.currency)}, use points —
-            you're getting more than usual for them. If it's lower, pay cash and save your points.
+            {formatPointValue(chain.pointValuation.valuePerPoint, chain.currency)} each. If a room's
+            cash price works out to more than that per point, points are the better deal;
+            if less, pay cash and save your points. Got a real price? Check it below.
           </p>
+          <DealChecker
+            chain={chain}
+            balance={membership.balance}
+            nights={nights}
+            rooms={trip.rooms}
+          />
         </>
       )}
 

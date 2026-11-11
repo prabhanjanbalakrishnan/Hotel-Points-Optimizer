@@ -127,3 +127,32 @@ export function pickVerdict(summaries) {
     balanceLeader,
   }
 }
+
+// A deal within this fraction of the chain's typical point value is treated as
+// a wash rather than a verdict -- the benchmark is a rule of thumb, so calling
+// a 3% difference "use points" would claim precision the data doesn't have.
+export const DEAL_CLOSE_BAND = 0.1
+
+/**
+ * Cash-vs-points check for one real room/night the user found on a chain's
+ * site. `cash` is the cash price and `points` the points price for the same
+ * room (same units per night, or both for the whole stay). `valuePerPoint` is
+ * the chain's typical value in minor currency units (cents/paise), as in
+ * chains.json.
+ *
+ * Returns null unless both inputs are positive finite numbers. Otherwise
+ * `observed` is what each point is worth on THIS booking, in the same minor
+ * units as `benchmark`, and `verdict` is 'points' (worth more than usual),
+ * 'cash' (worth less than usual -- keep the points), or 'close'.
+ */
+export function evaluateDeal({ cash, points, valuePerPoint }) {
+  if (!(Number.isFinite(cash) && cash > 0 && Number.isFinite(points) && points > 0)) return null
+  const observed = (cash / points) * 100
+  // Rounded so the band edges are inclusive despite float error ($220 vs 40,000
+  // points is exactly +10%, but 220/40000*100/0.5 evaluates to 1.0999999...).
+  const ratio = Math.round((observed / valuePerPoint) * 1e6) / 1e6
+  let verdict = 'close'
+  if (ratio >= 1 + DEAL_CLOSE_BAND) verdict = 'points'
+  else if (ratio <= 1 - DEAL_CLOSE_BAND) verdict = 'cash'
+  return { observed, benchmark: valuePerPoint, ratio, verdict }
+}
