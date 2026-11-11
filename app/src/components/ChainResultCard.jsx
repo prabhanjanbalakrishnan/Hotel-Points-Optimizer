@@ -24,7 +24,20 @@ const CARD_KIND_LABELS = {
   status: 'Status',
 }
 
-export default function ChainResultCard({ chain, membership, resolved, destination, trip, card }) {
+const NO_TRANSFERS = { sources: [], total: 0 }
+
+export default function ChainResultCard({
+  chain,
+  membership,
+  resolved,
+  destination,
+  trip,
+  card,
+  transfers = NO_TRANSFERS,
+}) {
+  // The user's own points plus whatever their card points would become here.
+  const ownBalance = membership.balance > 0 ? membership.balance : 0
+  const balance = ownBalance + transfers.total
   const cardNotes = cardLinksFor(card, chain.id).map((link) => describeLink(card, link, chain))
   const tier = getTier(chain, membership.tier)
   const baseTier = chain.eliteTiers[0]
@@ -88,6 +101,31 @@ export default function ChainResultCard({ chain, membership, resolved, destinati
         ))}
       </div>
 
+      {transfers.sources.length > 0 && (
+        <div className="chain-result-card__transfers">
+          <h4>Points from your cards</h4>
+          <ul>
+            {transfers.sources.map((src) => (
+              <li key={src.rowId}>
+                {src.balance.toLocaleString()} {src.pointsName} ({src.cardName}) at {src.ratio} becomes{' '}
+                <strong>
+                  {src.points.toLocaleString()} {chain.name} points
+                </strong>
+                .
+                {src.caveat && <span className="chain-result-card__card-caveat">{src.caveat}</span>}
+              </li>
+            ))}
+          </ul>
+          <p>
+            {ownBalance > 0
+              ? `With your own ${ownBalance.toLocaleString()} points, that's ${balance.toLocaleString()} in total, and the figures below use it.`
+              : `The figures below use this ${balance.toLocaleString()}.`}{' '}
+            Transfers are usually one-way and can&rsquo;t be undone, and the same card points can&rsquo;t
+            also go to another program.
+          </p>
+        </div>
+      )}
+
       <div className="chain-result-card__perks">
         <h4>Perks at your tier</h4>
         <ul>
@@ -101,7 +139,7 @@ export default function ChainResultCard({ chain, membership, resolved, destinati
         <>
           <RedemptionTable
             chain={chain}
-            balance={membership.balance}
+            balance={balance}
             nights={nights}
             rooms={trip.rooms}
           />
@@ -113,7 +151,7 @@ export default function ChainResultCard({ chain, membership, resolved, destinati
           </p>
           <DealChecker
             chain={chain}
-            balance={membership.balance}
+            balance={balance}
             nights={nights}
             rooms={trip.rooms}
           />
@@ -123,10 +161,10 @@ export default function ChainResultCard({ chain, membership, resolved, destinati
       {chain.programType === 'cashback-currency' && (
         <div className="chain-result-card__cashback">
           <p className="chain-result-card__cashback-peg">{chain.cashbackDetails.pegDescription}</p>
-          {membership.balance > 0 ? (
+          {balance > 0 ? (
             <p className="chain-result-card__cashback-balance">
-              Your balance of {membership.balance.toLocaleString()} {chain.cashbackDetails.currencyName}{' '}
-              is worth exactly {formatCurrency(membership.balance, chain.currency)} toward any stay.
+              Your balance of {balance.toLocaleString()} {chain.cashbackDetails.currencyName}{' '}
+              is worth exactly {formatCurrency(balance, chain.currency)} toward any stay.
             </p>
           ) : null}
           <p className="chain-result-card__valuation">

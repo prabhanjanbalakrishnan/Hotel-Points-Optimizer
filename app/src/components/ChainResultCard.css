@@ -79,6 +79,34 @@
   font-size: 0.8rem;
 }
 
+.chain-result-card__transfers {
+  margin: 0 0 1.1rem;
+  padding: 0.8rem 1rem;
+  background: var(--good-soft);
+  border: 2px solid var(--good);
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.chain-result-card__transfers h4 {
+  margin: 0 0 0.4rem;
+  font-size: 0.92rem;
+  color: var(--good);
+}
+
+.chain-result-card__transfers ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0 0 0.6rem;
+  padding-left: 1.1rem;
+}
+
+.chain-result-card__transfers p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
 .chain-result-card__brands {
   display: flex;
   flex-wrap: wrap;

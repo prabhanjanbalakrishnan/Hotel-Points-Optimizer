@@ -5,7 +5,7 @@ import chainsData from '../data/chains.json'
 import creditCards from '../data/creditCards.json'
 import { resolveDestination, rankChainsByPresence, computeNights } from '../utils/pointsLogic.js'
 import { summarizeMembership, pickVerdict } from '../utils/verdictLogic.js'
-import { findCard, cardLinksFor } from '../utils/cardLogic.js'
+import { findCard, cardLinksFor, transferIn } from '../utils/cardLogic.js'
 import ChainResultCard from '../components/ChainResultCard.jsx'
 import ResultsSummary from '../components/ResultsSummary.jsx'
 import './ResultsPage.css'
@@ -27,6 +27,14 @@ export default function ResultsPage() {
   )
 
   const nights = computeNights(checkIn, checkOut)
+  // What the user's bank/card points would become in each program they added.
+  const transfers = useMemo(
+    () =>
+      Object.fromEntries(
+        ranked.map((m) => [m.id, transferIn(m.chainId, state.bankPoints, creditCards.cards)]),
+      ),
+    [ranked, state.bankPoints],
+  )
   const summaries = useMemo(
     () =>
       ranked.map((m) =>
@@ -36,9 +44,10 @@ export default function ResultsPage() {
           resolved,
           nights,
           rooms,
+          transferPoints: transfers[m.id].total,
         }),
       ),
-    [ranked, resolved, nights, rooms],
+    [ranked, resolved, nights, rooms, transfers],
   )
   const verdict = useMemo(() => pickVerdict(summaries), [summaries])
 
@@ -86,6 +95,7 @@ export default function ResultsPage() {
               destination={destination}
               trip={trip}
               card={card}
+              transfers={transfers[m.id]}
             />
           )
         })}

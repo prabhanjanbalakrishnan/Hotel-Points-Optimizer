@@ -26,8 +26,16 @@ const NO_DATA_RANK = 3
  * whichever region taxonomy it tracks, so `presenceRegion` is per-chain (a US
  * chain may be rated for "Europe" while an India chain, for the same
  * destination, is rated for "International").
+ *
+ * `transferPoints` is what the user's bank/card points would become in this
+ * program (cardLogic's transferIn().total); it's added to the program's own
+ * balance, so every figure below describes "your balance if you move your
+ * card points here". The same card points can't be spent twice, which the UI
+ * says -- each program is evaluated as if it got all of them.
  */
-export function summarizeMembership({ chain, membership, resolved, nights, rooms }) {
+export function summarizeMembership({ chain, membership, resolved, nights, rooms, transferPoints = 0 }) {
+  const ownBalance = membership.balance > 0 ? membership.balance : 0
+  const balance = ownBalance + transferPoints
   const found = presenceFor(chain, resolved)
   const presence = found?.level ?? null
   const summary = {
@@ -44,7 +52,8 @@ export function summarizeMembership({ chain, membership, resolved, nights, rooms
         : found.region
       : null,
     presenceRank: resolved ? (PRESENCE_RANK[presence] ?? NO_DATA_RANK) : null,
-    hasBalance: Boolean(membership.balance && membership.balance > 0),
+    transferPoints,
+    hasBalance: balance > 0,
     nightsCovered: null, // {min, max} at REFERENCE_TIER, redemption-chart chains only
     fit: null, // 'covers' | 'maybe' | 'short' -- needs both a balance and trip dates
     cashValue: null, // major currency units, cashback chains only
@@ -54,7 +63,7 @@ export function summarizeMembership({ chain, membership, resolved, nights, rooms
 
   if (chain.programType === 'redemption-chart') {
     const range = chain.redemptionGuidance.pointsPerNightByTier[REFERENCE_TIER]
-    summary.nightsCovered = estimateNightsCovered(membership.balance, range.min, range.max, rooms)
+    summary.nightsCovered = estimateNightsCovered(balance, range.min, range.max, rooms)
     if (nights) {
       if (summary.nightsCovered.min >= nights) summary.fit = 'covers'
       else if (summary.nightsCovered.max >= nights) summary.fit = 'maybe'
@@ -62,8 +71,8 @@ export function summarizeMembership({ chain, membership, resolved, nights, rooms
     }
   } else if (chain.programType === 'cashback-currency') {
     summary.cashValue = estimateCashValue(
-      membership.balance,
-      membership.balance,
+      balance,
+      balance,
       chain.pointValuation.valuePerPoint,
     ).min
   }

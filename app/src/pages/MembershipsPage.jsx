@@ -3,12 +3,13 @@ import { useOptimizer } from '../context/OptimizerContext.jsx'
 import { CHAINS } from '../constants.js'
 import chainsData from '../data/chains.json'
 import MembershipList from '../components/MembershipList.jsx'
+import BankPointsSection from '../components/BankPointsSection.jsx'
 import './MembershipsPage.css'
 
 export default function MembershipsPage() {
   const { state, dispatch } = useOptimizer()
   const navigate = useNavigate()
-  const { memberships } = state
+  const { memberships, bankPoints } = state
 
   const handleAdd = (chainId) => dispatch({ type: 'ADD_MEMBERSHIP', chainId })
   const handleChange = (id, patch) => dispatch({ type: 'UPDATE_MEMBERSHIP', id, patch })
@@ -36,6 +37,15 @@ export default function MembershipsPage() {
           onAdd={handleAdd}
           onChange={handleChange}
           onRemove={handleRemove}
+        />
+      )}
+
+      {memberships.length > 0 && (
+        <BankPointsSection
+          bankPoints={bankPoints}
+          onAdd={(cardId) => dispatch({ type: 'ADD_BANK_POINTS', cardId })}
+          onChange={(id, patch) => dispatch({ type: 'UPDATE_BANK_POINTS', id, patch })}
+          onRemove={(id) => dispatch({ type: 'REMOVE_BANK_POINTS', id })}
         />
       )}
 

@@ -4,6 +4,7 @@ const OptimizerContext = createContext(null)
 
 const initialState = {
   memberships: [], // [{ id, chainId, balance, tier }]
+  bankPoints: [], // [{ id, cardId, balance }] -- points held on a card, transferable to hotel programs
   destination: '',
   checkIn: '',
   checkOut: '',
@@ -35,6 +36,18 @@ function reducer(state, action) {
           m.id === action.id ? { ...m, ...action.patch } : m,
         ),
       }
+    case 'ADD_BANK_POINTS':
+      return {
+        ...state,
+        bankPoints: [...state.bankPoints, { id: nextRowId++, cardId: action.cardId, balance: null }],
+      }
+    case 'UPDATE_BANK_POINTS':
+      return {
+        ...state,
+        bankPoints: state.bankPoints.map((b) => (b.id === action.id ? { ...b, ...action.patch } : b)),
+      }
+    case 'REMOVE_BANK_POINTS':
+      return { ...state, bankPoints: state.bankPoints.filter((b) => b.id !== action.id) }
     case 'SET_DESTINATION':
       return { ...state, destination: action.destination }
     case 'SET_TRIP_DETAILS':

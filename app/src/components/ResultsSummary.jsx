@@ -16,10 +16,11 @@ function describe(summary) {
     return summary.tier ? `${summary.tier} tier discount, no points balance` : 'Tier discount, no points balance'
   }
   if (!summary.hasBalance) return 'No balance entered'
+  const incl = summary.transferPoints > 0 ? ` (incl. ${summary.transferPoints.toLocaleString()} from your cards)` : ''
   if (summary.programType === 'cashback-currency') {
-    return `Balance worth ${formatCurrency(summary.cashValue, summary.currency)} toward a stay`
+    return `Balance worth ${formatCurrency(summary.cashValue, summary.currency)} toward a stay${incl}`
   }
-  return `${formatNights(summary.nightsCovered)} at an ${REFERENCE_TIER} hotel`
+  return `${formatNights(summary.nightsCovered)} at an ${REFERENCE_TIER} hotel${incl}`
 }
 
 function headlineParts(verdict, destination) {
@@ -41,7 +42,11 @@ function headlineParts(verdict, destination) {
     lines.push(
       tied
         ? `Your balances stretch the same distance: ${covered} at an ${REFERENCE_TIER} hotel.`
-        : `Your balance covers ${covered} at an ${REFERENCE_TIER} hotel.`,
+        : `Your balance covers ${covered} at an ${REFERENCE_TIER} hotel${
+            winners[0].transferPoints > 0
+              ? `, counting ${winners[0].transferPoints.toLocaleString()} points moved from your cards`
+              : ''
+          }.`,
     )
   } else if (tied) {
     lines.push('Add points balances to separate them.')
@@ -74,6 +79,7 @@ export default function ResultsSummary({ summaries, verdict, resolved, destinati
   // "Best fit" can still be a program that can't pay for the whole trip -- say so
   // rather than letting the badge imply it can.
   const fits = summaries.map((s) => s.fit).filter(Boolean)
+  const anyTransfers = summaries.some((s) => s.transferPoints > 0)
   const nothingCoversTrip = nights && fits.length > 0 && fits.every((f) => f === 'short')
 
   return (
@@ -146,6 +152,8 @@ export default function ResultsSummary({ summaries, verdict, resolved, destinati
       <p className="results-summary__note">
         Compared at a typical {REFERENCE_TIER} hotel using rule-of-thumb point ranges, not live
         prices. Tap a program to jump to its details.
+        {anyTransfers &&
+          ' Card points can only be spent once: each figure that counts them assumes you move all of them to that program.'}
       </p>
     </section>
   )
