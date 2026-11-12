@@ -243,6 +243,10 @@ The original theme (warm cream `#faf6ee` background, teal accent, Poppins/Inter 
 - **Hover-only hard shadows are a deliberate, narrow exception to the "no `box-shadow` anywhere" rule above**: the primary CTA and the how-it-works step cards get an offset solid shadow (`4px 4px 0` / `5px 5px 0`) plus a `translate(-2px,-2px)` lift on hover only -- a neo-brutalist "button pressing" cue that suits the scrappy look and doesn't reintroduce soft elevation at rest. Don't generalize it into resting-state card shadows.
 - **The hero's three links are structured as one primary button on its own row plus a pair of outline links beneath it**, on purpose: at the 1080px max width the copy column is only ~517px, and all three on one line need ~633px, so a flat flex-wrap left "Browse the programs" orphaned alone on a second row. The tops-of-boxes row count is a misleading way to check this (different button heights + `align-items: center` means tops differ even on a shared row) -- compare vertical *centers*.
 
+## Back button (`SiteHeader.jsx`)
+
+A "← Back" button sits at the left of the site header on every page except Home, so it is in the same place whatever the page's width. It does `navigate(-1)` (browser history), **except when the page was the first one loaded in the tab** (`useLocation().key === 'default'`, e.g. a refresh or a direct link): going back from there would leave the app, so it goes one step up the flow instead (`FALLBACK`: memberships to Home, destination to memberships, explore and results to destination, hotels to Home). Destination and Explore still have their own Back buttons at the bottom of the form; those are fixed-target step buttons and were left as they were. If a route is added, add it to `FALLBACK`.
+
 ## Deployment
 
 Live at **https://hotel-points-optimizer.vercel.app**, source at **https://github.com/prabhanjanbalakrishnan/Hotel-Points-Optimizer** (private repo). Deployed following the sibling project's pattern:

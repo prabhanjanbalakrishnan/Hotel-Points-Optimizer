@@ -9,6 +9,34 @@
   background: var(--paper-raised);
 }
 
+.site-header__left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.site-header__back {
+  padding: 0.3rem 0.8rem;
+  background: var(--chip);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.site-header__back:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.site-header__back:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .site-header__brand {
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 700;
