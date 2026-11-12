@@ -1,29 +1,17 @@
 .compare-panel {
-  margin: 0 0 2rem;
+  margin: 0;
+  padding: 1.1rem 1.2rem;
   border: 2px solid var(--rule);
   background: var(--paper-raised);
 }
 
-.compare-panel > summary {
-  padding: 0.8rem 1rem;
-  cursor: pointer;
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.compare-panel > summary:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: -3px;
-}
-
-.compare-panel__count {
-  color: var(--accent);
-  font-weight: 500;
+.compare-panel h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
 }
 
 .compare-panel__body {
-  padding: 0 1rem 1rem;
+  padding: 0;
 }
 
 .compare-panel__hint {

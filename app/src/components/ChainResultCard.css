@@ -2,7 +2,8 @@
   background: var(--paper-raised);
   border: 2px solid var(--rule);
   border-radius: 0;
-  padding: 1.5rem;
+  min-width: 0;
+  padding: 1.25rem;
   scroll-margin-top: 1rem;
 }
 
@@ -28,21 +29,10 @@
   font-weight: 600;
 }
 
-.chain-result-card__trip-summary {
-  display: inline-block;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 600;
-  border-radius: 0;
-  padding: 0.25rem 0.75rem;
-  margin: 0 0 0.75rem;
-}
-
 .chain-result-card__region-hint {
   color: var(--ink-soft);
   font-size: 0.85rem;
-  margin: 0 0 1rem;
+  margin: 0 0 0.9rem;
 }
 
 .chain-result-card__card-notes {
@@ -107,12 +97,21 @@
   color: var(--ink-soft);
 }
 
-.chain-result-card__brands {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 0.4rem 0.5rem;
-  margin-bottom: 1.1rem;
+/* display rules below would otherwise beat the browser's [hidden] */
+.chain-result-card[hidden],
+.chain-result-card__panel[hidden] {
+  display: none;
+}
+
+.chain-result-card__panel {
+  margin-top: 1rem;
+}
+
+.chain-result-card__counting {
+  margin: 0 0 0.75rem;
+  color: var(--good);
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .chain-result-card__perks h4 {
@@ -179,4 +178,9 @@
   margin: 0.6rem 0 0;
   font-size: 0.8rem;
   color: var(--ink-soft);
+}
+
+.chain-result-card__discount {
+  margin: 0;
+  font-size: 0.9rem;
 }

@@ -35,7 +35,6 @@ export default function ComparePanel({
   onRemove,
 }) {
   const [draft, setDraft] = useState('')
-  const [open, setOpen] = useState(compareTo.length > 0)
 
   // A compared destination that later becomes the main one would be a duplicate column.
   const extras = useMemo(
@@ -61,15 +60,8 @@ export default function ComparePanel({
   const hasTable = extras.length > 0 && comparison.length > 0
 
   return (
-    <details
-      className="compare-panel"
-      open={open}
-      onToggle={(e) => setOpen(e.currentTarget.open)}
-    >
-      <summary>
-        Compare destinations
-        {extras.length > 0 && <span className="compare-panel__count"> · {extras.length} added</span>}
-      </summary>
+    <section className="compare-panel" aria-labelledby="compare-panel-heading">
+      <h3 id="compare-panel-heading">Compare destinations</h3>
 
       <div className="compare-panel__body">
         <p className="compare-panel__hint">
@@ -176,6 +168,6 @@ export default function ComparePanel({
           </div>
         )}
       </div>
-    </details>
+    </section>
   )
 }

@@ -1,19 +1,5 @@
-import { formatCurrency } from '../utils/pointsLogic.js'
-import { REFERENCE_TIER, FIT_LABELS, formatNights } from '../utils/verdictLogic.js'
+import { REFERENCE_TIER, formatNights } from '../utils/verdictLogic.js'
 import './ResultsSummary.css'
-
-/** One plain-language line on what a membership can do on this trip. */
-function describe(summary) {
-  if (summary.programType === 'discount-tier') {
-    return summary.tier ? `${summary.tier} tier discount, no points balance` : 'Tier discount, no points balance'
-  }
-  if (!summary.hasBalance) return 'No balance entered'
-  const incl = summary.transferPoints > 0 ? ` (incl. ${summary.transferPoints.toLocaleString()} from your cards)` : ''
-  if (summary.programType === 'cashback-currency') {
-    return `Balance worth ${formatCurrency(summary.cashValue, summary.currency)} toward a stay${incl}`
-  }
-  return `${formatNights(summary.nightsCovered)} at an ${REFERENCE_TIER} hotel${incl}`
-}
 
 function headlineParts(verdict, destination) {
   const { winners, presenceDecided, balanceDecided, balanceLeader } = verdict
@@ -58,15 +44,7 @@ function headlineParts(verdict, destination) {
   }
 }
 
-function scrollToResult(membershipId) {
-  const el = document.getElementById(`result-${membershipId}`)
-  if (!el) return
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' })
-}
-
-export default function ResultsSummary({ summaries, verdict, resolved, destination, nights }) {
-  const winnerIds = new Set(verdict ? verdict.winners.map((w) => w.membershipId) : [])
+export default function ResultsSummary({ summaries, verdict, destination, nights }) {
   const headline = verdict ? headlineParts(verdict, destination) : null
   // "Best fit" can still be a program that can't pay for the whole trip -- say so
   // rather than letting the badge imply it can.
@@ -105,45 +83,9 @@ export default function ResultsSummary({ summaries, verdict, resolved, destinati
         </p>
       )}
 
-      <ul className="results-summary__rows">
-        {summaries.map((s) => {
-          const isWinner = winnerIds.has(s.membershipId)
-          return (
-            <li key={s.membershipId}>
-              <button
-                type="button"
-                className={`results-summary__row${isWinner ? ' results-summary__row--best' : ''}`}
-                onClick={() => scrollToResult(s.membershipId)}
-              >
-                <span className="results-summary__name">
-                  {s.name}
-                  {isWinner && <span className="results-summary__badge">Best fit</span>}
-                </span>
-                {resolved && (
-                  <span className="results-summary__presence">
-                    {s.presence
-                      ? `${s.presence} in ${s.presenceRegion}`
-                      : `No rating for ${destination || 'this destination'}`}
-                  </span>
-                )}
-                <span className="results-summary__detail">
-                  {describe(s)}
-                  {s.fit && (
-                    <span className={`results-summary__fit results-summary__fit--${s.fit}`}>
-                      {FIT_LABELS[s.fit]}
-                      {nights ? ` (${nights} night${nights === 1 ? '' : 's'})` : ''}
-                    </span>
-                  )}
-                </span>
-              </button>
-            </li>
-          )
-        })}
-      </ul>
-
       <p className="results-summary__note">
         Compared at a typical {REFERENCE_TIER} hotel using rule-of-thumb point ranges, not live
-        prices. Tap a program to jump to its details.
+        prices.
         {anyTransfers &&
           ' Card points can only be spent once: each figure that counts them assumes you move all of them to that program.'}
       </p>

@@ -1,12 +1,27 @@
 .results-page {
-  max-width: 820px;
+  max-width: 1000px;
   margin: 3rem auto;
   padding: 0 1.5rem;
 }
 
+.results-page__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .results-page h2 {
   font-size: 1.6rem;
-  margin-bottom: 0.5rem;
+  overflow-wrap: anywhere;
+}
+
+.results-page__trip {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
 }
 
 .results-page__disclaimer {
@@ -24,10 +39,32 @@
   font-size: 0.9rem;
 }
 
-.results-page__cards {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* Program list on the left, the picked program's details on the right. */
+.results-page__programs {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: start;
+}
+
+.results-page__panel {
+  margin-top: 1rem;
+}
+
+.results-page__programs[hidden],
+.results-page__panel[hidden] {
+  display: none;
+}
+
+.results-page__detail {
+  min-width: 0;
+}
+
+@media (max-width: 720px) {
+  .results-page__programs {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .results-page__restart {

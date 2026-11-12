@@ -1,0 +1,57 @@
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tabs__tab {
+  background: transparent;
+  color: var(--ink-soft);
+  border: none;
+  border-radius: 0;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tabs__tab:hover {
+  color: var(--ink);
+}
+
+.tabs__tab:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+}
+
+/* Top-level: a bar with a solid rule under it; the active tab is filled. */
+.tabs--top {
+  border-bottom: 2px solid var(--rule);
+}
+
+.tabs--top .tabs__tab {
+  padding: 0.6rem 1rem;
+}
+
+.tabs--top .tabs__tab[aria-selected='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Inside a program: small outlined buttons, the active one in the accent. */
+.tabs--sub {
+  gap: 0.4rem;
+}
+
+.tabs--sub .tabs__tab {
+  padding: 0.25rem 0.8rem;
+  border: 2px solid var(--chip);
+  font-size: 0.8rem;
+}
+
+.tabs--sub .tabs__tab:hover {
+  border-color: var(--ink-soft);
+}
+
+.tabs--sub .tabs__tab[aria-selected='true'] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
