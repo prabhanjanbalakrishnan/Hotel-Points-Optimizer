@@ -23,7 +23,16 @@
         { "name": "Canopy by Hilton", "tier": "Upscale", "blurb": "Upscale lifestyle brand built around neighborhood-specific design and local food and drink.", "url": "https://www.canopybyhilton.com/" },
         { "name": "Hilton Hotels & Resorts", "tier": "Upper Upscale", "blurb": "The full-service, upper-upscale flagship brand the Hilton name itself refers to.", "url": "https://www.hilton.com/en/brands/hilton-hotels/" },
         { "name": "DoubleTree", "tier": "Upscale", "blurb": "Upscale brand known for its warm-cookie welcome and flexible event spaces.", "url": "https://www.hilton.com/en/brands/doubletree/" },
-        { "name": "Hampton by Hilton", "tier": "Budget/Midscale", "blurb": "Moderately priced, upper-midscale brand with free breakfast and limited food service.", "url": "https://www.hilton.com/en/brands/hampton/" }
+        { "name": "Hampton by Hilton", "tier": "Budget/Midscale", "blurb": "Moderately priced, upper-midscale brand with free breakfast and limited food service.", "url": "https://www.hilton.com/en/brands/hampton/" },
+        { "name": "Tru by Hilton", "tier": "Budget/Midscale", "blurb": "Value-focused brand with simple rooms, free hot breakfast and a pet-friendly policy.", "url": "https://stories.hilton.com/brands/tru-by-hilton" },
+        { "name": "Spark by Hilton", "tier": "Budget/Midscale", "blurb": "Newer value brand: reliable essentials and friendly service at an accessible price.", "url": "https://stories.hilton.com/brands/spark-by-hilton" },
+        { "name": "Home2 Suites", "tier": "Budget/Midscale", "blurb": "Mid-tier, all-suite extended-stay brand built for longer trips.", "url": "https://stories.hilton.com/brands/home2-suites" },
+        { "name": "Hilton Garden Inn", "tier": "Upscale", "blurb": "Affordable upscale brand with modern amenities, popular for business and leisure trips.", "url": "https://stories.hilton.com/brands/hilton-garden-inn" },
+        { "name": "Embassy Suites", "tier": "Upscale", "blurb": "All-suite brand: every suite has a living area separate from the bedroom.", "url": "https://stories.hilton.com/brands/embassy-suites" },
+        { "name": "Homewood Suites", "tier": "Upscale", "blurb": "Home-like suites for extended stays or quick overnights, pets welcome.", "url": "https://stories.hilton.com/brands/homewood-suites" },
+        { "name": "Curio Collection", "tier": "Upper Upscale", "blurb": "Hand-picked independent hotels, each with its own character, under one Hilton roof.", "url": "https://stories.hilton.com/brands/curio-collection" },
+        { "name": "Signia by Hilton", "tier": "Upper Upscale", "blurb": "Large urban and resort hotels built around meetings and events.", "url": "https://stories.hilton.com/brands/signia-by-hilton" },
+        { "name": "LXR Hotels & Resorts", "tier": "Luxury", "blurb": "Growing collection of luxury independent hotels and resorts, each with its own personality.", "url": "https://stories.hilton.com/brands/lxr-hotels" }
       ],
       "eliteTiers": [
         { "name": "Member", "qualification": "Enrollment only", "perks": ["5% bonus points earning", "Digital check-in & room selection", "Standard room upgrade, space-available"] },
@@ -60,7 +69,21 @@
         { "name": "Westin", "tier": "Upper Upscale", "blurb": "Premium brand centered on wellness — its Heavenly Bed and in-room fitness gear are signature touches.", "url": "https://westin.marriott.com/" },
         { "name": "Sheraton", "tier": "Upper Upscale", "blurb": "Premium, full-service brand with a large global footprint, geared toward business and group travel.", "url": "https://sheraton.marriott.com/" },
         { "name": "Courtyard", "tier": "Upscale", "blurb": "Marriott's original select-service brand, aimed at business travelers wanting reliable mid-tier stays.", "url": "https://www.marriott.com/brands/courtyard-by-marriott.mi" },
-        { "name": "Fairfield by Marriott", "tier": "Budget/Midscale", "blurb": "Budget-friendly, select-service brand focused on simple, dependable stays.", "url": "https://www.marriott.com/brands/fairfield-by-marriott.mi" }
+        { "name": "Fairfield by Marriott", "tier": "Budget/Midscale", "blurb": "Budget-friendly, select-service brand focused on simple, dependable stays.", "url": "https://www.marriott.com/brands/fairfield-by-marriott.mi" },
+        { "name": "Residence Inn by Marriott", "tier": "Upscale", "blurb": "Extended-stay suites with kitchens and free breakfast, built for trips of a week or more.", "url": "https://www.marriott.com/brands/residence-inn-by-marriott.mi" },
+        { "name": "SpringHill Suites", "tier": "Upscale", "blurb": "All-suite, select-service hotels with roomier-than-usual rooms and free breakfast.", "url": "https://www.marriott.com/brands/springhill-suites-by-marriott.mi" },
+        { "name": "Four Points by Sheraton", "tier": "Upscale", "blurb": "Straightforward upscale hotels known for a local-beer-focused lobby bar.", "url": "https://www.marriott.com/brands/four-points-by-sheraton.mi" },
+        { "name": "Aloft", "tier": "Upscale", "blurb": "Tech-forward, loft-style lifestyle brand with a lively social lobby.", "url": "https://www.marriott.com/brands/aloft-hotels.mi" },
+        { "name": "AC Hotels by Marriott", "tier": "Upscale", "blurb": "European-designed, minimalist city hotels with a signature lobby bar.", "url": "https://www.marriott.com/brands/ac-hotels-by-marriott.mi" },
+        { "name": "TownePlace Suites", "tier": "Budget/Midscale", "blurb": "Value-priced extended-stay suites with kitchens, for longer trips.", "url": "https://www.marriott.com/brands/towneplace-suites-by-marriott.mi" },
+        { "name": "Moxy Hotels", "tier": "Budget/Midscale", "blurb": "Playful, compact-room lifestyle brand with a social lobby, aimed at younger travelers.", "url": "https://www.marriott.com/brands/moxy-hotels.mi" },
+        { "name": "Marriott Hotels", "tier": "Upper Upscale", "blurb": "The full-service flagship brand the company is named for.", "url": "https://www.marriott.com/brands/marriott-hotels.mi" },
+        { "name": "Renaissance Hotels", "tier": "Upper Upscale", "blurb": "Upper-upscale lifestyle brand built around local discovery and design.", "url": "https://www.marriott.com/brands/renaissance-hotels.mi" },
+        { "name": "Le Méridien", "tier": "Upper Upscale", "blurb": "French-rooted brand mixing culture, design and a cafe-style social scene.", "url": "https://www.marriott.com/brands/le-meridien.mi" },
+        { "name": "Autograph Collection", "tier": "Upper Upscale", "blurb": "Hand-picked independent hotels that each keep their own name and personality.", "url": "https://www.marriott.com/brands/autograph-collection.mi" },
+        { "name": "JW Marriott", "tier": "Luxury", "blurb": "Marriott's luxury brand, focused on wellness and refined service.", "url": "https://www.marriott.com/brands/jw-marriott.mi" },
+        { "name": "The Luxury Collection", "tier": "Luxury", "blurb": "Distinctive luxury hotels and resorts, each tied closely to its destination.", "url": "https://www.marriott.com/brands/the-luxury-collection.mi" },
+        { "name": "EDITION", "tier": "Luxury", "blurb": "Design-driven luxury lifestyle hotels created with hotelier Ian Schrager.", "url": "https://www.marriott.com/brands/edition-hotels.mi" }
       ],
       "eliteTiers": [
         { "name": "Member", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Mobile check-in & checkout", "Member-only rates"] },
@@ -99,7 +122,13 @@
         { "name": "Hyatt Regency", "tier": "Upper Upscale", "blurb": "Hyatt's largest full-service brand, geared toward conferences, groups, and business travel.", "url": "https://www.hyatt.com/hyatt-regency" },
         { "name": "Hyatt Place", "tier": "Upscale", "blurb": "Upscale select-service brand for travelers who want more space and free breakfast at a mid-tier price.", "url": "https://www.hyatt.com/hyatt-place/en-US" },
         { "name": "Hyatt House", "tier": "Upscale", "blurb": "Extended-stay brand with full kitchens, aimed at longer trips and relocations.", "url": "https://www.hyatt.com/hyatt-house" },
-        { "name": "Hyatt Select", "tier": "Budget/Midscale", "blurb": "Upper-midscale brand for short stays in smaller markets, launched in the Americas in 2025 and built to convert existing hotels.", "url": "https://www.hyatt.com/hyatt-select/en-US" }
+        { "name": "Hyatt Select", "tier": "Budget/Midscale", "blurb": "Upper-midscale brand for short stays in smaller markets, launched in the Americas in 2025 and built to convert existing hotels.", "url": "https://www.hyatt.com/hyatt-select/en-US" },
+        { "name": "Caption by Hyatt", "tier": "Budget/Midscale", "blurb": "Compact, value-oriented rooms built around a shared social space.", "url": "https://www.hyatt.com/caption-by-hyatt" },
+        { "name": "Hyatt Centric", "tier": "Upper Upscale", "blurb": "Lifestyle brand placing hotels in the heart of city destinations.", "url": "https://www.hyatt.com/hyatt-centric" },
+        { "name": "Thompson Hotels", "tier": "Upper Upscale", "blurb": "Design-led boutique lifestyle hotels, acquired by Hyatt in 2018.", "url": "https://www.hyatt.com/thompson-hotels" },
+        { "name": "Alila", "tier": "Luxury", "blurb": "Luxury hotels and resorts rooted in local culture and sustainability.", "url": "https://www.hyatt.com/alila" },
+        { "name": "Miraval", "tier": "Luxury", "blurb": "Wellness-focused luxury resorts.", "url": "https://www.hyatt.com/miraval" },
+        { "name": "The Unbound Collection by Hyatt", "tier": "Luxury", "blurb": "Hand-picked independent luxury hotels, each with its own character.", "url": "https://www.hyatt.com/the-unbound-collection" }
       ],
       "eliteTiers": [
         { "name": "Member", "qualification": "Enrollment only", "perks": ["5 points per $1 spent", "Member-only rates", "Late checkout upon request"] },
@@ -136,7 +165,14 @@
         { "name": "voco", "tier": "Upscale", "blurb": "Premium brand positioned as a relaxed, informal alternative to more corporate upscale hotels.", "url": "https://www.vocohotels.com/" },
         { "name": "Holiday Inn", "tier": "Budget/Midscale", "blurb": "IHG's core full-service, midscale-to-upscale brand for families and business travelers alike.", "url": "https://www.ihg.com/holidayinn/hotels/us/en/reservation" },
         { "name": "Holiday Inn Express", "tier": "Budget/Midscale", "blurb": "Limited-service, budget-friendly brand focused on simple stays with free breakfast.", "url": "https://www.ihg.com/holidayinnexpress/hotels/us/en/reservation" },
-        { "name": "Crowne Plaza", "tier": "Upper Upscale", "blurb": "Full-service brand built around business travel, meetings and events, with a premium feel for work-and-leisure trips.", "url": "https://www.ihg.com/crowneplaza/hotels/us/en/reservation" }
+        { "name": "Crowne Plaza", "tier": "Upper Upscale", "blurb": "Full-service brand built around business travel, meetings and events, with a premium feel for work-and-leisure trips.", "url": "https://www.ihg.com/crowneplaza/hotels/us/en/reservation" },
+        { "name": "Candlewood Suites", "tier": "Budget/Midscale", "blurb": "Extended-stay suites with kitchens at value prices.", "url": "https://www.ihg.com/candlewood/hotels/us/en/reservation" },
+        { "name": "avid hotels", "tier": "Budget/Midscale", "blurb": "Straightforward midscale hotels: comfortable rooms and grab-and-go breakfast.", "url": "https://www.ihg.com/avidhotels/hotels/us/en/reservation" },
+        { "name": "Staybridge Suites", "tier": "Upscale", "blurb": "Upscale extended-stay suites with kitchens and a social lobby.", "url": "https://www.ihg.com/staybridge/hotels/us/en/reservation" },
+        { "name": "EVEN Hotels", "tier": "Upscale", "blurb": "Wellness-focused brand with in-room fitness gear and healthy food options.", "url": "https://www.ihg.com/evenhotels/hotels/us/en/reservation" },
+        { "name": "Vignette Collection", "tier": "Luxury", "blurb": "Hand-picked luxury independent hotels, each with its own identity.", "url": "https://www.ihg.com/vignettecollection/hotels/us/en/reservation" },
+        { "name": "Regent Hotels & Resorts", "tier": "Luxury", "blurb": "Luxury brand with a design-led, destination-focused approach.", "url": "https://www.regenthotels.com/" },
+        { "name": "Six Senses", "tier": "Luxury", "blurb": "Wellness- and sustainability-focused luxury hotels, resorts and spas.", "url": "https://www.sixsenses.com/" }
       ],
       "eliteTiers": [
         { "name": "Club", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Member-only rates", "Free wifi"] },
@@ -172,7 +208,17 @@
         { "name": "Ramada", "tier": "Budget/Midscale", "blurb": "Long-running midscale brand with a large, varied global footprint.", "url": "https://www.wyndhamhotels.com/ramada" },
         { "name": "Days Inn", "tier": "Budget/Midscale", "blurb": "Budget-friendly, economy brand focused on straightforward, affordable stays.", "url": "https://www.wyndhamhotels.com/days-inn" },
         { "name": "Super 8", "tier": "Budget/Midscale", "blurb": "One of the largest economy brands in the US, built around no-frills, budget stays.", "url": "https://www.wyndhamhotels.com/super-8" },
-        { "name": "La Quinta", "tier": "Budget/Midscale", "blurb": "Midscale brand known for free breakfast and pillow-top mattresses, strong across the Americas.", "url": "https://www.wyndhamhotels.com/laquinta" }
+        { "name": "La Quinta", "tier": "Budget/Midscale", "blurb": "Midscale brand known for free breakfast and pillow-top mattresses, strong across the Americas.", "url": "https://www.wyndhamhotels.com/laquinta" },
+        { "name": "Microtel by Wyndham", "tier": "Budget/Midscale", "blurb": "Budget brand offering simple, modern rooms at low prices.", "url": "https://www.wyndhamhotels.com/microtel" },
+        { "name": "Travelodge by Wyndham", "tier": "Budget/Midscale", "blurb": "Economy roadside brand for budget-minded road trips.", "url": "https://www.wyndhamhotels.com/travelodge" },
+        { "name": "Baymont by Wyndham", "tier": "Budget/Midscale", "blurb": "Midscale brand with free breakfast and straightforward rooms.", "url": "https://www.wyndhamhotels.com/baymont" },
+        { "name": "Wingate by Wyndham", "tier": "Budget/Midscale", "blurb": "Upper-midscale brand aimed at business travelers, with free breakfast.", "url": "https://www.wyndhamhotels.com/wingate" },
+        { "name": "Hawthorn Suites by Wyndham", "tier": "Budget/Midscale", "blurb": "Extended-stay suites with kitchens for longer trips.", "url": "https://www.wyndhamhotels.com/hawthorn-extended-stay" },
+        { "name": "Howard Johnson by Wyndham", "tier": "Budget/Midscale", "blurb": "Long-running economy brand with a retro name and low prices.", "url": "https://www.wyndhamhotels.com/hojo" },
+        { "name": "Tryp by Wyndham", "tier": "Upscale", "blurb": "Urban lifestyle brand with a European-style design sensibility.", "url": "https://www.wyndhamhotels.com/tryp" },
+        { "name": "Trademark Collection by Wyndham", "tier": "Upscale", "blurb": "Independent hotels keeping their own names, joined to the Wyndham network.", "url": "https://www.wyndhamhotels.com/trademark" },
+        { "name": "Dolce Hotels and Resorts", "tier": "Upper Upscale", "blurb": "Upscale brand centered on meetings, retreats and conference travel.", "url": "https://www.wyndhamhotels.com/dolce" },
+        { "name": "Registry Collection Hotels", "tier": "Upper Upscale", "blurb": "Hand-picked independent upscale hotels and resorts.", "url": "https://www.wyndhamhotels.com/registry-collection" }
       ],
       "eliteTiers": [
         { "name": "Blue", "qualification": "Enrollment only", "perks": ["10 points per $1 spent (varies by brand)", "Member-only rates"] },
@@ -216,7 +262,11 @@
         { "name": "Park Plaza (Americas)", "tier": "Upscale", "blurb": "Upscale city-center hotels. Americas locations are part of Choice.", "url": "https://www.choicehotels.com/about/brands" },
         { "name": "Country Inn & Suites by Radisson", "tier": "Budget/Midscale", "blurb": "Upper-midscale brand with free hot breakfast. The largest Radisson brand Choice took over (450+ hotels at the 2022 acquisition), mostly in the US.", "url": "https://www.choicehotels.com/country-inn-suites" },
         { "name": "Park Inn by Radisson (Americas)", "tier": "Budget/Midscale", "blurb": "Midscale brand focused on friendly service and simple essentials. Americas locations are part of Choice.", "url": "https://www.choicehotels.com/about/brands" },
-        { "name": "Radisson Inn & Suites", "tier": "Budget/Midscale", "blurb": "Midscale-to-upper-midscale Radisson brand, owned by Choice in the Americas.", "url": "https://www.choicehotels.com/about/brands" }
+        { "name": "Radisson Inn & Suites", "tier": "Budget/Midscale", "blurb": "Midscale-to-upper-midscale Radisson brand, owned by Choice in the Americas.", "url": "https://www.choicehotels.com/about/brands" },
+        { "name": "Sleep Inn", "tier": "Budget/Midscale", "blurb": "Midscale brand with a focus on comfortable sleep and free breakfast.", "url": "https://www.choicehotels.com/sleep-inn" },
+        { "name": "Rodeway Inn", "tier": "Budget/Midscale", "blurb": "Economy roadside brand for budget travelers.", "url": "https://www.choicehotels.com/rodeway-inn" },
+        { "name": "Clarion", "tier": "Budget/Midscale", "blurb": "Upper-midscale brand with meeting space and on-site dining.", "url": "https://www.choicehotels.com/clarion" },
+        { "name": "MainStay Suites", "tier": "Budget/Midscale", "blurb": "Extended-stay suites with kitchens, for longer trips.", "url": "https://www.choicehotels.com/mainstay-suites" }
       ],
       "eliteTiers": [
         { "name": "Member", "qualification": "Enrollment only", "perks": ["10 points per $1 spent", "Member-only rates"] },
