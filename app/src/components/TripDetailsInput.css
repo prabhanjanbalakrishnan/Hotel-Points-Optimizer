@@ -13,6 +13,7 @@
 
 .trip-details-input__row label {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -21,6 +22,8 @@
 }
 
 .trip-details-input__row input {
+  width: 100%;
+  min-width: 0;
   padding: 0.65rem 0.8rem;
   border: 2px solid var(--rule-strong);
   border-radius: 0;
